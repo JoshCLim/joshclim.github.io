@@ -100,6 +100,7 @@ h2 {
 	text-align: center;
 	line-height: 180px;
 	font-weight: bold;
+	/* change bg image for each link in handlebars or HTML... */
 }
 
 .horizontal-divider{
