@@ -100,7 +100,17 @@ h2 {
 	text-align: center;
 	line-height: 180px;
 	font-weight: bold;
+	border-radius: 20px;
 	/* change bg image for each link in handlebars or HTML... */
+	-webkit-transition:500ms ease;
+	-moz-transition:500ms ease;
+	-o-transition:500ms ease;
+	transition:500ms ease;
+}
+
+.project-link-wrapper:hover {
+	box-shadow: 0 0 20px #333;
+	transform:scale(1.025);
 }
 
 .horizontal-divider{
