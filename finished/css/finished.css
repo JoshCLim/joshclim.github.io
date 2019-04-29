@@ -155,3 +155,35 @@ input[type=text]:focus {
 .create-game-next {
     display: none;
 }
+
+.pregame-container {
+    display: none;
+    height:400px;
+    width:60%;
+}
+
+.pregame-container .heading {
+    font-size:1.5em;
+    margin-bottom: 20px;
+}
+
+.enter-game-code-text {
+    font-size:2.8em;
+    padding:10px;
+    border:1px dotted #000;
+    margin:0 0 20px 0;
+}
+
+.seven-digit-game-code {
+    font-size:1.1em;
+    padding:10px;
+    background-color: #000;
+    color:#fff;
+    display: inline-block;
+}
+
+.players-heading {
+    font-size:2.5em;
+    margin: 0 0 10px 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+}

@@ -9,6 +9,22 @@ var config = {
 };
 firebase.initializeApp(config);
 
+function generateGameCode() {
+    var a = 0;
+    while (String(a).length != 7) {
+        var random_number = Math.random();
+        a = Math.floor(random_number*10000000);
+    }
+    //console.log(String(a).length)
+    return a;
+}
+//console.log(generateGameCode());
+
+function loadGameRoom() {
+    var code = generateGameCode();
+    $('.seven-digit-game-code').text(code);
+}
+
 $('.create-game-button').on('click', function() {
     $('.home-page-container').fadeOut();
     $('.create-game-container').fadeIn().css('display','flex');
@@ -27,3 +43,12 @@ enter_name_input.on('change', function() {
         $('.create-game-next').fadeIn(500);
     }
 });
+
+var username;
+$('.create-game-next').on('click', function() {
+    username = $('.enter-name').val();
+    //console.log(username);
+    $('.create-game-container').fadeOut();
+    $('.pregame-container').fadeIn();
+    loadGameRoom();
+})
