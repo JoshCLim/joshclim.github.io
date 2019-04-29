@@ -11,10 +11,19 @@ firebase.initializeApp(config);
 
 $('.create-game-button').on('click', function() {
     $('.home-page-container').fadeOut();
-    $('.create-game-container').fadeIn();
+    $('.create-game-container').fadeIn().css('display','flex');
 });
 
 $('.create-game-back').on('click', function() {
     $('.create-game-container').fadeOut();
     $('.home-page-container').fadeIn();
+});
+
+var enter_name_input = $('.enter-name');
+enter_name_input.on('change', function() {
+    if (enter_name_input.val() == '') {
+        $('.create-game-next').fadeOut(500);
+    } else {
+        $('.create-game-next').fadeIn(500);
+    }
 });
