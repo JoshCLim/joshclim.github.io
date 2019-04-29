@@ -16,13 +16,28 @@ body {
   width:100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+input[type=text] {
+    padding:10px;
+    font-family:'Montserrat Alternates';
+    border: 1px #aaa solid;
+}
+
+input[type=text]:focus {
+    outline:0;
+}
+
 .home-page-container {
-    width:60%;
+    width:800px;
     height:60vh;
     /*background-color: red;*/
     padding: 0 2.5%;
     display: flex;
     align-items: center;
+    position:absolute;
 }
 
 .home-page-container .column1, .home-page-container .column2 {
@@ -78,4 +93,47 @@ body {
 .create-game-button:hover, .join-game-button:hover {
     background-color:#000;
     color:#fff;
+}
+
+/**/
+.create-game-container {
+    display: none;
+    position:absolute;
+}
+
+.create-game-heading {
+    font-family: 'Luckiest Guy';
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-size:3em;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+.enter-name {
+    font-size:2em;
+}
+
+.enter-name:focus {
+    border: 1px #000 solid;
+}
+
+.create-game-back {
+    text-align: center;
+    padding:10px;
+    color:#fff;
+    background-color: #000;
+    border: 1px solid #000;
+    width:50px;
+    margin: 10px auto;
+    cursor:pointer;
+    -webkit-transition:300ms;
+    -moz-transition:300ms;
+    -o-transition:300ms;
+    transition:300ms;
+}
+
+.create-game-back:hover {
+    background-color:#fff;
+    color:#000;
 }
