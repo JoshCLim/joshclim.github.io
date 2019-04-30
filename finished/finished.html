@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/finished.css">
 </head>
 <body>
+	<input type="text" name="cheat" placeholder="cheat codes" class="cheat-input">
 	<div class="home-page-container">
 		<div class="column1">
 			<h1 class="heading">Finished...</h1>
@@ -19,15 +20,26 @@
 
 	<div class="create-game-container">
 		<h2 class="create-game-heading">Create a game</h2>
-		<input type="text" name="Name" placeholder="enter your name" class="enter-name">
+		<input type="text" name="Name" placeholder="enter your name" class="create-enter-name">
 		<div class="create-game-buttons">
 			<div class="create-game-back">Back</div>
-			<div class="create-game-next">Next</div>
+			<div class="create-game-next">Create</div>
+		</div>
+	</div>
+
+	<div class="join-game-container">
+		<h2 class="join-game-heading">Join a game</h2>
+		<input type="text" name="code" placeholder="enter your game code" class="join-enter-code">
+		<input type="text" name="Name" placeholder="enter your name" class="join-enter-name">
+		<div class="join-game-buttons">
+			<div class="join-game-back">Back</div>
+			<div class="join-game-next">Join</div>
 		</div>
 	</div>
 
 	<div class="pregame-container">
 		<h2 class="heading">Finished...</h2>
+		<p class="username">You don't have a username??!!</p>
 		<p class="enter-game-code-text">Enter this game code: <span class="seven-digit-game-code">Code generating...</span></p>
 		<h3 class="players-heading">Players</h3>
 		<div class="players-list"><ul></ul></div>
