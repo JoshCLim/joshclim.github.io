@@ -8,6 +8,7 @@ var config = {
     messagingSenderId: "113361144260"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
 
 function generateGameCode() {
     var a = 0;
@@ -20,9 +21,27 @@ function generateGameCode() {
 }
 //console.log(generateGameCode());
 
+var code;
 function loadGameRoom() {
-    var code = generateGameCode();
+    code = generateGameCode();
     $('.seven-digit-game-code').text(code);
+    var reference = database.ref('/games/').child(code).child('players').child(username);
+    reference.set({username: username});
+    updatePlayersDatabase(); // update the player database only after variable 'code' has been defined
+}
+
+function updatePlayersDatabase() {
+    var playersReference = database.ref('/games/' + code + '/players/');
+    console.log(code);
+    playersReference.on('value', function(r) {
+        var allPlayers = r.val();
+        console.log(allPlayers);
+        for (var item in allPlayers) {
+            var q = allPlayers[item].username;
+            console.log(q)
+            $('.players-list ul').append('<li class="players">' + q + '</li>');
+        }
+    });
 }
 
 $('.create-game-button').on('click', function() {
@@ -51,4 +70,4 @@ $('.create-game-next').on('click', function() {
     $('.create-game-container').fadeOut();
     $('.pregame-container').fadeIn();
     loadGameRoom();
-})
+});
