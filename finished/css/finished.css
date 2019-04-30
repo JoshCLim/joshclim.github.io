@@ -20,13 +20,13 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Luckiest Guy', cursive;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     padding:10px;
     font-family:'Montserrat Alternates';
     border: 1px #aaa solid;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=password] {
     outline:0;
 }
 
@@ -181,6 +181,7 @@ input[type=text]:focus {
 .pregame-container .username {
     float: right;
     margin: 0 0 20px 0;
+    font-weight:bold;
 }
 
 .enter-game-code-text {
@@ -220,4 +221,25 @@ input[type=text]:focus {
     border:1px dashed #000;
     margin:3px;
     font-size:2em;
+}
+
+.begin-game-button {
+    text-align: center;
+    font-size: 1.5em;
+    padding:20px;
+    background-color: #000;
+    color:#fff;
+    margin: 10px 0;
+    max-width:200px;
+    cursor: pointer;
+    border:1px #000 solid;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms;
+}
+
+.begin-game-button:hover {
+    background-color:#fff;
+    color:#000;
 }

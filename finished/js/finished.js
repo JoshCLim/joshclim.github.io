@@ -1,3 +1,5 @@
+var minimumNumberOfPlayers = 1;
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyB85Q2w9sFJg3m_Jb0qHbzPIAhPEFrwIj0",
@@ -17,12 +19,19 @@ $('.cheat-input').on('keypress', function(event){
         //alert('You pressed a "enter" key in textbox');
         var cheatCode = $('.cheat-input').val();
 
+        $('.cheat-input').val(''); //clear input
+
         // cheat codes here
         if (cheatCode == 'pregame') {
             $('.home-page-container').fadeOut();
             $('.create-game-container').fadeOut();
             $('.join-game-container').fadeOut();
             $('.pregame-container').fadeIn(); // go to pregame container
+        } else if (cheatCode == 'home') {
+            $('.create-game-container').fadeOut();
+            $('.join-game-container').fadeOut();
+            $('.pregame-container').fadeOut();
+            $('.home-page-container').fadeIn(); // go to home
         }
     }
 });
@@ -51,8 +60,13 @@ var code;
 function loadGameRoom() {
     code = generateGameCode();
     $('.seven-digit-game-code').text(code);
-    var reference = database.ref('/games/').child(code).child('players').child(username);
-    reference.set({
+    var reference = database.ref('/games/').child(code);
+
+    reference.child('settings').set({
+        gameStart: false
+    })
+
+    reference.child('players').child(username).set({ // add username to player list
         username: username,
         host:true // make game room creator host
     });
@@ -60,16 +74,27 @@ function loadGameRoom() {
 }
 
 function updatePlayersDatabase() {
-    var playersReference = database.ref('/games/' + code + '/players/');
-    console.log(code);
-    playersReference.on('value', function(r) {
+    var playersReference = database.ref('/games/' + code + '/players/'); // get reference
+    //console.log(code);
+    playersReference.on('value', function(r) { // on value change event trigger
         var allPlayers = r.val();
         //console.log(allPlayers);
         $('.players-list ul').empty();
         for (var item in allPlayers) {
             var q = allPlayers[item].username;
-            console.log(q)
+            //console.log(q)
             $('.players-list ul').append('<li class="players">' + q + '</li>');
+        }
+    });
+
+    playersReference.child(username).once('value').then(function(r) {
+        var re = r.val();
+        if (re.host == true) {
+            $('.begin-game-button').fadeIn();
+            //console.log('You are host');
+        } else if (re.host == false) {
+            $('.begin-game-button').hide();
+            //console.log('You are guest');
         }
     });
 }
@@ -84,6 +109,35 @@ function joinGameRoom() {
         host: false // give joiner host 'false'
     });
     updatePlayersDatabase();
+}
+
+function startGame() {
+    var reference = database.ref('/games/').child(code).child('settings');
+    reference.set({
+        gameStart:true
+    });
+}
+
+function listenForGameStart() {
+    var settingsReference = database.ref('/games/').child(code).child('settings');
+    settingsReference.on('value', function(r) {
+        var re = r.val();
+
+        if (re.gameStart == true) {
+            globalStart();
+        }
+    });
+}
+
+function globalStart() {
+    // alert('Game started!');
+    $('.pregame-container').fadeOut();
+
+    $('.points-one-container').fadeIn();
+
+    setTimeout(function() {
+        //your code to be executed after 1 second
+    }, 7000);
 }
 
 $('.create-game-button').on('click', function() {
@@ -132,6 +186,7 @@ $('.create-game-next').on('click', function() {
     $('.pregame-container').fadeIn();
     updateUsername();
     loadGameRoom();
+    listenForGameStart();
 });
 
 $('.join-game-next').on('click', function() {
@@ -143,10 +198,29 @@ $('.join-game-next').on('click', function() {
         if (results != null) {
             updateUsername();
             joinGameRoom();
+            listenForGameStart();
         } else {
             alert('Invalid game code!!')
         }
     })
     //console.log(username);
     //console.log(code);
+});
+
+$('.begin-game-button').on('click', function() {
+    var playersReference = database.ref('/games/' + code + '/players/');
+
+    //check that there are at least 5 players
+    playersReference.once('value').then(function(r) {
+        var re = r.val();
+
+        //console.log(Object.keys(re).length);
+        var numberOfPlayers = Object.keys(re).length; // count how many players
+
+        if (numberOfPlayers < minimumNumberOfPlayers) {
+            alert('You need at least 5 players to start the game');
+        } else if (numberOfPlayers >= minimumNumberOfPlayers) {
+            startGame();
+        }
+    });
 });
