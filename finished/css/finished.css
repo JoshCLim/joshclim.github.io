@@ -243,3 +243,12 @@ input[type=text]:focus, input[type=password] {
     background-color:#fff;
     color:#000;
 }
+
+/**/
+.points-one-container {
+    display:none;
+}
+
+.points-one-container p {
+    font-size:2em;
+}

@@ -36,10 +36,24 @@ $('.cheat-input').on('keypress', function(event){
     }
 });
 
-$(window).on("beforeunload", function() {
-    var playersReference = database.ref('/games/' + code + '/players/');
-    playersReference.child(username).remove();
-});
+function beforeUnload() {
+    $(window).on("beforeunload", function() {
+        //var gameReference = database.ref('/games/' + code);
+        var playersReference = database.ref('/games/' + code + '/players/');
+        playersReference.child(username).remove();
+
+        /*playersReference.once('value').then(function(r) {
+            var re = r.val();
+
+            var pLength = Object.keys(re).length;
+
+            if (pLength == 0) {
+                console.log('no players left...');
+                gameReference.remove();
+            }
+        });*/
+    });
+}
 
 function updateUsername() {
     $('.username').text(username);
@@ -136,8 +150,8 @@ function globalStart() {
     $('.points-one-container').fadeIn();
 
     setTimeout(function() {
-        //your code to be executed after 1 second
-    }, 7000);
+        $('.points-one-container').fadeOut();
+    }, 10000);
 }
 
 $('.create-game-button').on('click', function() {
@@ -184,6 +198,7 @@ $('.create-game-next').on('click', function() {
     //console.log(username);
     $('.create-game-container').fadeOut();
     $('.pregame-container').fadeIn();
+    beforeUnload();
     updateUsername();
     loadGameRoom();
     listenForGameStart();
@@ -196,6 +211,7 @@ $('.join-game-next').on('click', function() {
     checkReference.once('value').then(function(r) {
         var results = r.val();
         if (results != null) {
+            beforeUnload();
             updateUsername();
             joinGameRoom();
             listenForGameStart();
