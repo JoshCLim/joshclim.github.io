@@ -24,14 +24,22 @@ $('.cheat-input').on('keypress', function(event){
         // cheat codes here
         if (cheatCode == 'pregame') {
             $('.home-page-container').fadeOut();
+            $('.answer-own-question-container').fadeOut();
             $('.create-game-container').fadeOut();
             $('.join-game-container').fadeOut();
             $('.pregame-container').fadeIn(); // go to pregame container
         } else if (cheatCode == 'home') {
             $('.create-game-container').fadeOut();
+            $('.answer-own-question-container').fadeOut();
             $('.join-game-container').fadeOut();
             $('.pregame-container').fadeOut();
             $('.home-page-container').fadeIn(); // go to home
+        } else if (cheatCode == 'ownquestion') {
+            $('.create-game-container').fadeOut();
+            $('.join-game-container').fadeOut();
+            $('.pregame-container').fadeOut();
+            $('.home-page-container').fadeOut();
+            $('.answer-own-question-container').fadeIn(); // go to own question container
         }
     }
 });
@@ -143,15 +151,22 @@ function listenForGameStart() {
     });
 }
 
+function ownQuestionPicker() {
+    var randomNum = Math.random() * (20 - 1) + 1;
+}
+
 function globalStart() {
     // alert('Game started!');
-    $('.pregame-container').fadeOut();
-
-    $('.points-one-container').fadeIn();
+    $('.pregame-container').fadeOut().queue(function() {
+        $('.points-one-container').fadeIn();
+    });
 
     setTimeout(function() {
-        $('.points-one-container').fadeOut();
-    }, 10000);
+        $('.points-one-container').fadeOut().queue(function() {
+            $('.answer-own-question-container').fadeIn();
+            ownQuestionPicker();
+        });
+    }, 15000);
 }
 
 $('.create-game-button').on('click', function() {

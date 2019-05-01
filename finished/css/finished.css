@@ -6,7 +6,7 @@ html {
 
 body {
   font-size: 12px;
-  font-family:'Open Sans';
+  font-family:'Open Sans', sans-serif;
   /*background-color: #FFF83F;*/
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@ input[type=text], input[type=password] {
     border: 1px #aaa solid;
 }
 
-input[type=text]:focus, input[type=password] {
+input[type=text]:focus, input[type=password]:focus {
     outline:0;
 }
 
@@ -251,4 +251,35 @@ input[type=text]:focus, input[type=password] {
 
 .points-one-container p {
     font-size:2em;
+}
+
+/**/
+
+.answer-own-question-container {
+    display: none;
+}
+
+.answer-own-question-container h2 {
+    font-size:3em;
+    margin: 0 0 10px 0;
+}
+
+.answer-own-question {
+    font-size:1.5em;
+    font-family: 'Montserrat Alternates';
+    margin: 10px 0 0 0;
+}
+
+.answer-own-question-container input {
+    margin:10px;
+    font-size:1.5em;
+    border:1px solid #aaa;
+    -webkit-transition:300ms;
+    -moz-transition:300ms;
+    -o-transition:300ms;
+    transition:300ms;
+}
+
+.answer-own-question-container input:focus {
+    border:1px solid #000;
 }
