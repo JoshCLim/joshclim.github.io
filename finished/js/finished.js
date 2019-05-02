@@ -152,7 +152,7 @@ function listenForGameStart() {
 }
 
 function ownQuestionPicker() {
-    var randomNum = Math.random() * (20 - 1) + 1;
+    var randomNum = Math.floor(Math.random() * (20 - 1) + 1); //console.log(randomNum);
 }
 
 function globalStart() {
