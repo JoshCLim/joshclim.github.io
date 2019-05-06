@@ -46,20 +46,19 @@ $('.cheat-input').on('keypress', function(event){
 
 function beforeUnload() {
     $(window).on("beforeunload", function() {
-        //var gameReference = database.ref('/games/' + code);
+        var gameReference = database.ref('/games/' + code);
         var playersReference = database.ref('/games/' + code + '/players/');
         playersReference.child(username).remove();
 
-        /*playersReference.once('value').then(function(r) {
+        playersReference.once('value').then(function(r) {
             var re = r.val();
-
-            var pLength = Object.keys(re).length;
-
-            if (pLength == 0) {
+            //console.log(re);
+            
+            if (re == null) {
                 console.log('no players left...');
                 gameReference.remove();
             }
-        });*/
+        });
     });
 }
 
