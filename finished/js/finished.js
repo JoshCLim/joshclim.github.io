@@ -152,7 +152,91 @@ function listenForGameStart() {
 }
 
 function ownQuestionPicker() {
-    var randomNum = Math.floor(Math.random() * (20 - 1) + 1); //console.log(randomNum);
+    var randomNum = Math.floor(Math.random() * (25 - 1) + 1); //console.log(randomNum);
+    var question;
+
+    switch (randomNum) {
+        case 1:
+            question = "Your favourite word is...";
+            break;
+        case 2:
+            question = "In one word, you would describe your future as...";
+            break;
+        case 3:
+            question = "You wish you had the ability to...";
+            break;
+        case 4:
+            question = "A song you would play at your funeral is...";
+            break;
+        case 5:
+            question = "The coolest thing you have ever won is...";
+            break;
+        case 6:
+            question = "If you won the lottery, what crazy thing would you buy?";
+            break;
+        case 7:
+            question = "The weirdest place that you have ever slept in is...";
+            break;
+        case 8:
+            question = "For you, the meaning of life is to...";
+            break;
+        case 9:
+            question = "The punchline ot your favourite joke is...";
+            break;
+        case 10:
+            question = "The time you nearly died was...";
+            break;
+        case 11:
+            question = "You would choose the actor ___ to portray you in your biographical movie...";
+            break;
+        case 12:
+            question = "The dumbest song ever stuck in your head:";
+            break;
+        case 13:
+            question = "The last time you yelled at an electronic device was...";
+            break;
+        case 14:
+            question = "Something you are addicted to is...";
+            break;
+        case 15:
+            question = "The best prank you have ever taken part in is...";
+            break;
+        case 16:
+            question = "If the law was abolished for 24 hours, you would probably do ____ first."
+            break;
+        case 17:
+            question = "For a long time, something you weirdly believed is...";
+            break;
+        case 18:
+            question = "The first album you bought was...";
+            break;
+        case 19:
+            question = "Something you would pay to not do:"
+            break;
+        case 20:
+            question = "If you had three wishes, you would spend one on...";
+            break;
+        case 21:
+            question = "Something that you absolutely would not eat, is...";
+            break;
+        case 22:
+            question = "When you were younger, the weirdest thing you wanted to be when you grew up was...";
+            break;
+        case 23:
+            question = "If you were a secret agent, your code name would be:";
+            break;
+        case 24:
+            question = "An animated character that you would totally date:";
+            break;
+        case 25:
+            question = "Something you would like as a nickname:";
+            break;
+        default:
+            question = "If you could create an international holiday, it would be for...";
+            break;
+    }
+    console.log(question);
+    return question;
 }
 
 function globalStart() {
@@ -164,7 +248,7 @@ function globalStart() {
     setTimeout(function() {
         $('.points-one-container').fadeOut().queue(function() {
             $('.answer-own-question-container').fadeIn();
-            ownQuestionPicker();
+            $('.answer-own-question').text(ownQuestionPicker());
         });
     }, 15000);
 }
