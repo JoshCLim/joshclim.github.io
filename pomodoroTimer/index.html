@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro Timer</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	<link rel="icon" href="img/clock-icon.png">
+</head>
+<body>
+	<div class="timer-wrapper">
+		<div class="settings-button"><img width="100%" src="img/gear.webp"></div>
+		<form class="time-form">
+			<input id="timeInput" type="text" placeholder="enter a time">
+			<!--<input type="submit" name="">-->
+		</form>
+
+		<div class="timer">
+			<div class="time">23:50</div>
+			<div class="progress-bar-wrapper"><div class="progress-bar"></div></div>
+			<div class="controls">
+				<input type="checkbox" value="" id="play-pause-checkbox" name="playPauseCheckbox" />
+				<label class="play-pause" for="play-pause-checkbox"></label>
+				<button class="reset" onclick="reset()">
+					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					width="30" height="30"
+					viewBox="0 0 226 226"
+					style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#ffffff"><path d="M113,0c-62.23828,0 -113,50.76172 -113,113c0,62.27224 50.76172,113 113,113c56.97536,0 104.30769,-42.47687 111.91346,-97.51683c0.88282,-4.71965 -0.88281,-9.57512 -4.65174,-12.59706c-3.76893,-3.02193 -8.86208,-3.70102 -13.3101,-1.79958c-4.41407,1.86749 -7.436,6.07783 -7.84345,10.86538c-5.84014,42.34105 -42.03545,74.97115 -86.10817,74.97115c-48.14723,0 -86.92308,-38.74188 -86.92308,-86.92308c0,-48.14723 38.77585,-86.92308 86.92308,-86.92308c28.11418,0 53.10457,13.34405 68.99519,33.95433l-15.48317,15.48317c-1.32422,1.32422 -1.62981,3.39543 -1.08654,5.16106c0.50932,1.76563 1.96936,2.88612 3.80288,3.25962c23.42849,4.61779 50.49009,2.58053 51.61058,2.44471c1.15445,-0.13582 2.20703,-0.84886 2.98798,-1.62981c0.78095,-0.78095 1.46004,-1.56189 1.62981,-2.71635c0.13582,-1.12049 2.17308,-28.41977 -2.44471,-51.88221c-0.33954,-1.79958 -1.52794,-3.25962 -3.25962,-3.80288c-1.76562,-0.54327 -3.87079,-0.20372 -5.16106,1.08654l-14.125,14.125c-20.71214,-25.29597 -52.28966,-41.5601 -87.46635,-41.5601z"></path></g></g></svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="task-list">
+		<h2 class="task-header">Task List</h2>
+		<form class="tasks-wrapper"></form>
+
+		<div class="add-task-button">+</div>
+		<form class="add-task-form">
+			<input type="text" name="taskName" placeholder="enter a task" id="taskNameInput" />
+			<input type="submit" name="taskSubmit">
+		</form>
+	</div>
+
+
+	<script type="text/x-handlebars-template" id='tasks-template'>
+		<input type="radio" id="{{dataID}}" class="task-radio" name="task">
+		<label class="task" data-id="{{dataID}}" for="{{dataID}}">
+			<div class="task-name">{{taskName}}</div>
+			<div class="task-time">{{taskTime}}</div>
+		</label>
+	</script>
+
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<!--<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>-->
+
+	<!--<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyBBFl6HMS9wQUXvCcpbITGFK6ebB6jfDME",
+	    authDomain: "pomodoro-timer-ab368.firebaseapp.com",
+	    databaseURL: "https://pomodoro-timer-ab368.firebaseio.com",
+	    projectId: "pomodoro-timer-ab368",
+	    storageBucket: "pomodoro-timer-ab368.appspot.com",
+	    messagingSenderId: "1030161423034",
+	    appId: "1:1030161423034:web:d90104350fc455761ec083",
+	    measurementId: "G-3940L155Z3"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	</script>
+	-->
+
+
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/handlebars.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
