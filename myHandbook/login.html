@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyHandbook</title>
+	<link rel="stylesheet" type="text/css" href="css/cssreset/cssreset.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<body>
+	<div class="colours-container">
+		<div class="colours red"></div>
+		<div class="colours yellow"></div>
+		<div class="colours green"></div>
+		<div class="colours blue"></div>
+	</div>
+	<div class="container">
+		<img src="assets/logo2.png" class="logo" alt="Logo">
+		<h1 class="title">MyHandbook</h1>
+		<p class="welcome">Hi! Welcome to MyHandbook. What would you like to do?</p>
+		<!--<hr>-->
+		<div class="tabs">
+			<button class="tablink signup-button" onclick="">Sign Up</button>
+			<button class="tablink signin-button" onclick="">Sign In</button>
+		</div>
+		<div class="signup">
+			<form class="signup-form" name="signup-form" autocomplete="off">
+				<div class="form-element">
+					<input type="text" name="firstname" required maxlength="20" placeholder="First Name" class="signup-firstName"> 
+				</div>
+
+				<div class="form-element">
+					<input type="text" name="lastname" required maxlength="20" placeholder="Last Name" class="signup-lastName"> 
+				</div>
+
+				<div class="form-element">
+					<input type="email" name="email" required placeholder="Email" class="signup-email"> 
+				</div>
+
+				<div class="form-element">
+					<input type="password" name="password" required maxlength="50" minlength="6" placeholder="Password" class="signup-password"> 
+				</div>
+				<p class="password-info">The password must be at least 6 characters long</p>
+
+				<div class="form-element">
+					<input type="submit" name="submit" value="Sign Up"> 
+				</div>
+			</form>
+		</div>
+
+		<!--<hr class="signin-hr" align="left" width="25%">-->
+		<div class="signin">
+			<p class="signin-error-message">Incorrect Email or Password. Please try again.</p>
+			<p class="logged-out-message">You have been logged out. Hope to see you again soon.</p>
+			<p class="new-user-message">Thank you for signing up. Please signin with your email and password.</p>
+			<form class="signin-form" name="signin-form">
+				<div class="form-element">
+					<input type="text" name="email" required placeholder="Email" class="signin-email"> 
+				</div>
+
+				<div class="form-element">
+					<input type="password" name="password" required maxlength="30" placeholder="Password" class="signin-password"> 
+				</div>
+
+				<div class="form-element">
+					<input type="submit" name="submit" value="Sign In"> 
+				</div>
+			</form>
+		</div>
+
+		<p class="tncs">By logging in, you agree to our terms and conditions and our privacy policy.</p>
+	</div>
+	
+
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBmLwY10-GiazUMAICuVRjnXEXfHl0cvo4",
+	    authDomain: "personal-project-spgs.firebaseapp.com",
+	    databaseURL: "https://personal-project-spgs.firebaseio.com",
+	    projectId: "personal-project-spgs",
+	    storageBucket: "",
+	    messagingSenderId: "161848251709"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script src="js/jquery.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>

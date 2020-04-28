@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyHandbook Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/cssreset/cssreset.css">
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+	<link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+	<nav class="nav">
+		<div class="img-wrapper">
+			<img src="assets/logo2.png" alt="logo">
+			<!--<h1 class="nav-title">MyHandbook</h1>-->
+		</div>
+		<div class="nav-icons">
+			<a href="#" class="dashboard-icon active-tab" onclick="tabs('dashboard')">
+				<img src="assets/dashboard.png" class="tabs-icon"><div class="nav-icon-text">dashboard</div>
+			</a>
+			<a href="#" class="calendar-icon" onclick="tabs('calendar')"> 
+				<img src="assets/calendar.png" class="tabs-icon"><div class="nav-icon-text">calendar</div>
+			</a>
+			<a href="#" class="homework-icon" onclick="tabs('homework')"> 
+				<img src="assets/tasks.png" class="tabs-icon"><div class="nav-icon-text">homework</div>
+			</a>
+			<a href="#" class="exams-icon" onclick="tabs('exams')"> 
+				<img src="assets/exams.png" class="tabs-icon"><div class="nav-icon-text">events <br>& exams</div>
+			</a>
+			<a href="#" class="timetable-icon" onclick="tabs('timetable')"> 
+				<img src="assets/timetable.png" class="tabs-icon"><div class="nav-icon-text">timetable</div>
+			</a>
+			<!--
+			<a href="#" class="settings-icon" onclick="tabs('settings')"> 
+				<img src="assets/settings.png" class="tabs-icon"><div class="nav-icon-text">settings</div>
+			</a>
+			-->
+			<a href="#" class="profile-icon" onclick="tabs('profile')"> 
+				<img src="assets/profile.png" class="tabs-icon"><div class="nav-icon-text">profile</div>
+			</a>
+		</div>
+	</nav>
+	<div class="horizontal-nav">
+		<div class="hamburger-icon" onclick="hamburgerIconToggle(this)">
+			<div class="bar1"></div>
+  			<div class="bar2"></div>
+  			<div class="bar3"></div>
+		</div>
+
+		<div class="username-container-container">
+			<div class="currentYear"></div>
+			<div class="divider"></div>
+
+			<div class="username-container">
+				<div class="username-wrapper">
+					<h3 class="username horizontal-nav-username">Username</h3>
+					<div class="profile-pic-wrapper"><img src="#" class="profile-pic"></div>
+					<div class="arrow-down"></div>
+				</div>
+				<div class="signout-button" onclick="signOut()">Sign Out</div>
+			</div>
+
+			<div class="divider"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="tabs dashboard">
+			<div class="dashboard-container">
+				<div class="dashboard-row dashboard-row1">
+					<h2 class="welcome">Good <span class="time-of-day">Morning</span><span class="username welcome-username">, user1</span>!</h2>
+					<div class="dashboard-date"></div>
+				</div>
+				<div class="dashboard-row dashboard-row2">
+					<h3>Classes today</h3>
+					<p class="no-classes-today">No classes today.  🙂</p>
+					<div class="classes-today-container">
+						<!--
+						<div class="classes-today-class">
+							<div class="classes-today-container-row1"></div>
+							<div class="classes-today-container-row2"></div>
+						</div>
+						-->
+
+					</div>
+				</div>
+				<hr style="width:25%;margin:0 auto;">
+				<div class="dashboard-row dashboard-row3">
+					<div class="upcoming-tasks-parent">
+						<h3>Upcoming tasks</h3>
+						<div class="upcoming-tasks-container"></div>
+					</div>
+					<div class="upcoming-events-parent">
+						<h3>Upcoming events</h3>
+						<div class="upcoming-events-container"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tabs calendar">
+			<div class="calendar-header">
+				<h3>Calendar for <span class="currentYear"></span></h3>
+			</div>
+			<div class="calendar-container">
+				<div class="calendar-wrapper">
+					<div class="calendar-column1">
+						<div class="calendar-date">
+							<div class="calendar-date-month"></div>
+							<div class="calendar-date-num"></div>
+							<div class="calendar-date-day"></div>
+						</div>
+						<div class="calendar-events">
+							<h6>Events:</h6> 
+							<div class="calendar-add-event">
+								<div>+</div>
+							</div>
+							<ul class="calendar-events-list">
+								<!--<li>LOL</li>-->
+							</ul>
+							<h6>Homework Due:</h6> 
+							<div class="calendar-add-task">
+								<div>+</div>
+							</div>
+							<ul class="calendar-tasks-list">
+								<!--<li>LOL</li>-->
+							</ul>
+						</div>
+					</div>
+					<div class="calendar-column2">
+						<div class="calendar-column2-row1">
+							<div class="calendar-today-button">Today</div>
+							<div class="calendar-date-year">
+								<span class="calendar-previous-year">&#x25C0</span>
+								<span class="calendar-date-years"></span>
+								<span class="calendar-next-year">&#x25BA</span>
+							</div>
+						</div>
+						<div class="calendar-months">
+							<span>Jan</span>
+							<span>Feb</span>
+							<span>Mar</span>
+							<span>Apr</span>
+							<span>May</span>
+							<span>Jun</span>
+							<span>Jul</span>
+							<span>Aug</span>
+							<span>Sep</span>
+							<span>Oct</span>
+							<span>Nov</span>
+							<span>Dec</span>
+						</div>
+						<div class="calendar-days">
+							<span>Mon</span>
+							<span>Tue</span>
+							<span>Wed</span>
+							<span>Thu</span>
+							<span>Fri</span>
+							<span>Sat</span>
+							<span>Sun</span>
+						</div>
+						<div class="calendar-dates"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tabs homework">
+			<div class="homework-header">
+				<h3>Homework for <span class="currentYear"></span></h3>
+				<button>New Homework</button>
+			</div>
+			<div class="homework-content">
+				<div class="homework-table-wrapper">
+					<table class="homework-table">
+						<tr class="homework-table-headings-row">
+							<th>Name</th>
+							<th>Subject</th>
+							<th>Type</th>
+							<th>Due Date</th>
+							<th>Completion %</th>
+							<th>Importance</th>
+							<th>Details</th>
+						</tr>
+					</table>
+				</div>
+				<div class="task-details-container"></div>
+			</div>
+		</div>
+
+		<div class="tabs exams">
+			<div class="exams-header">
+				<h3>Events and Exams for <span class="currentYear"></span></h3>
+				<div>
+					<button class="new-exam-button">New Exam</button>
+					<button class="new-event-button">New Event</button>
+				</div>
+			</div>
+			<div class="exams-content">
+				<div class="events-container">
+					<h4>Upcoming events</h4>
+					<div class="events-items-container"></div>
+				</div>
+				<div class="exams-container">
+					<h4>Upcoming exams</h4>
+					<div class="exams-items-container"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tabs timetable">
+			<div class="timetable-add-menu">
+				<div class="new-items">
+					<div class="new-year">New Year</div>
+					<div class="new-subject">New Subject</div>
+					<div class="new-period">New Period</div>
+					<div class="new-class">New Class</div>
+				</div>
+				<div class="timetable-add-button">
+					<div>+</div>
+				</div>
+			</div>
+
+			<div class="years-container">
+				<h3>Year</h3>
+				<p class="no-years-warning">You have not added any academic years yet.</p>
+				<div class="years-list"></div>
+			</div>
+			<div class="subjects-container">
+				<h3>Subjects</h3>
+				<p class="no-subjects-warning">You have not added any subjects to this year.</p>
+				<div class="subjects-list"></div>
+			</div>
+			<div class="classes-container">
+				<div class="class-container">
+					<h3>Classes for <span class="currentYear"></span></h3>
+					<div class="classes-table-container">
+						<table class="classes-table">
+							<tr class="periodsrow">
+								<th></th>
+							</tr>
+							<tr class="day01row class-row">
+								<td>Day 01</td>
+							</tr>
+							<tr class="day02row class-row">
+								<td>Day 02</td>
+							</tr>
+							<tr class="day03row class-row">
+								<td>Day 03</td>
+							</tr>
+							<tr class="day04row class-row">
+								<td>Day 04</td>
+							</tr>
+							<tr class="day05row class-row">
+								<td>Day 05</td>
+							</tr>
+							<tr class="day06row class-row">
+								<td>Day 06</td>
+							</tr>
+							<tr class="day07row class-row">
+								<td>Day 07</td>
+							</tr>
+							<tr class="day08row class-row">
+								<td>Day 08</td>
+							</tr>
+							<tr class="day09row class-row">
+								<td>Day 09</td>
+							</tr>
+							<tr class="day10row class-row">
+								<td>Day 10</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="periods-container">
+					<h3>Periods</h3>
+					<p class="no-periods-warning">You have not added any periods to this year.</p>
+					<div class="periods-list"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		<div class="tabs settings">
+			
+		</div>
+		-->
+
+		<div class="tabs profile">
+			<div class="profile-header">
+				<h3>Profile</h3>
+			</div>
+			<div class="profile-container">
+				<div>
+					<h4>Your profile</h4>
+					<div class="profile-wrapper">
+						<div class="profile-pic-wrapper"><img src="#" alt="profile picture" class="profile-pic"></div>
+						<h4 class="profile-fullname"><span class="username"></span> <span class="lastname"></span></h4>
+						<p class="email"></p>
+					</div>
+				</div>
+				<div>
+					<form class="profile-edit-form">
+						<h4>Edit your profile</h4>
+						First Name:
+						<input type="text" name="First Name" placeholder="First Name" class="profile-edit-firstname">
+
+						Last Name:
+						<input type="text" name="Last Name" placeholder="Last Name" class="profile-edit-lastname">
+
+						Email:
+						<input type="email" name="Email" placeholder="Email" class="profile-edit-email">
+
+						Profile Photo Link:
+						<input type="text" name="Profile Photo Link" placeholder="Profile Photo Link" class="profile-edit-photo">
+						
+						New Password:
+						<input type="password" name="New Password" placeholder="New Password" class="profile-edit-newpass" minlength="6">
+						
+						Old password*:
+						<input type="password" name="Old Password" placeholder="Old Password" class="profile-edit-oldpass" required>				
+
+						*required
+
+						<input type="submit" name="Submit" class="profile-edit-submit">
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="timetable-add-year-form add-form">
+		<form>
+			<h4>Add a new academic year</h4>
+			<div class="close-x">+</div>
+			<input type="text" name="Year Name" placeholder="Year Name (e.g. 2020 or Year 7)" class="year-name-input" required autofocus="autofocus">
+			Year Start: <input type="date" name="Year Start" class="year-start-input" required>
+			Year End: <input type="date" name="Year End" class="year-end-input" required>
+			<input type="submit" name="Submit" value="Add Year">
+		</form>
+	</div>
+
+	<div class="timetable-add-subject-form add-form">
+		<form>
+			<h4>Add a new subject for <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<input type="text" name="Subject Name" placeholder="Subject Name (e.g. English or Maths)" class="subject-name-input" required autofocus="autofocus">
+			Subject colour: <input type="color" name="Year Start" class="subject-colour-input" required>
+			<input type="submit" name="Submit" value="Add Subject">
+		</form>
+	</div>
+
+	<div class="timetable-add-period-form add-form">
+		<form>
+			<h4>Add a new period time for <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<input type="text" name="Period Name" placeholder="Period Name (e.g. Period 1 or Tutor)" class="period-name-input" required autofocus="autofocus">
+			Period Start Time: <input type="time" name="Period Start" class="period-start-input" required>
+			<br>
+			Period End Time: <input type="time" name="Period End" class="period-end-input" required>
+			<input type="submit" name="Submit" value="Add Period">
+		</form>
+	</div>
+
+	<div class="timetable-add-class-form add-form">
+		<form id="timetable-add-class-form">
+			<h4>Add a new class for <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<br>
+			<div class="class-form-elements-wrapper">
+				<div class="class-form-elements-column">
+					<div style="clear:both" class="formElement">
+						Subject:
+						<br>
+						<select class="subjects-options-list" form="timetable-add-class-form" required>
+							<!--<option value="Other"></option>-->
+						</select>
+					</div>
+
+					Room:
+					<input type="text" name="Class Room" placeholder="Room" class="class-room-input formElement" autocomplete="off">
+					Week:
+					<br>
+					<select class="weeks-options-list" form="timetable-add-class-form" required>
+							<option value="Week A">Week A</option>
+							<option value="Week B">Week B</option>
+					</select>
+				</div>
+				<div class="class-form-elements-column">
+					Teacher:
+					<input type="text" name="Class Teacher" placeholder="Teacher" class="class-teacher-name-input formElement" required autocomplete="off">
+					<div class="formElement">
+						Day: 
+						<br>
+						<select class="days-options-list" form="timetable-add-class-form" required>
+							<option value="Monday">Mon</option>
+							<option value="Tuesday">Tue</option>
+							<option value="Wednesday">Wed</option>
+							<option value="Thursday">Thu</option>
+							<option value="Friday">Fri</option>
+							<option value="Saturday">Sat</option>
+							<option value="Sunday">Sun</option>
+						</select>
+					</div>
+					<div class="formElement">
+						Period: 
+						<br>
+						<select class="periods-options-list" form="timetable-add-class-form" required>
+							<!--<option value="Other"></option>-->
+						</select>
+					</div>
+				</div>
+			</div>
+			<input type="submit" name="Submit" value="Add Class">
+		</form>
+	</div>
+
+	<div class="homework-add-task-form">
+		<form>
+			<h4>Add a new task for <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<div class="homework-add-task-form-input-wrapper">
+				Task Name: <input type="text" name="Task Name" autofocus="autofocus" placeholder="Task Name" required class="task-name-input">
+				Task Subject: 
+				<select class="subjects-options-list" required>
+					
+				</select>
+
+				Task Type:
+				<select class="homework-type-options-list" required>
+					<option>Homework</option>
+					<option>Assessment Task</option>
+					<option>Reminder</option>
+					<option>Revision</option>
+				</select>
+
+				<div class="due-date-input-wrapper">
+					Due date: <input type="date" name="Task Due Date" required>
+				</div>
+
+				<div class="important-input-wrapper">
+					Importance:
+					<div class="homework-importance">
+						<input type="radio" name="importance" value="None" checked id="importance-none"> 
+						<label for="importance-none">None</label>
+						<input type="radio" name="importance" value="!" id="importance-1"> 
+						<label for="importance-1">!</label>
+						<input type="radio" name="importance" value="!!" id="importance-2"> 
+						<label for="importance-2">!!</label>
+						<input type="radio" name="importance" value="!!!" id="importance-3">
+						<label for="importance-3">!!!</label>
+					</div>
+				</div>
+
+				<div style="clear:both;">
+					<div>Details: </div>
+					<textarea cols="40" rows="5" class="more-detail-input"></textarea>
+				</div>
+
+				<input type="submit" name="Submit" value="Add Task">
+			</div>
+		</form>
+	</div>
+
+	<div class="exams-add-exam-form">
+		<form>
+			<h4>Add a new exam to <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<div class="exams-add-exam-form-input-wrapper">
+				Exam Name: <input type="text" name="Exam Name" autofocus="autofocus" placeholder="Exam Name" required class="exam-name-input" autocomplete="off">
+				Exam Subject: 
+				<select class="subjects-options-list" required>
+					
+				</select>
+
+				<div class="exam-date-input-wrapper">
+					Date: <input type="date" name="Exam Date" required class="exam-date-input">
+				</div>
+
+				<div class="exam-time-input-wrapper">
+					<div>Start Time: <br> <input type="time" name="Exam Start Time" required class="exam-start-input"></div>
+					<div>End Time: <br> <input type="time" name="Exam End Time" required class="exam-end-input"></div>
+				</div>
+				<div style="clear:both;">
+					Room: <input type="text" name="Room" required class="exam-room-input" autocomplete="off" placeholder="Room">
+				</div>
+
+				<input type="submit" name="Submit" value="Add Exam">
+			</div>
+		</form>
+	</div>
+
+	<div class="exams-add-event-form">
+		<form>
+			<h4>Add a new event to <span class="currentYear"></span></h4>
+			<div class="close-x">+</div>
+			<div class="exams-add-event-form-input-wrapper">
+				Event Name: <input type="text" name="Event Name" autofocus="autofocus" placeholder="Event Name" required class="event-name-input" autocomplete="off">
+				
+				Event Type: <input type="text" name="Event Type" autofocus="autofocus" placeholder="Event Type" required class="event-type-input" autocomplete="off">
+
+				<div class="event-date-input-wrapper">
+					Date: <input type="date" name="Event Date" required class="event-date-input">
+				</div>
+
+				<div class="event-time-input-wrapper">
+					<div>Start Time: <br> <input type="time" name="Event Start Time" required class="event-start-input"></div>
+					<div>End Time: <br> <input type="time" name="Event End Time" required class="event-end-input"></div>
+				</div>
+				<div style="clear:both;">
+					Location: <input type="text" name="Location" required class="event-location-input" autocomplete="off" placeholder="Location">
+				</div>
+
+				<input type="submit" name="Submit" value="Add Event">
+			</div>
+		</form>
+	</div>
+
+	<!--
+	<div class="editYearForm">
+		<form>
+			<input type="text" name="YearName" placeholder="Year Name">
+			<br> Year Start: <input type="date" name="Year Start" placeholder="Year Start">
+			<br> Year End: <input type="date" name="Year End" placeholder="Year End">
+		</form>
+	</div>
+	-->
+
+
+
+
+
+	<script type="text/x-handlebars-template" id='dashboard-classes-template'>
+		<div class="classes-today-class">
+			<div>
+				<div>{{periodNum}}</div>
+				<div>{{periodTimes}}</div>
+			</div>
+			<div style="background-color:{{classColour}}">
+				<div>{{classSubject}}</div>
+				<div>{{classRoom}}</div>
+				<div>{{classTeacher}}</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/x-handlebars-template" id='timetable-years-template'>
+		<div class="timetable-year" data-id="{{id}}">
+			<div class="timetable-year-name">{{yearName}}</div>
+			<div class="timetable-year-dates">{{yearStart}} - {{yearEnd}}</div>
+			<div class="edit-icon"><img src="assets/edit.png"></div>
+			<div class="edit-wrapper">
+				<!--<input type="text" name="YearName" placeholder="Year Name" class="year-edit-name">-->
+				<br> Year Start: <br> <input type="date" name="Year Start" placeholder="Year Start" class="year-edit-start">
+				<br> Year End: <br> <input type="date" name="Year End" placeholder="Year End" class="year-edit-end">
+				<div class="year-edit-done">Done</div>
+			</div>
+			<div class="delete-icon"><img src="assets/bin.png"></div>
+		</div>
+	</script>
+	<script type="text/x-handlebars-template" id='timetable-subjects-template'>
+		<div class="timetable-subject clearfix" data-id="{{id}}">
+			<div class="timetable-subject-name">{{subjectName}}</div>
+			<div class="timetable-subject-colour" style="background-color:{{subjectColour}}"></div>
+			<div class="edit-icon"><img src="assets/edit.png"></div>
+			<div class="edit-wrapper">
+				<br> Subject Colour: <br> <input type="color" name="Subject Colour" class="subject-edit-colour">
+				<div class="subject-edit-done">Done</div>
+			</div>
+			<div class="delete-icon"><img src="assets/bin.png"></div>
+		</div>
+	</script>
+	<script type="text/x-handlebars-template" id='timetable-periods-template'>
+		<div class="timetable-period" data-id="{{id}}" data-periodname="{{periodName}}">
+			<div class="timetable-period-name">{{periodName}}</div>
+			<div class="timetable-period-times">{{periodStart}} - {{periodEnd}}</div>
+			<div class="edit-icon"><img src="assets/edit.png"></div>
+			<div class="edit-wrapper">
+				<br> Period Start: <br> <input type="time" name="Period Start" placeholder="Period Start" class="period-edit-start">
+				<br> Period End: <br> <input type="time" name="Period End" placeholder="Period End" class="period-edit-end">
+				<div class="period-edit-done">Done</div>
+			</div>
+			<div class="delete-icon"><img src="assets/bin.png"></div>
+		</div>
+	</script>
+	<script type="text/x-handlebars-template" id='timetable-classes-template'>
+		<div class="timetable-class" style="background-color:{{classColour}}" data-id="{{id}}">
+			<div class="timetable-class-subject">{{classSubject}}</div>
+			<div class="timetable-class-room">{{classRoom}}</div>
+			<div class="timetable-class-teacher">{{classTeacher}}</div>
+		</div>
+	</script>
+
+	<script type="text/x-handlebars-template" id="homework-table-row-template">
+		<tr class="task-row" data-id="{{taskName}}">
+			<td>{{taskName}}</td>
+			<td>{{taskSubject}}</td>
+			<td>{{taskType}}</td>
+			<td>{{taskDueDate}}</td>
+			<td>
+				<span>
+					<div class="task-completion-number">{{taskCompletion}}</div>
+				</span>
+				<div class="up-down-arrow-container">
+					<div class="completion-change-up">&#x25B2</div> 
+					<div class="completion-change-down">&#x25BC</div>
+				</div>
+			</td>
+			<td>{{taskImportance}}</td>
+			<td><div class="task-details-button">Details</div></td>			
+		</tr>
+	</script>
+	<script type="text/x-handlebars-template" id="homework-task-details-template">
+		<div class="task-details-wrapper" data-id="{{taskName}}">
+			<div>
+				<div class="task-details-header">					
+					<h3>{{taskName}}</h3>
+					<h4>{{taskSubject}} {{taskType}}</h4>
+					<div class="task-details-icons-wrapper">
+						<img src="assets/bin.png" class="delete-task-button">
+						<img src="assets/edit.png" class="edit-task-button">
+						<div class="close-x">+</div>
+					</div>
+				</div>
+				<div class="task-details-row1">
+					<div class="task-details-duedate">
+						<img src="assets/calendar.png">
+						<div>
+							<h6>Due Date</h6>
+							<p>{{taskDueDate}}</p>
+						</div>
+					</div>
+					<div class="task-details-completion">
+						<img src="assets/checkmark.png">
+						<div>
+							<h6>Completion</h6>
+							<div>
+								<span>
+									<div class="task-completion-number">{{taskCompletion}}</div>
+								</span>
+								<!--<div class="up-down-arrow-container">
+									<div class="completion-change-up">&#x25B2</div> 
+									<div class="completion-change-down">&#x25BC</div>
+								</div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="task-details-row2">
+					<h6>Details</h6>
+					<p>{{taskDetails}}</p>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/x-handlebars-template" id='exams-exam-template'>
+		<div class="exams-exam" data-id="{{examName}}">
+			<div>
+				<div class="exams-exam-name">{{examName}}</div>
+				<div class="exams-exam-subject">{{examSubject}}</div>
+				<div class="exams-exam-date">{{examDate}}</div>
+			</div>
+			<div>
+				<div class="exams-exam-times">{{examStart}} - {{examEnd}}</div>
+				<div class="exams-exam-room">{{examRoom}}</div>
+				<div class="edit-icon"><img src="assets/red-bin.png"></div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/x-handlebars-template" id='exams-event-template'>
+		<div class="exams-event" data-id="{{eventName}}">
+			<div>
+				<div class="exams-event-name">{{eventName}}</div>
+				<div class="exams-event-type">{{eventType}}</div>
+				<div class="exams-event-date">{{eventDate}}</div>
+			</div>
+			<div>
+				<div class="exams-event-times">{{eventStart}} - {{eventEnd}}</div>
+				<div class="exams-event-location">{{eventLocation}}</div>
+				<div class="edit-icon"><img src="assets/red-bin.png"></div>
+			</div>
+		</div>
+	</script>
+	<script type="text/x-handlebars-template" id='dashboard-tasks-template'>
+		<div class="dashboard-task" data-id="{{taskName}}">
+			<div>
+				<div class="dashboard-task-name">{{taskName}}</div>
+				<div class="dashboard-task-subject">{{taskSubject}}</div>
+				<div class="dashboard-task-type">{{taskType}}</div>
+			</div>
+			<div>
+				<div class="dashboard-task-duedate" style="font-weight:bold;">{{taskDueDate}}</div>
+				<div class="dashboard-task-importance">Importance: {{taskImportance}}</div>
+				<div class="edit-icon"><img src="assets/red-bin.png"></div>
+			</div>
+		</div>
+	</script>
+
+
+
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/handlebars.js"></script>
+	<script src="js/dashboard.js"></script>
+</body>
+</html>
