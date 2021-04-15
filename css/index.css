@@ -6,19 +6,96 @@ html {
 }
 
 body {
-	font-family: 'Noto Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	color:#000;
 	font-size:12px;
 	margin:0;
+	background-color: #333;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 a {
 	text-decoration: none;
 	color:#000;
 }
+.hero-section {
+	display:flex;
+	justify-content: center;
+	align-content: center;
+	align-items:center;
+	flex-flow:column nowrap;
+	min-height:100vh;
 
-.container {
-	width:80%;
+	background-image: url("https://www.techslang.com/wp-content/uploads/2020/08/image-from-rawpixel-id-593171-jpeg-1024x536.jpg");
+	background-color: rgba(0,0,0,.5);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center;
+
+	-webkit-backdrop-filter:blur(2px);
+	-moz-backdrop-filter:blur(2px);
+	-o-backdrop-filter:blur(2px);
+	backdrop-filter:blur(2px);
+
+	-webkit-user-select:none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+#hero-outer {
+	perspective: 50px;
+}
+
+#hero-container {
+	display:flex;
+	justify-content: center;
+	align-content: center;
+	align-items:center;
+	flex-flow:column nowrap;
+
+	background-color:rgba(0,0,0,.8);
+
+	padding:60px 30px;
+	box-shadow: 50px 0 #000;
+	border-radius: 20px;
+
+	-webkit-transition: transform 200ms;
+	-moz-transition: transform 200ms;
+	-o-transition: transform 200ms;
+	transition: transform 200ms;
+}
+
+.hero-section h1 {
+	text-transform:lowercase;
+	color:#fff;
+	font-size:48px;
+	margin:10px;
+	font-weight:900;
+}
+.hero-section h5 {
+	text-transform:capitalize;
+	color:#fff;
+	font-size:20px;
+	margin:10px;
+}
+
+.hero-section .hero-link {
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: rgba(255, 255, 255, 0);
+
+	transition:text-decoration-color 300ms ease;
+}
+.hero-link:hover {
+	text-decoration-color: rgba(255, 255, 255, 1);
+}
+
+.main-body {
+	width:100%;
 	margin:0 auto;
 }
 
@@ -28,6 +105,8 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+
+	background-color: purple;
 }
 
 nav {
@@ -52,12 +131,12 @@ nav a:hover {
 }
 
 h1 {
-	font-family:'Comfortaa', cursive;
+	font-family:'Roboto', cursive;
 	font-size:2.5em;
 	margin:15px 0;
 }
 
-h2, h3 {
+/*h2, h3 {
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -68,14 +147,32 @@ h2 {
 
 .name {
 	font-size:1.5em;
-}
+}*/
 
 .main-wrapper {
 	clear:both;
 }
 
-#projects-section {
-	padding-top: 10px;
+#about-me {
+	height:50vh;
+	background-color: #fff;
+	padding:0 30%;
+	display: flex;
+	flex-flow:column;
+	justify-content: center;
+	align-items: center;
+}
+
+#about-me h2 {
+	margin:0;
+	font-size:25px;
+}
+
+#about-me p {
+	font-size:14px;
+	line-height: 20px;
+	text-align: justify;
+	margin:10px 0;
 }
 
 .projects-flex-wrapper {
@@ -87,11 +184,11 @@ h2 {
 }
 
 .project-link-wrapper {
-	width:280px;
-	height:180px;
-	background-color: #000;
-	margin: 0 20px 20px 0;
-	padding:10px;
+	width:25%;
+	height:33.33333333vh;
+	background-color: #555;
+	margin:0;
+	padding:0;
 	color:#FFF;
 	text-decoration: none;
 	font-style: normal;
@@ -100,18 +197,22 @@ h2 {
 	text-align: center;
 	line-height: 180px;
 	font-weight: bold;
-	border-radius: 20px;
+	/*box-shadow: 2px 2px 5px #aaa;*/
+
 	/* change bg image for each link in handlebars or HTML... */
 	-webkit-transition:500ms ease;
 	-moz-transition:500ms ease;
 	-o-transition:500ms ease;
 	transition:500ms ease;
 }
-
-.project-link-wrapper:hover {
-	box-shadow: 0 0 20px #333;
-	transform:scale(1.025);
+.projects-flex-wrapper:hover .project-link-wrapper {
+	background-color: #4f4f4f;
 }
+.projects-flex-wrapper .project-link-wrapper:hover {
+	background-color:#555;
+}
+
+
 
 .horizontal-divider{
 	height:3px;
