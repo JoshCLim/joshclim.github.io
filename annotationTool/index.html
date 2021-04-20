@@ -8,22 +8,28 @@
 <body>
 	<!-- SIDE CONTENT -->
 	<div class="selection-bar">
+		<!-- dropdown menu
 		<select id="" name="">
-			<option value="Aeneid">Aeneid 614-952</option>
-			<option value="">Lorem ipsum</option>
-			<option value="">Lorem ipsum</option>
+			<option value="Aeneid">Aeneid XII.614-952</option>
+			<option value="">Catullus 2</option>
+			<option value="">Catullus 7</option>
 		</select>
+		-->
+		<textarea id="text-input"></textarea>
+		<button id="text-submit">submit</button>
+		
 	</div>
 
 	<div class="colour-bar">
-		<div class="yellow">verb</div>
-		<div class="green">noun (subject)</div>
-		<div class="blue">participle</div>
-		<div class="purple">adjective</div>
-		<div class="pink">adverb</div>
-		<div class="orange">noun (object)</div>
+		<div class="yellow colour-bar-colour">verb</div>
+		<div class="green colour-bar-colour">noun (nom.)</div>
+		<div class="blue colour-bar-colour">participle</div>
+		<div class="purple colour-bar-colour">adjective</div>
+		<div class="pink colour-bar-colour">adverb</div>
+		<div class="orange colour-bar-colour">noun (acc.)</div>
 		<div class="up-arrow"><div>^</div></div>
 	</div>
+	<!--
 	<div class="tools-bar">
 		<div class="yellow"></div>
 		<div class="green"></div>
@@ -32,14 +38,21 @@
 		<div class="pink"></div>
 		<div class="orange"></div>
 	</div>
+	-->
+
+	<div class="features-bar">
+		<div class="link-button"><img height="28px" width="28px" src="https://cdn0.iconfinder.com/data/icons/feather/96/591256-link-512.png"></div>
+		<div class="comment-button"><img height="28px" width="28px" src="https://cdn.iconscout.com/icon/free/png-256/comment-2551199-2136583.png"></div>
+	</div>
 
 	<!--MAIN CONTENT-->
 	<div id="container">
-		<div class="card line-numbers-div">
-			
-		</div>
+		<h1 class="text-name-h1">[error]</h1>
+
+		<div class="card line-numbers-div"></div>
+
 		<div class="card text-div">
-			Interea extremo bellator in aequore Turnus <br>
+			<!--Interea extremo bellator in aequore Turnus <br>
 			palantis sequitur paucos iam segnior atque <br>
 			iam minus atque minus successu laetus equorum <br>
 			attulit hunc illi caecis terroribus aura <br>
@@ -52,13 +65,19 @@
 			aurigae currumque et equos et lora regebat, <br>
 			talibus occurrit dictis: “Hac, Turne, sequamur <br>
 			Troiugenas, qua prima viam victoria pandit; <br>
-			sunt alii, qui tecta manu defendere possint. <br>
+			sunt alii, qui tecta manu defendere possint. <br>-->
 		</div>
 
-		<div class="card annotations-div"></div>
+		<div class="card annotations-div">
+			
+		</div>
 	</div>
 
 
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
 	<!-- VUE JS -->
 	<!-- development version, includes helpful console warnings -->
