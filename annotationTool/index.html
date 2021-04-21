@@ -15,8 +15,13 @@
 			<option value="">Catullus 7</option>
 		</select>
 		-->
-		<textarea id="text-input"></textarea>
-		<button id="text-submit">submit</button>
+		<div class="dev-mode">
+			<textarea id="text-input"></textarea>
+			<button id="text-submit">submit</button>
+		</div>
+
+		<div class="selection-container"></div>
+		
 		
 	</div>
 
@@ -40,9 +45,17 @@
 	</div>
 	-->
 
+	<div class="comments-bar">
+		<div class="comments-input" contenteditable></div>
+	</div>
+
 	<div class="features-bar">
-		<div class="link-button"><img height="28px" width="28px" src="https://cdn0.iconfinder.com/data/icons/feather/96/591256-link-512.png"></div>
-		<div class="comment-button"><img height="28px" width="28px" src="https://cdn.iconscout.com/icon/free/png-256/comment-2551199-2136583.png"></div>
+		<div class="link-button">
+			<img height="23px" width="23px" src="https://cdn0.iconfinder.com/data/icons/feather/96/591256-link-512.png">
+		</div>
+		<div class="comment-button">
+			<img height="23px" width="23px" src="https://cdn.iconscout.com/icon/free/png-256/comment-2551199-2136583.png">
+		</div>
 	</div>
 
 	<!--MAIN CONTENT-->
@@ -73,6 +86,20 @@
 		</div>
 	</div>
 
+	<script type="text/x-handlebars-template" id="comment-template">
+		<div class="comment" data-commentID="{{wordID}}">
+			<div class="word-column">
+				"{{word}}"
+			</div>
+			<div class="comments-column">
+				{{#each comments}}
+				<div>{{comment}}</div>
+				{{/each}}
+			</div>
+			<div></div>
+		</div>
+	</script>
+
 
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
@@ -90,7 +117,12 @@
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../js/jquery.js"></script>
 
+	<!-- Handlebars -->
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
 	<script type="text/javascript" src="js/index.js"></script>
+
+	
 
 </body>
 </html>
