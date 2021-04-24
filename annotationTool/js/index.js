@@ -198,7 +198,10 @@ database.ref('/translationText/').child(currentText).on('value', function(result
 			for (var q in allResults[i].comments) {
 				//console.log(allResults[i].comments[q].content)
 
-				commentsList.push({comment: allResults[i].comments[q].content});				
+				commentsList.push({
+					comment: allResults[i].comments[q].content,
+					commentID: q
+				});				
 			}
 			//console.log(commentsList)
 			var commentsData = commentsTemplate({
@@ -248,6 +251,28 @@ database.ref('/translationText/').child(currentText).on('value', function(result
 			$(".text-div > span").removeClass('link-highlight');
 			$('[data-link="' + $(".selected").data('link') + '"').addClass('link-highlight')
 		}
+	});
+
+	// when you hover over a comment, (1)show linked words
+	$(".comment").on('mouseover', function() {
+		if ($(this).data('id') != '') {
+			$(".text-div > span").removeClass('comment-highlight');
+			$('span[data-id="' + $(this).data('id') + '"').addClass('comment-highlight')
+			$(".annotations-div > comment").removeClass('comment-highlight');
+		}
+	});
+	$(".comment").on('mouseleave', function() {
+		$(".text-div > span").removeClass('comment-highlight');
+		$(".annotations-div > comment").removeClass('comment-highlight');
+	});
+
+	// delete the comment when the button is clicked
+	$(".delete-comment-button").on("click", function() {
+		var tempCommentID = $(this).parent().data("commentid");
+		//console.log(tempCommentID);
+		var tempWordID = $(this).parent().parent().parent().data("id");
+		//console.log(tempWordID);
+		database.ref('/translationText/').child(currentText).child(tempWordID).child("comments").child(tempCommentID).remove();
 	});
 
 	//$(".text-div span:nth-child(1)").click(); // click on the first word
@@ -392,6 +417,18 @@ $(document).keydown(function(e) {
 			highlightWord('orange');
 			break;
 
+		case ("7"):
+			highlightWord('red');
+			break;
+
+		case ("8"):
+			highlightWord('grey');
+			break;
+
+		case ("9"):
+			highlightWord('brown');
+			break;
+
 		case ("0"):
 			highlightWord('none');
 			break;
@@ -440,6 +477,9 @@ $(".colour-bar-colour:nth-child(3)").on('click', function() {highlightWord('blue
 $(".colour-bar-colour:nth-child(4)").on('click', function() {highlightWord('purple')});
 $(".colour-bar-colour:nth-child(5)").on('click', function() {highlightWord('pink')});
 $(".colour-bar-colour:nth-child(6)").on('click', function() {highlightWord('orange')});
+$(".colour-bar-colour:nth-child(7)").on('click', function() {highlightWord('red')});
+$(".colour-bar-colour:nth-child(8)").on('click', function() {highlightWord('grey')});
+$(".colour-bar-colour:nth-child(9)").on('click', function() {highlightWord('brown')});
 
 
 $(".link-button").on('click', function() {
@@ -465,7 +505,7 @@ $(".link-button").on('click', function() {
 	}
 });
 
-function resetComment() {
+function resetComment() { // reset the comment-button and input pane
 	$(".comments-input").text('');
 
 	$(".comments-bar").animate({"min-width":"0px"},200);
@@ -491,6 +531,7 @@ $(".comment-button").on("click", function() {
 		}
 	}
 });
+
 
 
 }); // end of document.ready function

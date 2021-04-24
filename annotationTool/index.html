@@ -17,7 +17,7 @@
 		-->
 		<div class="dev-mode">
 			<textarea id="text-input"></textarea>
-			<button id="text-submit">submit</button>
+			<button id="text-submit">submit latin</button>
 		</div>
 
 		<div class="selection-container"></div>
@@ -32,6 +32,9 @@
 		<div class="purple colour-bar-colour">adjective</div>
 		<div class="pink colour-bar-colour">adverb</div>
 		<div class="orange colour-bar-colour">noun (acc.)</div>
+		<div class="red colour-bar-colour">noun (gen.)</div>
+		<div class="grey colour-bar-colour">noun (dat.)</div>
+		<div class="brown colour-bar-colour">noun (abl.)</div>
 		<div class="up-arrow"><div>^</div></div>
 	</div>
 	<!--
@@ -81,19 +84,31 @@
 			sunt alii, qui tecta manu defendere possint. <br>-->
 		</div>
 
+		<div class="card translation-div">
+			Meanwhile the warrior Turnus, at the edge of the plain, <br>
+			was pursuing the straggling few now, more slowly, <br>
+			and rejoicing less and less in his horses’ advance. <br>
+			The breeze bore a clamour to him mixed <br>
+			with unknown terror, and the joyless sounds and  <br>
+			murmurs of the confused city met his straining ears. <br>
+		</div> 
+
 		<div class="card annotations-div">
 			
 		</div>
 	</div>
 
 	<script type="text/x-handlebars-template" id="comment-template">
-		<div class="comment" data-commentID="{{wordID}}">
-			<div class="word-column">
+		<div class="comment" data-id="{{wordID}}">
+			<!--<div class="word-column">
 				"{{word}}"
-			</div>
+			</div>-->
 			<div class="comments-column">
 				{{#each comments}}
-				<div>{{comment}}</div>
+				<div data-commentID="{{commentID}}">
+					<div class="comment-text">{{comment}}</div>
+					<div class="delete-comment-button">x</div>
+				</div>
 				{{/each}}
 			</div>
 			<div></div>
