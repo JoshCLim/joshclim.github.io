@@ -1,0 +1,93 @@
+:root {
+	--darkblue: #193a6f;
+	--lightblue: #2c599d;
+	--darkorange: #f98125;
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	width: 100%;
+	height: 100%;
+
+	font-family: Roboto, sans-serif;
+
+	user-select: none;
+}
+body::-webkit-scrollbar{
+	display: none;
+}
+
+table, tr, td {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.info-wrapper {
+	/*padding: 50px;*/
+}
+
+#game-wrapper {
+	/*width: 500px;
+	height: 300px;*/
+
+	margin: 0 auto;
+
+	background-color: #eee;
+
+	/*display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;*/
+}
+
+.square {
+	width: 23px;
+	height: 23px;
+
+	cursor: pointer;
+
+	text-align: center;
+
+	line-height: 23px;
+	color: var(--darkorange);
+	font-weight: 700;
+
+	transition: all 100ms ease;
+}
+#game-wrapper tbody tr:nth-child(even) .square:nth-child(even) {
+	background-color: var(--darkblue);
+}
+#game-wrapper tbody tr:nth-child(even) .square:nth-child(odd) {
+	background-color: var(--lightblue);
+}
+#game-wrapper tbody tr:nth-child(odd) .square:nth-child(odd) {
+	background-color: var(--darkblue);
+}
+#game-wrapper tbody tr:nth-child(odd) .square:nth-child(even) {
+	background-color: var(--lightblue);
+}
+.square:hover {
+	filter: brightness(2);
+}
+
+.flagged::before {
+	content: 'x';
+}
+
+.mine {
+	background-color: grey !important;
+}
