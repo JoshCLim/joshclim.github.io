@@ -95,6 +95,7 @@ table, tr, td {
 .flagged::before {
 	content: 'x' !important;
 	display: block !important;
+	color: var(--darkorange) !important;
 }
 .s0::before {
 	content: '';
