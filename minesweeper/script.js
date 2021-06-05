@@ -1,10 +1,19 @@
-var rowNum = 100;
+var rowNum = 200;
 var colNum = 50;
 var mineNum = 0;
+var mineChance = 0.2;
 var squares;
 
 function startGame() {
 	
+}
+
+function undo() {
+	let mines = document.getElementsByClassName("mine");
+
+	for (var q = 0; q < mines.length; q++) {
+		mines[q].classList.remove("exploded");
+	}
 }
 
 function gameOver() {
@@ -229,7 +238,7 @@ document.addEventListener("DOMContentLoaded", (event) => {							// wait till th
     		}			
     	});
 
-    	if (Math.random() < 0.22) {														// 22% chance that a square is a mine	
+    	if (Math.random() < mineChance) {												// 22% chance that a square is a mine	
     		squares[i].classList.add("mine");											// add 'mine' class for mine squares
     		mineNum += 1;																// add 1 to the mine counter
     	}
