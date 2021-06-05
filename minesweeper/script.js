@@ -1,5 +1,5 @@
-var rowNum = 20;
-var colNum = 20;
+var rowNum = 100;
+var colNum = 50;
 var mineNum = 0;
 var squares;
 
@@ -13,8 +13,10 @@ function gameOver() {
 	let mines = document.getElementsByClassName("mine");
 
 	for (var q = 0; q < mines.length; q++) {
-		mines[q].style.backgroundColor = "#000000 !important";
+		mines[q].classList.add("exploded");
 	}
+
+	alert('u died lol (reload to restart)');
 }
 
 function search(i) {
@@ -161,41 +163,6 @@ function uncover(i) {
 	}
 }
 
-/*function leftClicked(event) {
-	event.preventDefault();
-
-	//console.log(this);
-	var squares = document.getElementsByClassName("square");							// get 'array' of all squares
-	//console.log(squares);
-	console.log(squares[i])
-
-	if (this.classList.contains("flagged")) {											// if they clicked on a flagged square
-		console.log("flagged")
-	} else {
-
-		if (this.classList.contains("mine")) {											// if they clicked on a mine
-			gameOver();
-		} else {
-			if (this.classList.contains("s0")) {										// if they clicked on a zero square
-				console.log("zero");
-			} else {																	// if they clicked on a number square
-				console.log("number");
-			}
-		}
-	}
-}
-
-function rightClicked(event) {
-	event.preventDefault();
-	
-	if (this.classList.contains("flagged")) {
-		this.classList.remove("flagged");
-	} else {
-		this.classList.add("flagged");
-	}
-}
-*/
-
 
 document.querySelector("#game-wrapper").addEventListener('contextmenu', event => event.preventDefault()); // stop right clicking the game from opening the menu
 
@@ -250,12 +217,16 @@ document.addEventListener("DOMContentLoaded", (event) => {							// wait till th
 
     	squares[i].addEventListener('contextmenu', function(e) {						// add event listeners for right click
     		e.preventDefault();
-	
-			if (this.classList.contains("flagged")) {
-				this.classList.remove("flagged");
-			} else {
-				this.classList.add("flagged");
-			}
+
+    		if (this.classList.contains("uncovered")) {
+
+    		} else {
+    			if (this.classList.contains("flagged")) {
+					this.classList.remove("flagged");
+				} else {
+					this.classList.add("flagged");
+				}
+    		}			
     	});
 
     	if (Math.random() < 0.22) {														// 22% chance that a square is a mine	

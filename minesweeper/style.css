@@ -1,6 +1,6 @@
 :root {
-	--darkblue: #193a6f;
-	--lightblue: #2c599d;
+	--darkblue: #295a8f;
+	--lightblue: #4c79ad;
 	--darkorange: #f98125;
 }
 
@@ -26,6 +26,9 @@ body {
 	font-family: Roboto, sans-serif;
 
 	user-select: none;
+
+	background-color: #000;
+	color: #fff;
 }
 body::-webkit-scrollbar{
 	display: none;
@@ -39,6 +42,7 @@ table, tr, td {
 
 .info-wrapper {
 	/*padding: 50px;*/
+	margin-bottom: 10px;
 }
 
 #game-wrapper {
@@ -97,21 +101,27 @@ table, tr, td {
 }
 .s1::before {
 	content: '1';
+	color: red;
 }
 .s2::before {
 	content: '2';
+	color: blue;
 }
 .s3::before {
 	content: '3';
+	color: green;
 }
 .s4::before {
 	content: '4';
+	color: pink;
 }
 .s5::before {
 	content: '5';
+	color: purple;
 }
 .s6::before {
 	content: '6';
+	color: black;
 }
 .s7::before {
 	content: '7';
@@ -122,8 +132,23 @@ table, tr, td {
 .mine {
 	/*background-color: #000 !important;*/
 }
-.uncovered {
+.exploded {
+	background-color: red !important;
+}
+/*.uncovered {
 	background-color: #fff !important;
+}*/
+#game-wrapper tbody tr:nth-child(even) .uncovered:nth-child(even) {
+	background-color: #ffffff !important;
+}
+#game-wrapper tbody tr:nth-child(even) .uncovered:nth-child(odd) {
+	background-color: #f5f5f5 !important;
+}
+#game-wrapper tbody tr:nth-child(odd) .uncovered:nth-child(odd) {
+	background-color: #ffffff !important;
+}
+#game-wrapper tbody tr:nth-child(odd) .uncovered:nth-child(even) {
+	background-color: #f5f5f5 !important;
 }
 .uncovered::before {
 	display: block !important;
