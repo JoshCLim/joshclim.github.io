@@ -1,11 +1,27 @@
-var rowNum = 200;
-var colNum = 50;
+var rowNum = 20;
+var colNum = 30;
+
 var mineNum = 0;
+
 var mineChance = 0.2;
+
 var squares;
 
-function startGame() {
-	
+var darkColour = "#295a8f";
+var lightColour = "#4c79ad";
+var flagColour = "#f98125";
+
+var root = document.documentElement;
+
+function solve() {
+	for (var q = 0; q < squares.length; q++) {
+		if (squares[q].classList.contains("mine")) {
+			squares[q].classList.add("flagged");
+			//squares[q].classList.add("exploded");
+		} else {
+			squares[q].classList.add("uncovered");
+		}
+	}
 }
 
 function undo() {
@@ -25,7 +41,7 @@ function gameOver() {
 		mines[q].classList.add("exploded");
 	}
 
-	alert('u died lol (reload to restart)');
+	//alert('u died lol (reload to restart)');
 }
 
 function search(i) {
@@ -130,55 +146,72 @@ function uncover(i) {
 	if (squares[i].classList.contains("s0")) {										// if the square is a zero square
 
 		if (isLeft == false) {
-			//squares[mineBefore].classList.add("uncovered");
 			uncover(mineBefore);
 		}
-
      	if (isRight == false) {
-     		//squares[mineAfter].classList.add("uncovered");
      		uncover(mineAfter);
      	}
-
      	if (isTop == false) { 
-     		//squares[mineAbove].classList.add("uncovered");
      		uncover(mineAbove);
      	}
-
      	if (isBottom == false) { 
-     		//squares[mineBelow].classList.add("uncovered");
      		uncover(mineBelow);
      	}
-
      	if ((isLeft == false) && (isTop == false)) { 
-     		//squares[mineTopRight].classList.add("uncovered");
      		uncover(mineTopLeft);
      	}
-
      	if ((isRight == false) && (isTop == false)) { 
-     		//squares[mineTopLeft].classList.add("uncovered");
      		uncover(mineTopRight);
      	}
-
      	if ((isLeft == false) && (isBottom == false)) { 
-     		//squares[mineBottomRight].classList.add("uncovered");
      		uncover(mineBottomLeft);
      	}
-
      	if ((isRight == false) && (isBottom == false)) { 
-     		//squares[mineBottomLeft].classList.add("uncovered");
      		uncover(mineBottomRight);
      	}
-
 	}
 }
 
-
 document.querySelector("#game-wrapper").addEventListener('contextmenu', event => event.preventDefault()); // stop right clicking the game from opening the menu
 
+function initSettings() {
+	root.style.setProperty("--darkblue", darkColour);								// set css variables
+	root.style.setProperty("--lightblue", lightColour);
+	root.style.setProperty("--darkorange", flagColour);
 
-document.addEventListener("DOMContentLoaded", (event) => {							// wait till the DOM is loaded
+	document.getElementById("colNumInput").value = colNum;							// set default values for settings
+	document.getElementById("rowNumInput").value = rowNum;
+	document.getElementById("lightColourInput").value = lightColour;
+	document.getElementById("darkColourInput").value = darkColour;
+	document.getElementById("flagColourInput").value = flagColour;
+	document.getElementById("mineChanceInput").value = mineChance;
+
+	var settingsInputs = document.getElementsByClassName("settings-input");
+
+	for (let i = 0; i < settingsInputs.length; i++) {
+		settingsInputs[i].addEventListener("blur", (event) => {
+			let newVal = settingsInputs[i].value;
+			let newId = settingsInputs[i].id;
+
+			if (settingsInputs[i].type == "number") {										// change the data type to a number if the number inputs were changed
+				window[newId.substring(0, newId.length - 5)] = parseInt(newVal);
+			} else {
+				window[newId.substring(0, newId.length - 5)] = newVal;
+			}
+
+			root.style.setProperty("--darkblue", darkColour);								// set css variables
+			root.style.setProperty("--lightblue", lightColour);
+			root.style.setProperty("--darkorange", flagColour);
+		});
+	}
+}
+
+function startGame() {
 
     var gameWrapper = document.querySelector("#game-wrapper tbody"); 				// get the game wrapper table 
+
+    gameWrapper.innerHTML = "";														// clear the game wrapper
+    mineNum = 0;																	// set the number of mines to 0
 
     for (var i = 0; i < rowNum; i++) { 												// add rows
     	gameWrapper.innerHTML += "<tr class='row row" + i + "'></tr>";
@@ -190,7 +223,7 @@ document.addEventListener("DOMContentLoaded", (event) => {							// wait till th
 	    }
     }
 
-    squares = document.getElementsByClassName("square");						// get 'array' of all squares
+    squares = document.getElementsByClassName("square");							// get 'HTML Collection' (array) of all squares
 
     for (let i = 0; i < squares.length; i++) { 										// loop through all squares
     	squares[i].addEventListener('click', function(e) {								// add event listener for left click
@@ -238,7 +271,7 @@ document.addEventListener("DOMContentLoaded", (event) => {							// wait till th
     		}			
     	});
 
-    	if (Math.random() < mineChance) {												// 22% chance that a square is a mine	
+    	if (Math.random() < mineChance) {												// x% chance that a square is a mine	
     		squares[i].classList.add("mine");											// add 'mine' class for mine squares
     		mineNum += 1;																// add 1 to the mine counter
     	}
@@ -323,4 +356,9 @@ document.addEventListener("DOMContentLoaded", (event) => {							// wait till th
 	    }
     }
 
+};
+
+document.addEventListener("DOMContentLoaded", (event) => {									// wait till the DOM is loaded
+	initSettings();
+	startGame();
 });
