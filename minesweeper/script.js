@@ -45,7 +45,14 @@ function gameOver() {
 }
 
 function search(i) {
-	squares[i].classList.add("uncovered");
+	if (squares[i].classList.contains("flagged")) {
+		return;
+	} else if (squares[i].classList.contains("mine")) {
+		gameOver();
+		return;
+	} else {
+		squares[i].classList.add("uncovered");
+	}
 
 	var mineBefore = i - 1;
 	var mineAfter = i + 1;
@@ -172,6 +179,120 @@ function uncover(i) {
 	}
 }
 
+function advancedSearch(i) {
+	let mineNumber;
+	let flagCounter = 0;
+	if (squares[i].classList.contains("s1")) {
+		mineNumber = 1;
+	} else if (squares[i].classList.contains("s2")) {
+		mineNumber = 2;
+	} else if (squares[i].classList.contains("s3")) {
+		mineNumber = 3;
+	} else if (squares[i].classList.contains("s4")) {
+		mineNumber = 4;
+	} else if (squares[i].classList.contains("s5")) {
+		mineNumber = 5;
+	} else if (squares[i].classList.contains("s6")) {
+		mineNumber = 6;
+	} else if (squares[i].classList.contains("s7")) {
+		mineNumber = 7;
+	} else if (squares[i].classList.contains("s8")) {
+		mineNumber = 8;
+	} else {
+		return;
+	}
+
+	var mineBefore = i - 1;
+	var mineAfter = i + 1;
+	var mineAbove = i - colNum;
+	var mineBelow = i + colNum;
+	var mineTopRight = i - colNum + 1;
+	var mineTopLeft = i - colNum - 1;
+	var mineBottomRight = i + colNum + 1;
+	var mineBottomLeft = i + colNum - 1;
+
+	var isTop = false;
+	var isBottom = false;
+	var isRight = false;
+	var isLeft = false;
+
+	if ((i % colNum) == 0) { isLeft = true;	}										// if the square is in the left column
+
+	if ((i % colNum) == (colNum-1)) { isRight = true; }								// if the square is in the right column
+		
+	if (i < colNum) { isTop = true;	}												// if the square is in the top row
+		
+	if (i > (colNum * (rowNum - 1) - 1)) { isBottom = true;	}						// if the square is in the bottom row
+
+	if (isLeft == false) {
+ 		if (squares[mineBefore].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if (isRight == false) {
+ 		if (squares[mineAfter].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if (isTop == false) {
+ 		if (squares[mineAbove].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if (isBottom == false) {
+ 		if (squares[mineBelow].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if ((isLeft == false) && (isTop == false)) {
+ 		if (squares[mineTopLeft].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if ((isRight == false) && (isTop == false)) {
+ 		if (squares[mineTopRight].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if ((isLeft == false) && (isBottom == false)) {
+ 		if (squares[mineBottomLeft].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+ 	if ((isRight == false) && (isBottom == false)) {
+ 		if (squares[mineBottomRight].classList.contains("flagged")) {
+     		flagCounter += 1;
+     	}
+ 	}
+
+ 	if (flagCounter == mineNumber) {
+ 		if (isLeft == false) {
+	 		search(mineBefore);
+	 	}
+	 	if (isRight == false) {
+	 		search(mineAfter);
+	 	}
+	 	if (isTop == false) {
+	 		search(mineAbove);
+	 	}
+	 	if (isBottom == false) {
+	 		search(mineBelow);
+	 	}
+	 	if ((isLeft == false) && (isTop == false)) {
+	 		search(mineTopLeft);
+	 	}
+	 	if ((isRight == false) && (isTop == false)) {
+	 		search(mineTopRight);
+	 	}
+	 	if ((isLeft == false) && (isBottom == false)) {
+	 		search(mineBottomLeft);
+	 	}
+	 	if ((isRight == false) && (isBottom == false)) {
+	 		search(mineBottomRight);
+	 	}
+ 	}
+}
+
 document.querySelector("#game-wrapper").addEventListener('contextmenu', event => event.preventDefault()); // stop right clicking the game from opening the menu
 
 function initSettings() {
@@ -248,10 +369,11 @@ function startGame() {
 						uncover(i);
 
 					} else {																// if they clicked on a number square
-						
-						//this.classList.add("uncovered");
-						search(i);
-
+						if (this.classList.contains("uncovered")) {								// if it has already been uncovered
+							advancedSearch(i);
+						} else {																// if it hasn't yet been uncovered
+							search(i);
+						}
 					}
 				}
 			}
