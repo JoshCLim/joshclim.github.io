@@ -7,6 +7,8 @@ var mineChance = 0.2;
 
 var squares;
 
+var alive = true;
+
 var darkColour = "#555555";
 var lightColour = "#666666";
 var flagColour = "#ffffff";
@@ -30,6 +32,8 @@ function undo() {
 	for (var q = 0; q < mines.length; q++) {
 		mines[q].classList.remove("exploded");
 	}
+
+	alive = true;
 }
 
 function gameOver() {
@@ -40,6 +44,8 @@ function gameOver() {
 	for (var q = 0; q < mines.length; q++) {
 		mines[q].classList.add("exploded");
 	}
+
+	alive = false;
 
 	//alert('u died lol (reload to restart)');
 }
@@ -183,6 +189,8 @@ function uncover(i) {
 function advancedSearch(i) {
 	let mineNumber;
 	let flagCounter = 0;
+	let uncoveredCounter = 0;
+
 	if (squares[i].classList.contains("s1")) {
 		mineNumber = 1;
 	} else if (squares[i].classList.contains("s2")) {
@@ -229,40 +237,64 @@ function advancedSearch(i) {
  		if (squares[mineBefore].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
+     	if (squares[mineBefore].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
+     	}
  	}
  	if (isRight == false) {
  		if (squares[mineAfter].classList.contains("flagged")) {
      		flagCounter += 1;
+     	}
+     	if (squares[mineAfter].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
      	}
  	}
  	if (isTop == false) {
  		if (squares[mineAbove].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
+     	if (squares[mineAbove].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
+     	}
  	}
  	if (isBottom == false) {
  		if (squares[mineBelow].classList.contains("flagged")) {
      		flagCounter += 1;
+     	}
+     	if (squares[mineBelow].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
      	}
  	}
  	if ((isLeft == false) && (isTop == false)) {
  		if (squares[mineTopLeft].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
+     	if (squares[mineTopLeft].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
+     	}
  	}
  	if ((isRight == false) && (isTop == false)) {
  		if (squares[mineTopRight].classList.contains("flagged")) {
      		flagCounter += 1;
+     	}
+     	if (squares[mineTopRight].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
      	}
  	}
  	if ((isLeft == false) && (isBottom == false)) {
  		if (squares[mineBottomLeft].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
+     	if (squares[mineBottomLeft].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
+     	}
  	}
  	if ((isRight == false) && (isBottom == false)) {
  		if (squares[mineBottomRight].classList.contains("flagged")) {
      		flagCounter += 1;
+     	}
+     	if (squares[mineBottomRight].classList.contains("uncovered")) {
+     		uncoveredCounter += 1;
      	}
  	}
 
@@ -290,6 +322,49 @@ function advancedSearch(i) {
 	 	}
 	 	if ((isRight == false) && (isBottom == false)) {
 	 		search(mineBottomRight);
+	 	}
+ 	}
+
+ 	if ((8 - uncoveredCounter) == mineNumber) {
+ 		if (isLeft == false) {
+	 		if (!(squares[mineBefore].classList.contains("uncovered"))) {
+	 			squares[mineBefore].classList.add("flagged");
+	 		}
+	 	}
+	 	if (isRight == false) {
+	 		if (!(squares[mineAfter].classList.contains("uncovered"))) {
+	 			squares[mineAfter].classList.add("flagged");
+	 		}
+	 	}
+	 	if (isTop == false) {
+	 		if (!(squares[mineAbove].classList.contains("uncovered"))) {
+	 			squares[mineAbove].classList.add("flagged");
+	 		}
+	 	}
+	 	if (isBottom == false) {
+	 		if (!(squares[mineBelow].classList.contains("uncovered"))) {
+	 			squares[mineBelow].classList.add("flagged");
+	 		}
+	 	}
+	 	if ((isLeft == false) && (isTop == false)) {
+	 		if (!(squares[mineTopLeft].classList.contains("uncovered"))) {
+	 			squares[mineTopLeft].classList.add("flagged");
+	 		}
+	 	}
+	 	if ((isRight == false) && (isTop == false)) {
+	 		if (!(squares[mineTopRight].classList.contains("uncovered"))) {
+	 			squares[mineTopRight].classList.add("flagged");
+	 		}
+	 	}
+	 	if ((isLeft == false) && (isBottom == false)) {
+	 		if (!(squares[mineBottomLeft].classList.contains("uncovered"))) {
+	 			squares[mineBottomLeft].classList.add("flagged");
+	 		}
+	 	}
+	 	if ((isRight == false) && (isBottom == false)) {
+	 		if (!(squares[mineBottomRight].classList.contains("uncovered"))) {
+	 			squares[mineBottomRight].classList.add("flagged");
+	 		}
 	 	}
  	}
 }
@@ -329,6 +404,8 @@ function initSettings() {
 }
 
 function startGame() {
+
+	alive = true;
 
     var gameWrapper = document.querySelector("#game-wrapper tbody"); 				// get the game wrapper table 
 
@@ -388,7 +465,7 @@ function startGame() {
     		} else {
     			if (this.classList.contains("flagged")) {
 					this.classList.remove("flagged");
-				} else {
+				} else if (alive == true) {
 					this.classList.add("flagged");
 				}
     		}			

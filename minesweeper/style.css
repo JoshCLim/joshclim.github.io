@@ -157,6 +157,7 @@ input::-webkit-inner-spin-button {
 	font-size: 14px;
 	display: inline-block;
 	margin: 2px 0;
+	font-weight: 100;
 }
 .rules-wrapper {
 	left: 0;
@@ -176,6 +177,7 @@ input::-webkit-inner-spin-button {
 .rules-wrapper p {
 	word-wrap: break-word;
 	font-weight: 200;
+	font-size: 12px;
 }
 
 
@@ -232,6 +234,12 @@ input::-webkit-inner-spin-button {
 	display: block !important;
 	color: var(--darkorange) !important;
 }
+.exploded {
+	background-color: red !important;
+}
+.flagged {
+	background-color: #000 !important;
+}
 .s0::before {
 	content: '';
 }
@@ -269,9 +277,6 @@ input::-webkit-inner-spin-button {
 }
 .mine {
 	/*background-color: #000 !important;*/
-}
-.exploded {
-	background-color: red !important;
 }
 /*.uncovered {
 	background-color: #fff !important;
