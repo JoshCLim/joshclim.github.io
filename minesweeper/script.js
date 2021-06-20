@@ -390,13 +390,13 @@ function initSettings() {
 			let newVal = settingsInputs[i].value;
 			let newId = settingsInputs[i].id;
 
-			if (settingsInputs[i].type == "number") {										// change the data type to a number if the number inputs were changed
-				window[newId.substring(0, newId.length - 5)] = parseInt(newVal);
+			if (settingsInputs[i].type == "number") {								// change the data type to a number if the number inputs were changed
+				window[newId.substring(0, newId.length - 5)] = parseFloat(newVal);
 			} else {
 				window[newId.substring(0, newId.length - 5)] = newVal;
 			}
 
-			root.style.setProperty("--darkblue", darkColour);								// set css variables
+			root.style.setProperty("--darkblue", darkColour);						// set css variables
 			root.style.setProperty("--lightblue", lightColour);
 			root.style.setProperty("--darkorange", flagColour);
 		});
