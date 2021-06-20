@@ -7,13 +7,14 @@
 
 * {
 	box-sizing: border-box;
+	font-family: Nunito, sans-serif;
+	text-transform: lowercase;
 }
 
 html {
 	/*height: 100%;
 	width: 100%;*/
 }
-
 body {
 	display: flex;
 	align-items: center;
@@ -23,27 +24,22 @@ body {
 	/*width: 100%;
 	height: 100%;*/
 
-	font-family: Roboto, sans-serif;
-
 	user-select: none;
 
-	background-color: #000;
+	background-color: #333;
 	color: #fff;
 }
 body::-webkit-scrollbar{
 	display: none;
 }
-
 h1, h2 {
 	margin: 0;
 }
-
 table, tr, td {
 	border: none;
 	padding: 0;
 	margin: 0;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -54,55 +50,61 @@ input::-webkit-inner-spin-button {
 
 
 
-
 .info-wrapper {
-	margin-bottom: 7px;
+	margin: 10px 0;
+
+	width: 700px;
 
 	display: flex;
 	flex-direction: row;
 
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+
+	/*border-bottom: 1px #fff solid;*/
 }
 .info-wrapper h1 {
-	margin: 0 100px;
-	font-size: 28px;
+	/*margin: 0 100px;*/
+	font-size: 32px;
 
-	font-family: inherit;
-	font-weight: 900;
+	font-weight: 200;
 
 	letter-spacing: 0.1em;
 }
 #mine-counter {
 	padding: 10px;
-	border: 1px solid #fff;
+	/*border: 1px solid #fff;*/
+	display: none;
 
 	transition: 200ms ease all;
 }
 #mine-counter:hover {
 	color: #000;
 	background-color: #fff;
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 }
 .info-wrapper button {
 	padding: 10px;
-	background-color: #eee;
+	background-color: #3a3a3a;
 
 	border: none;
-	border: 0.5px solid #000;
+
+	color: #fff;
 
 	cursor: pointer;
 
 	transition: 200ms ease all;
+
+	filter: saturate(0%);
 }
 .info-wrapper button:hover {
-	background-color: #aaa;
+	background-color: #444;
 }
 
 
 
 
-.settings-wrapper {
+.settings-wrapper, .rules-wrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -113,42 +115,68 @@ input::-webkit-inner-spin-button {
 	right: 0;
 	top: 0;
 
-	margin: auto 0;
+	margin: 5vh 0 5vh 0;
 	padding: 0 25px;
 
-	height: 100vh;
+	height: 90vh;
 	min-width: 200px;
 
 	text-align: right;
 
-	background-color: #fff;
+	background-color: transparent;
 	/*box-shadow: 7px 7px 30px #555;*/
-	border: #fff solid 1px;
+	/*border: #fff solid 1px;
 	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
+	border-bottom-left-radius: 20px;*/
+	border-left: 1px #fff solid;
 
-	color: #000;
+	color: #fff;
 }
 .settings-wrapper h2 {
 	margin-bottom: 10px;
 }
 .settings-wrapper input {
+	color: #fff;
+
 	margin: 3px 0 10px 0;
 
 	text-align: right;
 
-	border: none;
+	border: 1px solid #eee;
+
+	background-color: inherit;
 }
 .settings-wrapper input[type=number]{
 	width: 60px;
 	padding: 5px 10px;
+}
+.settings-wrapper input[type=color]{
+	border: none;
 }
 .settings-wrapper span {
 	font-size: 14px;
 	display: inline-block;
 	margin: 2px 0;
 }
+.rules-wrapper {
+	left: 0;
+	right: auto;
 
+	text-align: left;
+
+	align-items: flex-start;
+
+	border-right: 1px #fff solid;
+	border-left: none;
+
+	overflow: hidden;
+
+	max-width: 200px;
+}
+.rules-wrapper p {
+	word-wrap: break-word;
+	font-weight: 200;
+}
 
 
 
@@ -213,7 +241,7 @@ input::-webkit-inner-spin-button {
 }
 .s2::before {
 	content: '2';
-	color: blue;
+	color: royalblue;
 }
 .s3::before {
 	content: '3';
@@ -221,21 +249,23 @@ input::-webkit-inner-spin-button {
 }
 .s4::before {
 	content: '4';
-	color: pink;
+	color: orange;
 }
 .s5::before {
 	content: '5';
-	color: purple;
+	color: rebeccapurple;
 }
 .s6::before {
 	content: '6';
-	color: black;
+	color: navy;
 }
 .s7::before {
 	content: '7';
+	color: maroon;
 }
 .s8::before {
 	content: '8';
+	color: black;
 }
 .mine {
 	/*background-color: #000 !important;*/

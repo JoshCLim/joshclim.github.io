@@ -8,25 +8,33 @@
 </head>
 <body>
 	<div class="info-wrapper">
+		<h1>minesweeper</h1>
 		<div id="mine-counter">Mines: <span></span></div>
-		<h1>MINESWEEPER</h1>
-		<button onclick="startGame()">new game</button>
+		<button onclick="startGame()">new game &#128516</button>
 		<!--<button>settings</button>-->
 	</div>
 
 	<div class="rules-wrapper">
 		<h2>Rules</h2>
-		
+		<p>
+			numbers indicate how many mines are in the surrounding 8 squares
+			<br><br>
+			left-click an unknown square to uncover it
+			<br><br>
+			right-click an unknown square to flag it as a mine
+			<br><br>
+			left-click a number square to uncover all surrounding squares (if the number in the square matches the number of surrounding flags)
+		</p>
 	</div>
 
 	<div class="settings-wrapper">
 		<h2>Settings</h2>
-		Col Num: <input type="number" name="" id="colNumInput" class="settings-input">
-		Row Num: <input type="number" name="" id="rowNumInput" class="settings-input">
-		Light Colour: <input type="color" name="" id="lightColourInput" class="settings-input">
-		Dark Colour: <input type="color" name="" id="darkColourInput" class="settings-input">
-		Flag Colour: <input type="color" name="" id="flagColourInput" class="settings-input">
-		Mine Chance: <br> <span>(0 < x < 1)</span> <input type="number" name="" id="mineChanceInput" class="settings-input">
+		Col Num <br> <span>(1 < x < 30)</span> <input type="number" name="" id="colNumInput" class="settings-input">
+		Row Num <input type="number" name="" id="rowNumInput" class="settings-input">
+		Light Colour <input type="color" name="" id="lightColourInput" class="settings-input">
+		Dark Colour <input type="color" name="" id="darkColourInput" class="settings-input">
+		Flag Colour <input type="color" name="" id="flagColourInput" class="settings-input">
+		Mine Chance <br> <span>(0 < x < 1)</span> <input type="number" name="" id="mineChanceInput" class="settings-input">
 	</div>
 	
 

@@ -7,9 +7,9 @@ var mineChance = 0.2;
 
 var squares;
 
-var darkColour = "#295a8f";
-var lightColour = "#4c79ad";
-var flagColour = "#f98125";
+var darkColour = "#555555";
+var lightColour = "#666666";
+var flagColour = "#ffffff";
 
 var root = document.documentElement;
 
@@ -127,6 +127,7 @@ function uncover(i) {
 	}
 
 	squares[i].classList.add("uncovered");
+	squares[i].classList.remove("flagged");
 
 	var mineBefore = i - 1;
 	var mineAfter = i + 1;
