@@ -211,6 +211,11 @@ function uncover(i) {		// recursion !!!
 }
 
 function advancedSearch(i) {
+
+	if (alive == false) {
+		return false;
+	}
+
 	let mineNumber;
 	let flagCounter = 0;
 	let uncoveredCounter = 0;
