@@ -9,6 +9,7 @@ var mineChance = 0.23;
 var squares;
 
 var alive = true;
+var won = false; // to prevent the win function from being triggered multiple times
 
 var darkColour = "#555555";
 var lightColour = "#666666";
@@ -17,7 +18,10 @@ var flagColour = "#ffffff";
 var root = document.documentElement;
 
 function win() {
-	alert("you win");
+	if (won == false) {
+		alert("you win");
+		won = true;
+	}
 }
 
 function checkWin() {
@@ -420,6 +424,7 @@ function initSettings() {
 function startGame() {
 
 	alive = true;
+	won = false;
 
     var gameWrapper = document.querySelector("#game-wrapper tbody"); 				// get the game wrapper table 
 
@@ -480,7 +485,9 @@ function startGame() {
     		} else {
     			if (this.classList.contains("flagged")) {								// if they right click on a flagged square
 
-					this.classList.remove("flagged");										// remove the flag
+    				if (won == false) {
+						this.classList.remove("flagged");									// remove the flag
+					}
 
 				} else if (alive == true) {												// if they are still alive and right click on a mine
 
