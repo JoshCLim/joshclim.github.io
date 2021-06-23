@@ -218,7 +218,7 @@ function advancedSearch(i) {
 
 	let mineNumber;
 	let flagCounter = 0;
-	let uncoveredCounter = 0;
+	let coveredCounter = 0;
 
 	if (squares[i].classList.contains("s1")) {
 		mineNumber = 1;
@@ -266,64 +266,64 @@ function advancedSearch(i) {
  		if (squares[mineBefore].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineBefore].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineBefore].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if (isRight == false) {
  		if (squares[mineAfter].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineAfter].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineAfter].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if (isTop == false) {
  		if (squares[mineAbove].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineAbove].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineAbove].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if (isBottom == false) {
  		if (squares[mineBelow].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineBelow].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineBelow].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if ((isLeft == false) && (isTop == false)) {
  		if (squares[mineTopLeft].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineTopLeft].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineTopLeft].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if ((isRight == false) && (isTop == false)) {
  		if (squares[mineTopRight].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineTopRight].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineTopRight].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if ((isLeft == false) && (isBottom == false)) {
  		if (squares[mineBottomLeft].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineBottomLeft].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineBottomLeft].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
  	if ((isRight == false) && (isBottom == false)) {
  		if (squares[mineBottomRight].classList.contains("flagged")) {
      		flagCounter += 1;
      	}
-     	if (squares[mineBottomRight].classList.contains("uncovered")) {
-     		uncoveredCounter += 1;
+     	if (!(squares[mineBottomRight].classList.contains("uncovered"))) {
+     		coveredCounter += 1;
      	}
  	}
 
@@ -354,12 +354,12 @@ function advancedSearch(i) {
 	 	}
  	}
 
- 	if ((8 - uncoveredCounter) == mineNumber) {
+ 	if (coveredCounter == mineNumber) {
  		if (isLeft == false) {
 	 		if (!(squares[mineBefore].classList.contains("uncovered"))) {
 	 			squares[mineBefore].classList.add("flagged");
 	 		}
-	 	}
+ 	}
 	 	if (isRight == false) {
 	 		if (!(squares[mineAfter].classList.contains("uncovered"))) {
 	 			squares[mineAfter].classList.add("flagged");
