@@ -153,7 +153,7 @@ input::-webkit-inner-spin-button {
 .settings-wrapper input[type=color]{
 	border: none;
 }
-.settings-wrapper span {
+.settings-wrapper > span {
 	font-size: 14px;
 	display: inline-block;
 	margin: 2px 0;
@@ -234,9 +234,6 @@ input::-webkit-inner-spin-button {
 	display: block !important;
 	color: var(--darkorange) !important;
 }
-.exploded {
-	background-color: red !important;
-}
 .flagged {
 	background-color: #000 !important;
 }
@@ -295,4 +292,7 @@ input::-webkit-inner-spin-button {
 }
 .uncovered::before {
 	display: block !important;
+}
+.exploded {
+	background-color: red !important;
 }

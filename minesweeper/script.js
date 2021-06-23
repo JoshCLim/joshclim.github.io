@@ -2,8 +2,9 @@ var rowNum = 20;
 var colNum = 30;
 
 var mineNum = 0;
+var minesFlagged = 0;
 
-var mineChance = 0.2;
+var mineChance = 0.23;
 
 var squares;
 
@@ -14,6 +15,18 @@ var lightColour = "#666666";
 var flagColour = "#ffffff";
 
 var root = document.documentElement;
+
+function win() {
+	alert("you win");
+}
+
+function checkWin() {
+	minesFlagged = document.getElementsByClassName("mine flagged").length;
+
+	if ((mineNum == minesFlagged) && (alive == true)) {
+		win();
+	}
+}
 
 function solve() {
 	for (var q = 0; q < squares.length; q++) {
@@ -367,6 +380,7 @@ function advancedSearch(i) {
 	 		}
 	 	}
  	}
+ 	checkWin();
 }
 
 document.querySelector("#game-wrapper").addEventListener('contextmenu', event => event.preventDefault()); // stop right clicking the game from opening the menu
@@ -411,6 +425,7 @@ function startGame() {
 
     gameWrapper.innerHTML = "";														// clear the game wrapper
     mineNum = 0;																	// set the number of mines to 0
+    minesFlagged = 0;																// set the number of mines flagged to 0
 
     for (var i = 0; i < rowNum; i++) { 												// add rows
     	gameWrapper.innerHTML += "<tr class='row row" + i + "'></tr>";
@@ -432,13 +447,13 @@ function startGame() {
 
 			if (this.classList.contains("flagged")) {										// if they clicked on a flagged square
 				
-				console.log("flagged");
+				//console.log("flagged");														// do nothing
 
 			} else {
 
 				if (this.classList.contains("mine")) {										// if they clicked on a mine
 					
-					gameOver();
+					gameOver();																	// they lose
 
 				} else {
 
@@ -460,13 +475,19 @@ function startGame() {
     	squares[i].addEventListener('contextmenu', function(e) {						// add event listeners for right click
     		e.preventDefault();
 
-    		if (this.classList.contains("uncovered")) {
-
+    		if (this.classList.contains("uncovered")) {									// if they right click on an uncovered square
+    																						// do nothing
     		} else {
-    			if (this.classList.contains("flagged")) {
-					this.classList.remove("flagged");
-				} else if (alive == true) {
-					this.classList.add("flagged");
+    			if (this.classList.contains("flagged")) {								// if they right click on a flagged square
+
+					this.classList.remove("flagged");										// remove the flag
+
+				} else if (alive == true) {												// if they are still alive and right click on a mine
+
+					this.classList.add("flagged");											// add the flag
+
+					checkWin();
+
 				}
     		}			
     	});
@@ -559,6 +580,8 @@ function startGame() {
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {									// wait till the DOM is loaded
+	document.getElementById("undo").addEventListener("click", undo);
+
 	initSettings();
 	startGame();
 });
