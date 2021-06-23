@@ -452,6 +452,22 @@ function startGame() {
     squares = document.getElementsByClassName("square");							// get 'HTML Collection' (array) of all squares
 
     for (let i = 0; i < squares.length; i++) { 										// loop through all squares
+
+    	var pressTimer;
+		squares[i].addEventListener('mouseup', function(){							// if long press, add flag
+		  clearTimeout(pressTimer);
+		  // Clear timeout
+		  return false;
+		})
+		squares[i].addEventListener('mousedown', function() {
+		  // Set timeout
+		  pressTimer = window.setTimeout(function() {
+		  	this.classList.add("flagged")
+		  },700);
+		  return false; 
+		});
+
+
     	squares[i].addEventListener('click', function(e) {								// add event listener for left click
     		e.preventDefault();
 
