@@ -19,7 +19,9 @@ var root = document.documentElement;
 
 function win() {
 	if (won == false) {
-		alert("you win");
+		setTimeout(function() {
+			alert("you win");
+		}, 500);
 		won = true;
 	}
 }
@@ -41,6 +43,8 @@ function solve() {
 			squares[q].classList.add("uncovered");
 		}
 	}
+
+	checkWin();
 }
 
 function undo() {
@@ -143,7 +147,7 @@ function search(i) {
 	}
 }
 
-function uncover(i) {
+function uncover(i) {		// recursion !!!
 
 	if (squares[i].classList.contains("mine") || squares[i].classList.contains("uncovered")) {
 		return;
@@ -176,30 +180,33 @@ function uncover(i) {
 
 	if (squares[i].classList.contains("s0")) {										// if the square is a zero square
 
-		if (isLeft == false) {
+		setTimeout(function() {
+			if (isLeft == false) {
 			uncover(mineBefore);
-		}
-     	if (isRight == false) {
-     		uncover(mineAfter);
-     	}
-     	if (isTop == false) { 
-     		uncover(mineAbove);
-     	}
-     	if (isBottom == false) { 
-     		uncover(mineBelow);
-     	}
-     	if ((isLeft == false) && (isTop == false)) { 
-     		uncover(mineTopLeft);
-     	}
-     	if ((isRight == false) && (isTop == false)) { 
-     		uncover(mineTopRight);
-     	}
-     	if ((isLeft == false) && (isBottom == false)) { 
-     		uncover(mineBottomLeft);
-     	}
-     	if ((isRight == false) && (isBottom == false)) { 
-     		uncover(mineBottomRight);
-     	}
+			}
+			if (isRight == false) {
+				uncover(mineAfter);
+			}
+			if (isTop == false) { 
+				uncover(mineAbove);
+			}
+			if (isBottom == false) { 
+				uncover(mineBelow);
+			}
+			if ((isLeft == false) && (isTop == false)) { 
+				uncover(mineTopLeft);
+			}
+			if ((isRight == false) && (isTop == false)) { 
+				uncover(mineTopRight);
+			}
+			if ((isLeft == false) && (isBottom == false)) { 
+				uncover(mineBottomLeft);
+			}
+			if ((isRight == false) && (isBottom == false)) { 
+				uncover(mineBottomRight);
+			}
+		}, 10);
+		
 	}
 }
 
