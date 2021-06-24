@@ -17,6 +17,37 @@ body {
 	box-sizing: border-box;
 }
 
+#links-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	height: 100%;
+	width: 100%;
+}
+a {
+	font-size: 12px;
+	display: block;
+	width: 25%;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	background-color: #333;
+
+	overflow: hidden;
+
+	color: #fff;
+	text-decoration: none;
+
+	border: 0.01px solid #fff;
+
+	transition: ease all 100ms;
+}
+a:hover {
+	background-color: #555;
+}
+
+/*
 a {
 	text-decoration: none;
 	color:#000;
@@ -136,7 +167,7 @@ h1 {
 	margin:15px 0;
 }
 
-/*h2, h3 {
+h2, h3 {
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -147,7 +178,7 @@ h2 {
 
 .name {
 	font-size:1.5em;
-}*/
+}
 
 .main-wrapper {
 	clear:both;
@@ -197,9 +228,10 @@ h2 {
 	text-align: center;
 	line-height: 180px;
 	font-weight: bold;
-	/*box-shadow: 2px 2px 5px #aaa;*/
+	/*box-shadow: 2px 2px 5px #aaa;
 
-	/* change bg image for each link in handlebars or HTML... */
+	change bg image for each link in handlebars or HTML...
+
 	-webkit-transition:500ms ease;
 	-moz-transition:500ms ease;
 	-o-transition:500ms ease;
@@ -220,3 +252,5 @@ h2 {
 	width:100%;
 	margin:0;
 }
+
+*/
