@@ -59,15 +59,24 @@ input::-webkit-inner-spin-button {
 
 
 .info-wrapper {
-	margin: 10px 0;
+	padding: 15px calc((100% - 700px) / 2);
+	margin: 15px 0;
 
-	width: 700px;
+	width: 100%;
 
 	display: flex;
 	flex-direction: row;
 
 	align-items: center;
 	justify-content: space-between;
+
+	position: sticky;
+	top: 0;
+	z-index: 1;
+
+	background-color: #333;
+
+	box-shadow: 0px 5px 12px #333;
 
 	/*border-bottom: 1px #fff solid;*/
 }
@@ -82,7 +91,7 @@ input::-webkit-inner-spin-button {
 #mine-counter {
 	padding: 10px;
 	/*border: 1px solid #fff;*/
-	display: none;
+	/*display: none;*/
 
 	transition: 200ms ease all;
 }
@@ -237,36 +246,34 @@ input::-webkit-inner-spin-button {
 .square::before {
 	display: none;
 }
-.flagged::before {
-	content: 'x' !important;
-	display: block !important;
-	color: var(--darkorange) !important;
+.mine {
+	/*background-color: #000 !important;*/
 }
-.flagged {
-	background-color: #000 !important;
+.mine::before {
+	content: '' !important;
 }
 .s0::before {
 	content: '';
 }
 .s1::before {
 	content: '1';
-	color: red;
+	color: royalblue;
 }
 .s2::before {
 	content: '2';
-	color: royalblue;
+	color: green;
 }
 .s3::before {
 	content: '3';
-	color: green;
+	color: red;
 }
 .s4::before {
 	content: '4';
-	color: orange;
+	color: rebeccapurple;
 }
 .s5::before {
 	content: '5';
-	color: rebeccapurple;
+	color: orange;
 }
 .s6::before {
 	content: '6';
@@ -280,8 +287,13 @@ input::-webkit-inner-spin-button {
 	content: '8';
 	color: black;
 }
-.mine {
-	/*background-color: #000 !important;*/
+.flagged::before {
+	content: 'x' !important;
+	display: block !important;
+	color: var(--darkorange) !important;
+}
+.flagged {
+	background-color: #000 !important;
 }
 /*.uncovered {
 	background-color: #fff !important;
@@ -305,7 +317,12 @@ input::-webkit-inner-spin-button {
 	background-color: red !important;
 }
 
-
+/*@media only screen and (max-width: 1200px) {
+  .info-wrapper {
+		padding: 15px 5%;
+		width: 90%;
+  }
+}*/
 @media only screen and (max-width: 1100px) {
   .settings-wrapper, .rules-wrapper {
     display: none;

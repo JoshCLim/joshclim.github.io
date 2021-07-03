@@ -6,6 +6,8 @@ var minesFlagged = 0;
 
 var mineChance = 0.23;
 
+var firstClick = true;
+
 var squares;
 
 var alive = true;
@@ -17,6 +19,36 @@ var flagColour = "#ffffff";
 
 var root = document.documentElement;
 
+
+
+
+// https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+
+var startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+localStorage.setItem("startTime", startTime); // Store it if I want to restart the timer on the next page
+
+function startTimeCounter() {
+	let now = Math.floor(Date.now() / 1000); // get the time now
+	let diff = now - startTime; // diff in seconds between now and start
+	let m = Math.floor(diff / 60); // get minutes value (quotient of diff)
+	let s = Math.floor(diff % 60); // get seconds value (remainder of diff)
+	m = checkTime(m); // add a leading zero if it's single digit
+	s = checkTime(s); // add a leading zero if it's single digit
+	//document.getElementById("idName").innerHTML = m + ":" + s; // update the element where the timer will appear
+	let t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+}
+function checkTime(i) {
+	if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+	return i;
+}
+
+
+
+
+
+
+startTimeCounter();
+
 function win() {
 	if (won == false) {
 		setTimeout(function() {
@@ -26,11 +58,17 @@ function win() {
 	}
 }
 
-function checkWin() {
+function checkWin() { // check if youve won and update mine counter
 	minesFlagged = document.getElementsByClassName("mine flagged").length;
+	var flagged = document.getElementsByClassName("flagged").length;
 
-	if ((mineNum == minesFlagged) && (alive == true)) {
+	document.querySelector("#mine-counter span").innerHTML = mineNum - flagged;
+
+
+	if ((mineNum == minesFlagged) && (mineNum == flagged) && (alive == true)) {
 		win();
+	} else {
+
 	}
 }
 
@@ -154,7 +192,11 @@ function uncover(i) {		// recursion !!!
 	}
 
 	squares[i].classList.add("uncovered");
-	squares[i].classList.remove("flagged");
+
+	if (squares[i].classList.contains("flagged")) {
+		squares[i].classList.remove("flagged");
+		checkWin();
+	}
 
 	var mineBefore = i - 1;
 	var mineAfter = i + 1;
@@ -433,10 +475,11 @@ function initSettings() {
 	}
 }
 
-function startGame() {
+function startGame(num) {
 
 	alive = true;
 	won = false;
+	firstClick = true;
 
     var gameWrapper = document.querySelector("#game-wrapper tbody"); 				// get the game wrapper table 
 
@@ -486,15 +529,24 @@ function startGame() {
 
 				if (this.classList.contains("mine")) {										// if they clicked on a mine
 					
-					gameOver();																	// they lose
+					if ((firstClick == true) && (mineChance != 1)) {								// if it is their first click, restart the game
+						startGame(i);
+					} else {
+						gameOver();																	// they lose
+					}
 
 				} else {
 
 					if (this.classList.contains("s0")) {									// if they clicked on a zero square
 
+						firstClick = false;
+
 						uncover(i);
 
 					} else {																// if they clicked on a number square
+
+						firstClick = false;
+
 						if (this.classList.contains("uncovered")) {								// if it has already been uncovered
 							advancedSearch(i);
 						} else {																// if it hasn't yet been uncovered
@@ -515,6 +567,7 @@ function startGame() {
 
     				if (won == false) {
 						this.classList.remove("flagged");									// remove the flag
+						checkWin();
 					}
 
 				} else if (alive == true) {												// if they are still alive and right click on a mine
@@ -538,78 +591,82 @@ function startGame() {
     var mineCounter;
 
     for (var i = 0; i < squares.length; i++) {										// loop through all squares AGAIN to assign numbers
-     	if (squares[i].classList.contains("mine")) {									// if the square is a mine, do nothing
 
-     	} else {																		// if the square is not a mine, count
-	     	mineCounter = 0;
+     	mineCounter = 0;
 
-	     	let mineBefore = i - 1;
-	     	let mineAfter = i + 1;
-	     	let mineAbove = i - colNum;
-	     	let mineBelow = i + colNum;
-	     	let mineTopRight = i - colNum + 1;
-	     	let mineTopLeft = i - colNum - 1;
-	     	let mineBottomRight = i + colNum + 1;
-	     	let mineBottomLeft = i + colNum - 1;
+     	let mineBefore = i - 1;
+     	let mineAfter = i + 1;
+     	let mineAbove = i - colNum;
+     	let mineBelow = i + colNum;
+     	let mineTopRight = i - colNum + 1;
+     	let mineTopLeft = i - colNum - 1;
+     	let mineBottomRight = i + colNum + 1;
+     	let mineBottomLeft = i + colNum - 1;
 
-	     	let isTop = false;
-	     	let isBottom = false;
-	     	let isRight = false;
-	     	let isLeft = false;
+     	let isTop = false;
+     	let isBottom = false;
+     	let isRight = false;
+     	let isLeft = false;
 
-	     	if ((i % colNum) == 0) { isLeft = true;	}										// if the square is in the left column
+     	if ((i % colNum) == 0) { isLeft = true;	}										// if the square is in the left column
 
-	     	if ((i % colNum) == (colNum-1)) { isRight = true; }								// if the square is in the right column
-	     		
-	     	if (i < colNum) { isTop = true;	}												// if the square is in the top row
-	     		
-	     	if (i > (colNum * (rowNum - 1) - 1)) { isBottom = true;	}						// if the square is in the bottom row
+     	if ((i % colNum) == (colNum-1)) { isRight = true; }								// if the square is in the right column
+     		
+     	if (i < colNum) { isTop = true;	}												// if the square is in the top row
+     		
+     	if (i > (colNum * (rowNum - 1) - 1)) { isBottom = true;	}						// if the square is in the bottom row
 
-	    	
-	     	if (isLeft == false) {
-	     		if (squares[mineBefore].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+    	
+     	if (isLeft == false) {
+     		if (squares[mineBefore].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if (isRight == false) {
-	     		if (squares[mineAfter].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if (isRight == false) {
+     		if (squares[mineAfter].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if (isTop == false) {
-	     		if (squares[mineAbove].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if (isTop == false) {
+     		if (squares[mineAbove].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if (isBottom == false) {
-	     		if (squares[mineBelow].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if (isBottom == false) {
+     		if (squares[mineBelow].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if ((isLeft == false) && (isTop == false)) {
-	     		if (squares[mineTopLeft].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if ((isLeft == false) && (isTop == false)) {
+     		if (squares[mineTopLeft].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if ((isRight == false) && (isTop == false)) {
-	     		if (squares[mineTopRight].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if ((isRight == false) && (isTop == false)) {
+     		if (squares[mineTopRight].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if ((isLeft == false) && (isBottom == false)) {
-	     		if (squares[mineBottomLeft].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if ((isLeft == false) && (isBottom == false)) {
+     		if (squares[mineBottomLeft].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
-	     	if ((isRight == false) && (isBottom == false)) {
-	     		if (squares[mineBottomRight].classList.contains("mine")) {
-		     		mineCounter++;
-		     	}
+     	}
+     	if ((isRight == false) && (isBottom == false)) {
+     		if (squares[mineBottomRight].classList.contains("mine")) {
+	     		mineCounter++;
 	     	}
+     	}
 
-	     	
-	    	squares[i].classList.add("s" + mineCounter);									// assign class based on mineCounter
-	    }
+     	
+    	squares[i].classList.add("s" + mineCounter);									// assign class based on mineCounter
+	    
+    }
+
+    if (num == -1) {
+
+    } else {
+    	squares[num].click();
     }
 
 };
@@ -618,5 +675,5 @@ document.addEventListener("DOMContentLoaded", (event) => {									// wait till 
 	document.getElementById("undo").addEventListener("click", undo);
 
 	initSettings();
-	startGame();
+	startGame(-1);
 });
