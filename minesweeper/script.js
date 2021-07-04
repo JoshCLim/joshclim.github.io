@@ -8,6 +8,8 @@ var mineChance = 0.23;
 
 var firstClick = true;
 
+var t;
+
 var squares;
 
 var alive = true;
@@ -23,33 +25,30 @@ var root = document.documentElement;
 
 
 // https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
-
 var startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
 localStorage.setItem("startTime", startTime); // Store it if I want to restart the timer on the next page
 
 function startTimeCounter() {
-	let now = Math.floor(Date.now() / 1000); // get the time now
-	let diff = now - startTime; // diff in seconds between now and start
-	let m = Math.floor(diff / 60); // get minutes value (quotient of diff)
-	let s = Math.floor(diff % 60); // get seconds value (remainder of diff)
-	m = checkTime(m); // add a leading zero if it's single digit
-	s = checkTime(s); // add a leading zero if it's single digit
-	//document.getElementById("idName").innerHTML = m + ":" + s; // update the element where the timer will appear
-	let t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+    var now = Math.floor(Date.now() / 1000); // get the time now
+    var diff = now - startTime; // diff in seconds between now and start
+    var m = Math.floor(diff / 60); // get minutes value (quotient of diff)
+    var s = Math.floor(diff % 60); // get seconds value (remainder of diff)
+    m = checkTime(m); // add a leading zero if it's single digit
+    s = checkTime(s); // add a leading zero if it's single digit
+    document.getElementById("timer").innerHTML = m + ":" + s; // update the element where the timer will appear
+    t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
 }
+
 function checkTime(i) {
-	if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-	return i;
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
 }
 
 
 
-
-
-
-startTimeCounter();
 
 function win() {
+	clearTimeout(t); // stop timer
 	if (won == false) {
 		setTimeout(function() {
 			alert("you win");
@@ -93,10 +92,13 @@ function undo() {
 	}
 
 	alive = true;
+
+	startTimeCounter(); // resume timer
 }
 
 function gameOver() {
-	console.log("GAME OVER");
+	//console.log("GAME OVER");
+	 clearTimeout(t); // stop timer
 
 	let mines = document.getElementsByClassName("mine");
 
@@ -454,6 +456,7 @@ function initSettings() {
 	document.getElementById("darkColourInput").value = darkColour;
 	document.getElementById("flagColourInput").value = flagColour;
 	document.getElementById("mineChanceInput").value = mineChance;
+	document.getElementById("neverLoseCheckbox").checked = true;
 
 	var settingsInputs = document.getElementsByClassName("settings-input");
 
@@ -477,9 +480,20 @@ function initSettings() {
 
 function startGame(num) {
 
+	// reset Timer
+	clearTimeout(t);
+	startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+
 	alive = true;
 	won = false;
-	firstClick = true;
+
+	const neverLoseCheckbox = document.getElementById("neverLoseCheckbox");
+	if (neverLoseCheckbox.checked == true) {
+		firstClick = true;
+	} else {
+		firstClick = false;
+	}
+	
 
     var gameWrapper = document.querySelector("#game-wrapper tbody"); 				// get the game wrapper table 
 
@@ -669,6 +683,7 @@ function startGame(num) {
     	squares[num].click();
     }
 
+    startTimeCounter();
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {									// wait till the DOM is loaded

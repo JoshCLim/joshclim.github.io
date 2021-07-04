@@ -88,14 +88,14 @@ input::-webkit-inner-spin-button {
 
 	letter-spacing: 0.1em;
 }
-#mine-counter {
+#mine-counter, #timer {
 	padding: 10px;
 	/*border: 1px solid #fff;*/
 	/*display: none;*/
 
 	transition: 200ms ease all;
 }
-#mine-counter:hover {
+#mine-counter:hover, #timer:hover {
 	color: #000;
 	background-color: #fff;
 	/*border: 1px solid #000;*/
