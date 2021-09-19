@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>chaos theory</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="wrapper-child">
+			x = <span id="x-value"></span> 
+			<br>
+			dx = <span id="dx-value"></span>
+		</div>
+		<div class="wrapper-child">
+			y =	<span id="y-value"></span>
+			<br>
+			dy = <span id="dy-value"></span>
+		</div>
+		<div class="wrapper-child">
+			z = <span id="z-value"></span>
+			<br>
+			dz = <span id="dz-value"></span>
+		</div>
+
+		<button class="pause-button" onclick="pausePlay()">play</button>
+	</div>
+
+	<div class="plot" id="plot">
+		<!--<div class="dot"></div>-->
+	</div>
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
