@@ -7,15 +7,47 @@
 	<meta name="google-site-verification" content="HotQxOMx7ws3qrXQv8aHORyeAJRduWqwF-6Hp6bk3uU" />
 </head>
 <body>
+	
+	<!--
 	<div id="links-wrapper">
 		<a href="annotationTool/index.html">annotation tool</a>
 		<a href="latinTranslationTool/index.html">latin translation tool</a>
 		<a href="minesweeper/index.html">minesweeper</a>
 		<a href="pomodoroTimer/index.html">pmd timer</a>
 		<a href="myHandbook/login.html">my handbook (Personal Project)</a>
-		<a href="chaosTheory/index.html">chaos theory</a>
+		<a href="chaosTheory/index.html">chaos theory</a>-->
 		<!--<a href="finished/index.html">finished</a>-->
+	<!--</div>-->
+	
+	<div class="divider-section">
+		<h2 class="divider-heading">Web Apps for Fun</h2>
 	</div>
+
+	<div id="projects-container">
+
+		<!--<a class="hero-outer" href="annotationTool/index.html">
+			<div class="hero-container">
+				<h2 class="project-heading">[Heading]</h2>
+				<p class="project-description">[Description]</p>
+			</div>
+		</a>-->
+
+	</div>
+
+	<script src="js/handlebars.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/index.js"></script>
+
+	<script id="project-container-template" type="text/x-handlebars-template">
+		<a class="hero-outer" href="{{link}}" data-id="{{title}}" data-pic="{{pictureLink}}">
+			<div class="hero-container">
+				<h3 class="project-heading">{{title}}</h3>
+				<p class="project-description">{{description}}</p>
+			</div>
+		</a>
+	</script>
+	
+	
 	<!--
 	<div class="hero-section">
 		<div id="hero-outer">
