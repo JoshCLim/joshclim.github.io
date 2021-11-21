@@ -182,9 +182,5 @@ $(document).ready(function() {
 	
 
 
-	/*$(".hero-link").on('click', function(){
-		var projectsSectionPosition = $("#projects-section").position().top;
-		window.scroll(0, projectsSectionPosition);
-	});*/
 });
 
