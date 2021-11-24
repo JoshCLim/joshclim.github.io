@@ -82,7 +82,7 @@ a {
 	
 	box-shadow:3px 3px 15px #cfcfcf;
 
-	/*border-radius:30px;*/
+	border-radius:10px;
 
 	transition: all 0.3s;
 
@@ -103,6 +103,8 @@ a {
 	font-family:'Roboto', sans-serif;
 	font-weight:700;
 	font-size:30px;
+
+	text-align:right;
 }
 
 .project-description {
@@ -110,4 +112,6 @@ a {
 	padding:0;
 	font-family:'Roboto', sans-serif;
 	font-size:14px;
+
+	text-align:right;
 }

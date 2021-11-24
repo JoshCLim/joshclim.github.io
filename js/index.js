@@ -3,6 +3,8 @@ var containers, inners;
 var colour = 255;
 var colourMode = 1; // 0 is light mode, 1 is dark mode
 
+var pageHeight = 0;
+
 const projects = [
 	{
 		title:'Annotation Tool',
@@ -164,6 +166,26 @@ function projectsAnimate() {
 	}
 }
 
+function findPageHeight() {
+    var pageHeight = 0;
+
+    function findHighestNode(nodesList) {
+        for (var i = nodesList.length - 1; i >= 0; i--) {
+            if (nodesList[i].scrollHeight && nodesList[i].clientHeight) {
+                var elHeight = Math.max(nodesList[i].scrollHeight, nodesList[i].clientHeight);
+                pageHeight = Math.max(elHeight, pageHeight);
+            }
+            if (nodesList[i].childNodes.length) findHighestNode(nodesList[i].childNodes);
+        }
+    }
+
+    findHighestNode(document.documentElement.childNodes);
+
+    // The entire page height is found
+    console.log('Page height is', pageHeight);
+
+	return pageHeight;
+}
 
 
 $(document).ready(function() {
@@ -179,7 +201,10 @@ $(document).ready(function() {
 	
 
 	projectsAnimate();
-	
+
+
+
+	findPageHeight();
 
 
 });
