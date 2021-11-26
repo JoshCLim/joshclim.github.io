@@ -131,7 +131,8 @@ header h1 {
     top:25px;
     left:25px;
 
-    transition:300ms all ease;
+    transition:300ms background-color ease;
+    transition:100ms transform ease;
 }
 .poke-index:hover /*> .pokemon-id-wrapper*/ {
     /*background-color:#fbb;*/
@@ -147,7 +148,7 @@ header h1 {
         transform:scale(1.03);
     }
     66% {
-        transform:scale(0.97);
+        transform:scale(.97);
     }
     100% {
         transform:scale(1);

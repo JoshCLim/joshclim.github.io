@@ -3,12 +3,14 @@ const pokemonTemplate = Handlebars.compile(pokemonSource);
 
 const pokemonContainer = document.getElementById("pokemon-container");
 
+const pokeNum = 150; // number of pokemon to display
+
 const fetchData = () => { // fetch data from the pokemon API
     const apiURL = "https://pokeapi.co/api/v2/pokemon/";
 
     pokemonContainer.innerHTML = "";
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= pokeNum; i++) {
         
         let url = apiURL + i;
 
