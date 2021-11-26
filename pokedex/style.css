@@ -136,9 +136,22 @@ header h1 {
 .poke-index:hover /*> .pokemon-id-wrapper*/ {
     /*background-color:#fbb;*/
     background-color:#f5f5f5;
+
+    animation: burst .2s ease;
 }
 .poke-index:active {
     transform:scale(0.96);
+}
+@keyframes burst {
+    33% {
+        transform:scale(1.03);
+    }
+    66% {
+        transform:scale(0.97);
+    }
+    100% {
+        transform:scale(1);
+    }
 }
 
 .pokemon-image {
