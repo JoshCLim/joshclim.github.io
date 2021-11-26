@@ -27,13 +27,7 @@ header {
     padding:20px 0;
     margin:0 0 10px 0;
 
-    /*position:sticky;
-    top:0;
-    left:0;
-    z-index:9001;*/
-
     background-color:#fff;
-    /*box-shadow:1px 1px 5px #eee;*/
 
     user-select:none;
 }
@@ -43,6 +37,38 @@ header h1 {
     padding:0;
 
     font-size:2em;
+    font-weight:700;
+    color:#3a3a3a;
+}
+
+#scrolling-header {
+    width:calc(100% - 100px);
+    
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+    
+    padding:20px 50px;
+    margin:0 0 10px 0;
+
+    background-color:#fff;
+    box-shadow:1px 1px 5px #ddd;
+
+    position:fixed;
+    top:-1070px;
+    left:0;
+    z-index:9001;
+
+    user-select:none;
+
+    transition: top 2000ms ease-out;
+}
+#scrolling-header h1 {
+    margin:0 0 0 10px;
+    padding:0;
+
+    font-size:1.7em;
     font-weight:700;
     color:#3a3a3a;
 }

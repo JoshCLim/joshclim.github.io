@@ -35,6 +35,8 @@ const fetchData = () => { // fetch data from the pokemon API
 fetchData();
 
 
+
+
 const stylesheet = window.document.styleSheets[0]; // to add CSS styles later
 
 const pokemonTypes = [ // array of pokemon types and colours for their icons
@@ -71,14 +73,28 @@ for (let p = 0; p < pokemonTypes.length; p++) { // adds css for pokemon type ico
     stylesheet.insertRule(currentRule, stylesheet.cssRules.length);
 }
 
+
+
+
 const header = document.getElementsByTagName('header')[0]; // get header element
 const headerOffset = header.offsetTop + header.offsetHeight;
-var headerVisible = true;
 
+const scrollingHeader = document.getElementById('scrolling-header'); // get scrolling-header element
+
+let scrolling = false;
 window.addEventListener("scroll", function() {
-    if (window.scrollY > headerOffset) {
-        headerVisible = false;
-    } else {
-        headerVisible = true;
-    }
+    scrolling = true;
 })
+
+var manageScrollingHeader = setInterval( function() { // every 300ms, check for header management
+    if (scrolling == true) {
+        scrolling = false;
+
+        // check if we have scrolled past the header
+        if (window.scrollY > headerOffset) { // we have scrolled past the header
+            scrollingHeader.style.top = "0";
+        } else { // we can still see the header
+            scrollingHeader.style.top = "-1070px";
+        }
+    }
+}, 100)
