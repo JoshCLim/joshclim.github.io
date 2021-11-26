@@ -8,7 +8,7 @@ const fetchData = () => { // fetch data from the pokemon API
 
     pokemonContainer.innerHTML = "";
 
-    for (let i = 1; i <= 150; i++) {
+    for (let i = 1; i <= 10; i++) {
         
         let url = apiURL + i;
 
@@ -35,9 +35,9 @@ const fetchData = () => { // fetch data from the pokemon API
 fetchData();
 
 
-const stylesheet = window.document.styleSheets[0];
+const stylesheet = window.document.styleSheets[0]; // to add CSS styles later
 
-const pokemonTypes = [
+const pokemonTypes = [ // array of pokemon types and colours for their icons
     {type: "bug", colour: "#92BC2C"},
     {type: "dark", colour: "#595761"},
     {type: "dragon", colour: "#0C69C8"},
@@ -58,7 +58,7 @@ const pokemonTypes = [
     {type: "water", colour: "#539DDF"}
 ]
 
-for (let p = 0; p < pokemonTypes.length; p++) {
+for (let p = 0; p < pokemonTypes.length; p++) { // adds css for pokemon type icons, changing bg colour and box shadow
     let currentType = pokemonTypes[p].type;
     let currentColour = pokemonTypes[p].colour;
 
@@ -70,3 +70,15 @@ for (let p = 0; p < pokemonTypes.length; p++) {
 
     stylesheet.insertRule(currentRule, stylesheet.cssRules.length);
 }
+
+const header = document.getElementsByTagName('header')[0]; // get header element
+const headerOffset = header.offsetTop + header.offsetHeight;
+var headerVisible = true;
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > headerOffset) {
+        headerVisible = false;
+    } else {
+        headerVisible = true;
+    }
+})

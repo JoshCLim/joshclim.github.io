@@ -17,6 +17,18 @@
 
     <div id="pokemon-container"></div>
 
+    <footer>
+        <p>powered by PokeAPI</p>
+        <p>|</p>
+        <p>type-icons by duiker101</p>
+        <p>|</p>
+        <p>pokemon logo by Hsaart @ <a href="https://pixabay.com/vectors/pokemon-icon-design-symbol-sign-4657023/">pixabay</a></p>
+    </footer>
+
+
+
+
+
     <script id="pokemon-container-template" type="text/x-handlebars-template">
 		<div class="poke-index" data-id="{{id}}" data-name="{{name}}" style="order:{{id}}">
             <div class="pokemon-id-wrapper">
@@ -28,7 +40,7 @@
             <div class="types-container">
                 {{#each type}}
                     <div class="types-icon types-icon-{{this}}">
-                        <img src="https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/5781623f147f1bf850f426cfe1874ba56a9b75ee/icons/{{this}}.svg" alt="" width="20px" height="20px">
+                        <img title="{{this}}" src="https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/5781623f147f1bf850f426cfe1874ba56a9b75ee/icons/{{this}}.svg" alt="" width="20px" height="20px">
                     </div>
                 {{/each}}
             </div>

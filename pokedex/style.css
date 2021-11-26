@@ -1,6 +1,19 @@
 body {
     font-family:"Roboto", sans-serif;
     font-size:14px;
+
+    color:#3a3a3a;
+
+    margin:0;
+    padding:0;
+}
+
+a {
+    color:#3a3a3a;
+    
+    text-decoration: underline;
+    
+    cursor:pointer;
 }
 
 header {
@@ -13,6 +26,14 @@ header {
     
     padding:20px 0;
     margin:0 0 10px 0;
+
+    /*position:sticky;
+    top:0;
+    left:0;
+    z-index:9001;*/
+
+    background-color:#fff;
+    /*box-shadow:1px 1px 5px #eee;*/
 
     user-select:none;
 }
@@ -36,6 +57,8 @@ header h1 {
     justify-content:center;
     align-items:center;
     gap:30px;
+
+    padding: 0 0 30px 0;
 }
 
 .poke-index {
@@ -72,10 +95,11 @@ header h1 {
     border-radius:50%;
 
     background-color:#eee;
+    box-shadow: 0 0 5px #eee;
     
     text-align:center;
 
-    font-size:1.1em;
+    font-size:1em;
 
     position:absolute;
     top:25px;
@@ -139,3 +163,19 @@ header h1 {
     filter:brightness(120%);
 }
 
+footer {
+    background-color:#eee;
+
+    margin:0;
+    padding:30px;
+
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    gap:0 35px;
+}
+
+footer p {
+    margin:0;
+}
