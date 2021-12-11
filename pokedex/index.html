@@ -25,9 +25,9 @@
     <footer>
         <p>powered by PokeAPI</p>
         <p>|</p>
-        <p>type-icons by duiker101</p>
+        <p>type-icons by <a target="_blank" rel="noreferrer noopener" href="https://github.com/duiker101/pokemon-type-svg-icons">duiker101</a></p>
         <p>|</p>
-        <p>pokemon logo by Hsaart @ <a href="https://pixabay.com/vectors/pokemon-icon-design-symbol-sign-4657023/">pixabay</a></p>
+        <p>pokemon logo by Hsaart @ <a target="_blank" rel="noreferrer noopener" href="https://pixabay.com/vectors/pokemon-icon-design-symbol-sign-4657023/">pixabay</a></p>
     </footer>
 
 
@@ -35,7 +35,7 @@
 
 
     <script id="pokemon-container-template" type="text/x-handlebars-template">
-		<div class="poke-index" data-id="{{id}}" data-name="{{name}}" style="order:{{id}}">
+		<div class="poke-index" id="poke-index-{{id}}" data-id="{{id}}" data-name="{{name}}" style="order:{{id}}">
             <div class="pokemon-id-wrapper">
                 <p class="pokemon-id">{{id}}</p>
             </div>

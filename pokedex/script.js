@@ -1,11 +1,16 @@
+function pad(n, length) { //https://stackoverflow.com/questions/24503470/how-to-convert-number-to-3-digit-places
+    var len = length - (''+n).length;
+    return (len > 0 ? new Array(++len).join('0') : '') + n
+}
+
 const pokemonSource = document.getElementById("pokemon-container-template").innerHTML;
 const pokemonTemplate = Handlebars.compile(pokemonSource);
 
 const pokemonContainer = document.getElementById("pokemon-container");
 
-const pokeNum = 150; // number of pokemon to display
+const pokeNum = 10; // number of pokemon to display
 
-const fetchData = () => { // fetch data from the pokemon API
+function fetchData() { // fetch data from the pokemon API
     const apiURL = "https://pokeapi.co/api/v2/pokemon/";
 
     pokemonContainer.innerHTML = "";
@@ -22,7 +27,7 @@ const fetchData = () => { // fetch data from the pokemon API
             let pokemonData = {
                 id: i,
                 name: data.name,
-                pictureLink: data.sprites.front_default,
+                pictureLink: data.sprites.front_default, //`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pad(i, 3)}.png`, 
                 types: data.types.map(q => q.type.name).join(", "),
                 type: data.types.map(q => q.type.name)
             }
@@ -30,51 +35,76 @@ const fetchData = () => { // fetch data from the pokemon API
 
             let pokemonHTML = pokemonTemplate(pokemonData);
             pokemonContainer.innerHTML += pokemonHTML;
+
+        }).then(function() {
+            console.log('yeet')
+            let pokeItem = document.getElementById(`poke-index-${i}`);
+            addIndexEventListener(pokeItem);
+            
         });
-    }    
+    }
+    
 }
+function addIndexEventListener(item) {
+    
+    //console.log(pokeItems.length);
 
-fetchData();
+    // add click event listener
+    /*for (let p = 0; p < pokeItems.length; p++) {*/
+        console.log(item)
+        item.addEventListener("click", function() {
+            console.log(item.getAttribute('data-id'));
+        });
+        
+    /*}*/
+ }
 
 
+function addTypeCSS() {
 
+    //const stylesheet = window.document.styleSheets[0]; // to add CSS styles later
 
-const stylesheet = window.document.styleSheets[0]; // to add CSS styles later
+    const stylesheet1 = document.createElement("style");
+    //stylesheet1.type = "text/css";
+    
 
-const pokemonTypes = [ // array of pokemon types and colours for their icons
-    {type: "bug", colour: "#92BC2C"},
-    {type: "dark", colour: "#595761"},
-    {type: "dragon", colour: "#0C69C8"},
-    {type: "electric", colour: "#F2D94E"},
-    {type: "fairy", colour: "#EE90E6"},
-    {type: "fighting", colour: "#D3425F"},
-    {type: "fire", colour: "#FBA54C"},
-    {type: "flying", colour: "#A1BBEC"},
-    {type: "ghost", colour: "#5F6DBC"},
-    {type: "grass", colour: "#5FBD58"},
-    {type: "ground", colour: "#DA7C4D"},
-    {type: "ice", colour: "#75D0C1"},
-    {type: "normal", colour: "#A0A29F"},
-    {type: "poison", colour: "#B763CF"},
-    {type: "psychic", colour: "#FA8581"},
-    {type: "rock", colour: "#C9BB8A"},
-    {type: "steel", colour: "#5695A3"},
-    {type: "water", colour: "#539DDF"}
-]
+    const pokemonTypes = [ // array of pokemon types and colours for their icons
+        {type: "bug", colour: "#92BC2C"},
+        {type: "dark", colour: "#595761"},
+        {type: "dragon", colour: "#0C69C8"},
+        {type: "electric", colour: "#F2D94E"},
+        {type: "fairy", colour: "#EE90E6"},
+        {type: "fighting", colour: "#D3425F"},
+        {type: "fire", colour: "#FBA54C"},
+        {type: "flying", colour: "#A1BBEC"},
+        {type: "ghost", colour: "#5F6DBC"},
+        {type: "grass", colour: "#5FBD58"},
+        {type: "ground", colour: "#DA7C4D"},
+        {type: "ice", colour: "#75D0C1"},
+        {type: "normal", colour: "#A0A29F"},
+        {type: "poison", colour: "#B763CF"},
+        {type: "psychic", colour: "#FA8581"},
+        {type: "rock", colour: "#C9BB8A"},
+        {type: "steel", colour: "#5695A3"},
+        {type: "water", colour: "#539DDF"}
+    ]
 
-for (let p = 0; p < pokemonTypes.length; p++) { // adds css for pokemon type icons, changing bg colour and box shadow
-    let currentType = pokemonTypes[p].type;
-    let currentColour = pokemonTypes[p].colour;
+    for (let p = 0; p < pokemonTypes.length; p++) { // adds css for pokemon type icons, changing bg colour and box shadow
+        let currentType = pokemonTypes[p].type;
+        let currentColour = pokemonTypes[p].colour;
 
-    let currentRule = 
-    `.types-icon-${currentType} { 
-        background-color: ${currentColour} !important; 
-        box-shadow: 0 0 5px ${currentColour} !important; 
-    }`;
+        let currentRule = 
+        `.types-icon-${currentType} { 
+            background-color: ${currentColour} !important; 
+            box-shadow: 0 0 5px ${currentColour} !important; 
+        }`;
 
-    stylesheet.insertRule(currentRule, stylesheet.cssRules.length);
+        //stylesheet.insertRule(currentRule, stylesheet.cssRules.length);
+        stylesheet1.innerText += currentRule;
+    }
+
+    document.head.appendChild(stylesheet1);
 }
-
 
 
 
@@ -100,3 +130,13 @@ var manageScrollingHeader = setInterval( function() { // every 300ms, check for 
         }
     }
 }, 100)
+
+
+//const main = new Promise(fetchData).then(addIndexEventListeners)
+fetchData(); // calls fetchData
+
+addTypeCSS();
+
+/*setTimeout(function(){
+    addIndexEventListeners();
+}, 3000)*/
