@@ -10,6 +10,8 @@ const pokemonContainer = document.getElementById("pokemon-container");
 
 const pokeNum = 10; // number of pokemon to display
 
+const allPokemonData = ["All Pokemon Data Pulled from API as an array"];
+
 function fetchData() { // fetch data from the pokemon API
     const apiURL = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -24,6 +26,8 @@ function fetchData() { // fetch data from the pokemon API
         }).then(function(data) {
             //console.log(data);
 
+            allPokemonData[i] = data;
+
             let pokemonData = {
                 id: i,
                 name: data.name,
@@ -36,27 +40,21 @@ function fetchData() { // fetch data from the pokemon API
             let pokemonHTML = pokemonTemplate(pokemonData);
             pokemonContainer.innerHTML += pokemonHTML;
 
-        }).then(function() {
-            console.log('yeet')
-            let pokeItem = document.getElementById(`poke-index-${i}`);
-            addIndexEventListener(pokeItem);
-            
-        });
+        })
     }
     
 }
-function addIndexEventListener(item) {
+function addIndexEventListeners() {
     
     //console.log(pokeItems.length);
-
+    const pokeItems = document.getElementsByClassName("poke-index");
     // add click event listener
-    /*for (let p = 0; p < pokeItems.length; p++) {*/
-        console.log(item)
-        item.addEventListener("click", function() {
-            console.log(item.getAttribute('data-id'));
+    for (let p = 0; p < pokeItems.length; p++) {
+        pokeItems[p].addEventListener("click", function() {
+            /*console.log(pokeItems[p].getAttribute('data-id'));*/
         });
         
-    /*}*/
+    }
  }
 
 
@@ -137,6 +135,10 @@ fetchData(); // calls fetchData
 
 addTypeCSS();
 
-/*setTimeout(function(){
-    addIndexEventListeners();
-}, 3000)*/
+const checkForLoadInterval = setInterval(function(){
+    if (document.getElementsByClassName("poke-index").length == pokeNum) {
+        clearInterval(checkForLoadInterval);
+        addIndexEventListeners();
+    }
+}, 1000);
+
