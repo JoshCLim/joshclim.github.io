@@ -8,7 +8,7 @@ const pokemonTemplate = Handlebars.compile(pokemonSource);
 
 const pokemonContainer = document.getElementById("pokemon-container");
 
-const pokeNum = 10; // number of pokemon to display
+const pokeNum = 20; // number of pokemon to display
 
 const allPokemonData = ["All Pokemon Data Pulled from API as an array"];
 
@@ -24,14 +24,14 @@ function fetchData() { // fetch data from the pokemon API
         fetch(url).then(function(res) {
             return res.json();
         }).then(function(data) {
-            //console.log(data);
+            console.log(data);
 
             allPokemonData[i] = data;
 
             let pokemonData = {
                 id: i,
                 name: data.name,
-                pictureLink: data.sprites.front_default, //`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pad(i, 3)}.png`, 
+                pictureLink: data.sprites.other["official-artwork"].front_default, //.sprites.front_default, //`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pad(i, 3)}.png`, 
                 types: data.types.map(q => q.type.name).join(", "),
                 type: data.types.map(q => q.type.name)
             }
@@ -44,21 +44,83 @@ function fetchData() { // fetch data from the pokemon API
     }
     
 }
+
+
+const mainCoverElement = document.getElementById("main-cover");
+
 function addIndexEventListeners() {
+
+    const detailContainer = document.getElementById("pokemon-detail-container");
+    const detailName = document.getElementById("pokemon-detail-name");
+    const detailId = document.getElementById("pokemon-detail-id");
+    const detailTypes = document.getElementById("pokemon-detail-types");
+    const detailImg = document.getElementById("pokemon-detail-img");
+    const detailCaption = document.getElementById("pokemon-detail-caption");
+
     
     //console.log(pokeItems.length);
     const pokeItems = document.getElementsByClassName("poke-index");
+
     // add click event listener
     for (let p = 0; p < pokeItems.length; p++) {
         pokeItems[p].addEventListener("click", function() {
-            /*console.log(pokeItems[p].getAttribute('data-id'));*/
+            let pokemonId = pokeItems[p].getAttribute('data-id')
+            //console.log(pokemonId);
+
+            let pokemonIdData = allPokemonData[pokemonId];
+
+            let pokemonDisplayData = {
+                id: pokemonId,
+                name: pokemonIdData.name,
+                pictureLink: pokemonIdData.sprites.front_default, //`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pad(i, 3)}.png`, 
+                types: pokemonIdData.types.map(q => q.type.name).join(", "),
+                type: pokemonIdData.types.map(q => q.type.name),
+                backPic: pokemonIdData.sprites.back_default,
+                officialPic: pokemonIdData.sprites.other["official-artwork"].front_default,
+                pics: [
+                    pokemonIdData.sprites.other["official-artwork"].front_default, 
+                    pokemonIdData.sprites.front_default, 
+                    pokemonIdData.sprites.back_default
+                ],
+                captions: [
+                    "official artwork",
+                    "front",
+                    "back"
+                ],
+                move: pokemonIdData.moves.map(q => q.move),
+                moves: pokemonIdData.moves.map(q => q.move).join(", "),
+                stats: {
+                    hp: pokemonIdData.stats[0].base_stat,
+                    attack: pokemonIdData.stats[1].base_stat,
+                    defense: pokemonIdData.stats[2].base_stat,
+                    speed: pokemonIdData.stats[5].base_stat
+                }
+            }
+            //console.log(pokemonDisplayData);
+
+            //detailContainer.innerText = "";
+            detailName.innerText = pokemonDisplayData.name;
+            detailId.innerText = pokemonDisplayData.id;
+            detailTypes.innerText = pokemonDisplayData.types;
+            detailImg.src = pokemonDisplayData.pics[0];
+            detailCaption.innerText = pokemonDisplayData.captions[0];
+
+            mainCoverElement.style.display = "block";
+            mainCoverElement.style.opacity = 1;
+            
         });
         
     }
  }
 
+document.getElementById("pokemon-detail-close").addEventListener("click", function(e) {
+    e.preventDefault();
 
-function addTypeCSS() {
+    mainCoverElement.style.opacity = 0;
+    mainCoverElement.style.display = "none";
+})
+
+function addTypeCSS() { // adds css styles for type icons
 
     //const stylesheet = window.document.styleSheets[0]; // to add CSS styles later
 
@@ -114,7 +176,7 @@ const scrollingHeader = document.getElementById('scrolling-header'); // get scro
 let scrolling = false;
 window.addEventListener("scroll", function() {
     scrolling = true;
-})
+});
 
 var manageScrollingHeader = setInterval( function() { // every 300ms, check for header management
     if (scrolling == true) {

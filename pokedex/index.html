@@ -22,6 +22,24 @@
 
     <div id="pokemon-container"></div>
 
+    
+
+    <div id="main-cover">
+        <div id="pokemon-detail-container">
+            <div id="pokemon-detail-column1">
+                <img src="https://cdn.pixabay.com/photo/2019/11/27/14/06/pokemon-4657023_1280.png" alt="" width="50px" height="50px" class="logo">
+                <h4 id="pokemon-detail-name">[name]</h4>
+                <p id="pokemon-detail-id">[id]</p>
+                <p id="pokemon-detail-types">[types]</p>
+            </div>
+            <div id="pokemon-detail-column2">
+                <button id="pokemon-detail-close">+</button>
+                <img src="" alt="pokemon image" id="pokemon-detail-img">
+                <p id="pokemon-detail-caption">[caption]</p>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>powered by PokeAPI</p>
         <p>|</p>
@@ -39,7 +57,7 @@
             <div class="pokemon-id-wrapper">
                 <p class="pokemon-id">{{id}}</p>
             </div>
-			<img class="pokemon-image" src="{{pictureLink}}" alt="{{name}}" width="200px" height="200px">
+			<img class="pokemon-image" src="{{pictureLink}}" alt="{{name}}" width="170px" height="170px">
             <h3 class="pokemon-name">{{name}}</h3>
             <!--<p class="pokemon-type">{{types}}</p>-->
             <div class="types-container">
