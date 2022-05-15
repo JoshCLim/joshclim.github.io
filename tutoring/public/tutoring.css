@@ -1,0 +1,14 @@
+:root{
+    --black: #000000;
+}
+
+nav {
+    z-index: 2;
+}
+
+.hero-section {
+    background-color:red;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}

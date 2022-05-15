@@ -62,7 +62,7 @@ const projects = [
 	}
 }*/
 
-
+// use handlebars to add projects to #projects-container
 function loadProjects() {
 	const projectSource = document.getElementById("project-container-template").innerHTML;
 	const projectTemplate = Handlebars.compile(projectSource);
@@ -90,10 +90,9 @@ function projectsBg() {
 	}
 }
 
-function projectsAnimate() {
-
-	// https://css-tricks.com/animate-a-container-on-mouse-over-using-perspective-and-transform/
-	
+// projects now animate on hover
+// https://css-tricks.com/animate-a-container-on-mouse-over-using-perspective-and-transform/
+function projectsAnimate() {	
 
 	const rotateFactor = 1.2;
 
@@ -166,6 +165,8 @@ function projectsAnimate() {
 	}
 }
 
+// returns the page height 
+// 		used in projectsAnimate()
 function findPageHeight() {
     var pageHeight = 0;
 
@@ -187,20 +188,18 @@ function findPageHeight() {
 	return pageHeight;
 }
 
-
+// MAIN
 $(document).ready(function() {
 
 	//initialColours();
 
 	loadProjects();
 
-
-
 	// update bg images
 	projectsBg();
 	
 
-	projectsAnimate();
+	//projectsAnimate();
 
 
 
