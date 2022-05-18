@@ -35,6 +35,12 @@ const projects = [
 		description:'study planner app',
 		link: 'myHandbook/login.html',
 		pictureLink:'myHandbook.png'
+	},
+	{
+		title:'IBExpert',
+		description:'tutoring services website',
+		link:'tutoring/public/tutoring.html',
+		pictureLink:'#'
 	}
 ];
 
