@@ -1,14 +1,282 @@
+/*--- DOCUMENT ---*/
+
 :root{
     --black: #000000;
+    --white: #ffffff;
+
+    --blue: #d0f9ff;
+    --purple: #f2e7ff;
+    --green:#cdfbdd;
+
+    --purple-shadow:#bc9be1a9;
+    --blue-shadow:#6ec7d4c6;
+
+    --green-transparent: rgba(205, 251, 221, 0.7);
+    --purple-transparent: rgba(242, 231, 255,0.7);
+    --blue-transparent:rgbA(208, 249, 255,0.7);
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/*--- GENERAL ---*/
+
+.section__container {
+    /*height:100vh;*/
+    overflow:hidden;
+}
+
+.title__rule {
+    width:7%;
+    height:5px;
+    margin:1rem auto;
+
+    opacity: 1;
+
+    text-align:center;
+}
+
+hr {
+    display:block;
+}
+
+/*--- NAV BARS ---*/
 
 nav {
     z-index: 2;
+
+    transition: all 250ms ease;
 }
 
-.hero-section {
-    background-color:red;
+nav li {
+    background-color: transparent;
+
+    transition: all 250ms ease;
+}
+
+nav li:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+#navbar {
+    background-color:#fff;
+
+    transform:translateY(-100px);
+
+    border-bottom: 1px #aaa solid;
+}
+
+.bg__transparent {
+    background-color: transparent;
+    /*background-color: #18afc7;*/
+    /*background-color: lineargradient(180deg, rgb(24, 175, 199, 1), rgba(24, 175, 199, 0));*/
+}
+
+
+/*--- HERO SECTION ---*/
+
+.hero__section {
+    background-color:var(--green);
+    transition:300ms all ease;
     height:100vh;
+
     position:relative;
+}
+
+.earth__shadow {
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    width: 55%;
+    height: 20px;
+    border-radius: 50%;
+    margin: -12% auto 0 auto;
+}
+
+.hero__section_text_wrapper {
+    padding: 3rem 0 3rem 3rem;
+}
+
+.hero__section .lead {
+    line-height:1.7em;
+}
+
+.hero__section button {
+    margin-right:20px;
+}
+
+
+/*--- ABOUT US SECTION ---*/
+
+.about_us__section h3 {
+    color: #3c3c3c;
+}
+
+.about_us__card {
+    background-color: #f6f6f6;
+    width:90%;
+    margin: 0 auto;
+    border-radius:12px;
+    /*border:1px solid transparent;*/
+
     overflow:hidden;
+
+    box-shadow:3px 3px 10px #aaaa;
+
+    transform:scale(1);
+
+    transition: all 200ms ease;
+}
+
+.about_us__card:hover {
+    box-shadow: 0 0 0 transparent;
+    transform:scale(0.995);
+}
+
+.about_us__card .about_us__img {
+    width:100%;
+    height:175px;
+}
+
+.about_us__card .about_us__img1 {
+    background:linear-gradient(rgba(205, 251, 221, 0.5), rgba(205, 251, 221, 0.5)), url(https://cbsnews2.cbsistatic.com/hub/i/r/2016/06/01/d21718bb-4887-463d-826c-bf30fe81f307/thumbnail/1200x630/ec63ffb9dee618d56816bb1f46dc6605/133402265858275082520662216159560524618104o.jpg) no-repeat top center;
+}
+.about_us__card .about_us__img2 {
+    background:linear-gradient(rgba(157, 240, 252,0.5), rgba(157, 240, 252,0.5)), url(https://cbsnews2.cbsistatic.com/hub/i/r/2016/06/01/d21718bb-4887-463d-826c-bf30fe81f307/thumbnail/1200x630/ec63ffb9dee618d56816bb1f46dc6605/133402265858275082520662216159560524618104o.jpg) no-repeat top center;
+}
+.about_us__card .about_us__img3 {
+    background:linear-gradient(rgba(242, 231, 255, 0.5), rgba(242, 231, 255, 0.5)), url(https://cbsnews2.cbsistatic.com/hub/i/r/2016/06/01/d21718bb-4887-463d-826c-bf30fe81f307/thumbnail/1200x630/ec63ffb9dee618d56816bb1f46dc6605/133402265858275082520662216159560524618104o.jpg) no-repeat top center;
+}
+
+
+/*--- SUBJECTS SECTION ---*/
+
+.subjects__section {
+    background-color:var(--blue);
+}
+
+.subjects__section h5 {
+    margin:10px 0;
+}
+
+.subject__block {
+    background-color:rgba(255, 255, 255, 0.7);
+    /*background:linear-gradient(90deg, rgba(255,255,255,0.5),rgba(255,255,255,0.8));*/
+    border-radius: 10px;
+
+    overflow:hidden;
+
+    width:90%;
+
+    display:flex;
+    justify-content: space-between;
+
+    margin-bottom:10px;
+
+    border: 1px solid transparent;
+
+    box-shadow:3px 3px 5px var(--blue-shadow);
+
+    transform:scale(1);
+
+    transition: all 100ms ease;
+}
+
+.subject__block:hover {
+    /*border: 1px solid #000;*/
+    box-shadow: 0 0 0 transparent;
+    transform:scale(0.995);
+    
+}
+
+.subject__name {
+    width:80%;
+    height: 100%;
+    overflow:hidden;
+
+    padding: 12px 0 12px 15px;
+    /*background-color: rgba(255,255,255,0.7);*/
+}
+
+.subject__level {
+    background-color: rgba(255,255,255,0.7);
+    width:20%;
+    height: 100%;
+
+    padding: 12px 5px;
+}
+
+
+/*--- TUTORS SECTION ---*/
+.tutor__card {
+    background-color: #f6f6f6;
+    
+    border-radius:12px;
+    /*border:1px solid transparent;*/
+
+    overflow:hidden;
+
+    box-shadow:3px 3px 10px #aaaa;
+
+    transform:scale(1);
+
+    transition: all 200ms ease;
+}
+
+.tutor__card:hover {
+    box-shadow: 0 0 0 transparent;
+    transform:scale(0.995);
+}
+
+.tutors__profile_picture {
+    /*max-width: 100px;*/
+    max-height: 100px;
+
+    height:100%;
+
+
+    border-radius:12px;
+}
+
+
+/*--- PRICING SECTION ---*/
+.pricing__section {
+    background-color: var(--white);
+}
+
+.pricing__description {
+    max-width:50%;
+}
+
+.pricing__card {
+    width:100%;
+
+    border-radius: 10px;
+
+    overflow:hidden;
+}
+
+.pricing__card_1 {
+    background-color: var(--purple-transparent);
+}
+.pricing__card_2 {
+    background-color: var(--blue-transparent);
+}
+.pricing__card_3 {
+    background-color: var(--green-transparent);
+}
+
+.pricing__card_name {
+    background-color:rgba(255,255,255,0.3);
+}
+
+.pricing__card small {
+    font-size:0.95em;
+}
+
+/*--- FOOTER ---*/
+
+footer{
+    background-color:#eee;
 }
