@@ -14,6 +14,10 @@
     --green-transparent: rgba(205, 251, 221, 0.7);
     --purple-transparent: rgba(242, 231, 255,0.7);
     --blue-transparent:rgbA(208, 249, 255,0.7);
+
+    --blue-dark:#8ddfec;
+    --purple-dark: #dbbcff;
+    --green-dark:#9dffc0;
 }
 
 html {
@@ -150,83 +154,24 @@ nav li:hover {
 }
 
 
-/*--- SUBJECTS SECTION ---*/
-
-.subjects__section {
-    background-color:var(--blue);
-}
-
-.subjects__section h5 {
-    margin:10px 0;
-}
-
-.subject__block {
-    background-color:rgba(255, 255, 255, 0.7);
-    /*background:linear-gradient(90deg, rgba(255,255,255,0.5),rgba(255,255,255,0.8));*/
-    border-radius: 10px;
-
-    overflow:hidden;
-
-    width:90%;
-
-    display:flex;
-    justify-content: space-between;
-
-    margin-bottom:10px;
-
-    border: 1px solid transparent;
-
-    box-shadow:3px 3px 5px var(--blue-shadow);
-
-    transform:scale(1);
-
-    transition: all 100ms ease;
-}
-
-.subject__block:hover {
-    /*border: 1px solid #000;*/
-    box-shadow: 0 0 0 transparent;
-    transform:scale(0.995);
-    
-}
-
-.subject__name {
-    width:80%;
-    height: 100%;
-    overflow:hidden;
-
-    padding: 12px 0 12px 15px;
-    /*background-color: rgba(255,255,255,0.7);*/
-}
-
-.subject__level {
-    background-color: rgba(255,255,255,0.7);
-    width:20%;
-    height: 100%;
-
-    padding: 12px 5px;
-}
-
-
 /*--- TUTORS SECTION ---*/
+.tutors__section {
+    background-color: var(--blue);
+}
+
 .tutor__card {
-    background-color: #f6f6f6;
+    background-color: rgba(255,255,255,0.6);
     
     border-radius:12px;
     /*border:1px solid transparent;*/
 
     overflow:hidden;
 
-    box-shadow:3px 3px 10px #aaaa;
+    box-shadow:3px 3px 10px var(--blue-shadow);
 
     transform:scale(1);
 
     transition: all 200ms ease;
-}
-
-.tutor__card:hover {
-    box-shadow: 0 0 0 transparent;
-    transform:scale(0.995);
 }
 
 .tutors__profile_picture {
@@ -259,12 +204,15 @@ nav li:hover {
 
 .pricing__card_1 {
     background-color: var(--purple-transparent);
+    /*box-shadow:3px 3px 10px var(--purple);*/
 }
 .pricing__card_2 {
     background-color: var(--blue-transparent);
+    /*box-shadow:3px 3px 10px var(--blue);*/
 }
 .pricing__card_3 {
     background-color: var(--green-transparent);
+    /*box-shadow:3px 3px 10px var(--green);*/
 }
 
 .pricing__card_name {
@@ -274,6 +222,84 @@ nav li:hover {
 .pricing__card small {
     font-size:0.95em;
 }
+
+.pricing__card_description {
+    background-color:rgba(255,255,255,0.3);
+}
+.pricing__card_description p {
+    padding: 1em 0;
+    margin:0;
+}
+.pricing__card_description hr {
+    margin: 0;
+}
+.pricing__card_1 hr {
+    color: var(--purple-dark);
+}
+.pricing__card_2 hr {
+    color: var(--blue-dark);
+}
+.pricing__card_3 hr {
+    color: var(--green-dark);
+}
+
+/*--- SUBJECTS SECTION ---*/
+
+.subjects__section {
+    background-color:var(--purple);
+}
+
+.subjects__section h5 {
+    margin:10px 0;
+}
+
+.subject__block {
+    background-color:rgba(255, 255, 255, 0.7);
+    /*background:linear-gradient(90deg, rgba(255,255,255,0.5),rgba(255,255,255,0.8));*/
+    border-radius: 10px;
+
+    overflow:hidden;
+
+    width:90%;
+
+    display:flex;
+    justify-content: space-between;
+
+    margin-bottom:10px;
+
+    border: 1px solid transparent;
+
+    box-shadow:3px 3px 5px var(--purple-shadow);
+
+    transform:scale(1);
+
+    transition: all 100ms ease;
+}
+
+.subject__block:hover {
+    /*border: 1px solid #000;*/
+    box-shadow: 0 0 0 transparent;
+    transform:scale(0.995);
+    
+}
+
+.subject__name {
+    width:80%;
+    height: 100%;
+    overflow:hidden;
+
+    padding: 12px 0 12px 15px;
+    /*background-color: rgba(255,255,255,0.7);*/
+}
+
+.subject__level {
+    background-color: rgba(255,255,255,0.7);
+    width:20%;
+    height: 100%;
+
+    padding: 12px 5px;
+}
+
 
 /*--- FOOTER ---*/
 
