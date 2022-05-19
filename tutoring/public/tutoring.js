@@ -137,3 +137,112 @@
         tutorHTML = tutorTemplate(TUTORS[i]);
         tutorContainer.innerHTML += tutorHTML;
     }
+
+
+// add FAQs
+
+    const FAQS = [
+        {
+            question: "Heya",
+            answer: "How u doin"
+        },
+        {
+            question: "Why IBExpert?",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "Yeeto",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        },
+        {
+            question: "adfjklsdfl;kajsf",
+            answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?"
+        }
+    ]
+
+    const NUM_OF_QN_COLUMNS = 4;
+
+    const qnSource = document.getElementById("question__block_template").innerHTML;
+    const qnTemplate = Handlebars.compile(qnSource);
+
+    const qnContainers = document.getElementsByClassName("question__containers"); // console.log(qnContainers);
+
+    let qnHTML;
+
+    for (let i = 0; i < FAQS.length; i++) {
+        qnHTML = qnTemplate(FAQS[i]);
+
+        qnContainers[i % NUM_OF_QN_COLUMNS].innerHTML += qnHTML;
+    }
+
+    // add FAQ interaction
+
+    const qnBlocks = document.getElementsByClassName("question__block"); //console.log(qnBlocks);
+
+    for (let i = 0; i < qnBlocks.length; i++) {
+        //console.log(qnBlocks[i].getElementsByTagName("span")[0]);
+
+        qnBlocks[i].getElementsByTagName("span")[0].addEventListener('click', function(error) {
+            if (this.dataset.open == 'false') {
+                //console.log('false');
+                this.dataset.open = 'true';
+                this.innerHTML = '-';
+
+                qnBlocks[i].getElementsByTagName("p")[0].style.height = 'auto';
+            } else {
+                //console.log('true');
+                this.dataset.open = 'false';
+                this.innerHTML = '+';
+
+                qnBlocks[i].getElementsByTagName("p")[0].style.height = '0';
+            }
+        });
+    }
