@@ -191,7 +191,9 @@ nav li:hover {
 }
 
 .pricing__description {
-    max-width:50%;
+    width:50%;
+
+    min-width:300px;
 }
 
 .pricing__card {
