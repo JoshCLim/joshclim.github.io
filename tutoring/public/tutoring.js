@@ -29,63 +29,49 @@ let manageScrollingHeader = setInterval(function () {
 
 // ----- CONTENT ----- //
 
-// add subjects
-// 1 = HL and SL, 0 = SL only
+// fetch data about subjects offered from backend
+const homeSubjectsURL = "http://ibexpert.alwaysdata.net/home/subjects";
+fetch(homeSubjectsURL)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (data) {
+    // console.log(data);
 
-const IB_GROUPS = 6;
+    addSubjects(data.subjects, data.groups);
+  });
 
-const SUBJECTS = [
-  [
-    { name: "English A: Language and Literature", level: 1 },
-    { name: "English A: Literature", level: 1 },
-  ],
-  [
-    { name: "French B", level: 0 },
-    { name: "Latin B", level: 0 },
-  ],
-  [
-    { name: "Business Management", level: 1 },
-    { name: "Economics", level: 1 },
-    { name: "Psychology", level: 1 },
-  ],
-  [
-    { name: "Chemistry", level: 0 },
-    { name: "Physics", level: 1 },
-  ],
-  [
-    { name: "Mathematics: Applications and Interpretations", level: 0 },
-    { name: "Mathematics: Analysis and Approaches", level: 1 },
-  ],
-  [{ name: "Visual Arts", level: 1 }],
-];
+// add subjects to
+function addSubjects(subjects, groups) {
+  const subjectSource = document.getElementById(
+    "subject__block_template"
+  ).innerHTML;
+  const subjectTemplate = Handlebars.compile(subjectSource);
 
-const subjectSource = document.getElementById(
-  "subject__block_template"
-).innerHTML;
-const subjectTemplate = Handlebars.compile(subjectSource);
+  const subjectContainers = document.getElementsByClassName(
+    "subject__containers"
+  ); // console.log(subjectContainers);
 
-const subjectContainers = document.getElementsByClassName(
-  "subject__containers"
-); // console.log(subjectContainers);
+  let subjectInfo = { name: "[empty]", level: "[empty]" };
+  let subjectHTML;
 
-let subjectInfo = { name: "[empty]", level: "[empty]" };
-let subjectHTML;
+  for (let i = 1; i < groups + 1; i++) {
+    for (let j = 0; j < subjects[i - 1].length; j++) {
+      subjectInfo.name = subjects[i - 1][j].name;
 
-for (let i = 1; i < IB_GROUPS + 1; i++) {
-  for (let j = 0; j < SUBJECTS[i - 1].length; j++) {
-    subjectInfo.name = SUBJECTS[i - 1][j].name;
+      if (subjects[i - 1][j].level == 1) {
+        subjectInfo.level = "HL/SL";
+      } else if (subjects[i - 1][j].level == 0) {
+        subjectInfo.level = "SL";
+      } else {
+        subjectInfo.level = "SL";
+        console.log("Error! Invalid Level");
+      }
 
-    if (SUBJECTS[i - 1][j].level == 1) {
-      subjectInfo.level = "HL/SL";
-    } else if (SUBJECTS[i - 1][j].level == 0) {
-      subjectInfo.level = "SL";
-    } else {
-      console.log("Error! Invalid Level");
+      subjectHTML = subjectTemplate(subjectInfo);
+
+      subjectContainers[i - 1].innerHTML += subjectHTML;
     }
-
-    subjectHTML = subjectTemplate(subjectInfo);
-
-    subjectContainers[i - 1].innerHTML += subjectHTML;
   }
 }
 
