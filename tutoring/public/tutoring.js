@@ -41,7 +41,7 @@ fetch(homeSubjectsURL)
     addSubjects(data.subjects, data.groups);
   });
 
-// add subjects to
+// add subjects to container
 function addSubjects(subjects, groups) {
   const subjectSource = document.getElementById(
     "subject__block_template"
@@ -79,177 +79,87 @@ function addSubjects(subjects, groups) {
 
 // https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="profile-picture
 
-const TUTORS = [
-  {
-    name: "Josh Lim",
-    mark: 45,
-    description: "pretty good lookin guy if you ask me",
-    picURL:
-      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-  },
-  {
-    name: "Joe",
-    mark: 69,
-    description: "hehe nice",
-    picURL:
-      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-  },
-  {
-    name: "Mr Madoofi",
-    mark: 45,
-    description: "to die for",
-    picURL:
-      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-  },
-  {
-    name: "Lord Voldemort",
-    mark: 45,
-    description: "black hoodies ftw",
-    picURL:
-      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-  },
-  {
-    name: "Mrs Chan",
-    mark: 45,
-    description: "My favourite type of men: ramen",
-    picURL:
-      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-  },
-];
+const homeTutorsURL = "https://ibexpert.alwaysdata.net/home/tutors";
+fetch(homeTutorsURL)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (data) {
+    // console.log(data);
 
-const tutorSource = document.getElementById("tutor__card_template").innerHTML;
-const tutorTemplate = Handlebars.compile(tutorSource);
+    addTutors(data.tutors);
+  });
 
-const tutorContainer = document.getElementById("tutors__container"); // console.log(tutorContainer);
+function addTutors(tutors) {
+  const tutorSource = document.getElementById("tutor__card_template").innerHTML;
+  const tutorTemplate = Handlebars.compile(tutorSource);
 
-let tutorHTML;
+  const tutorContainer = document.getElementById("tutors__container");
 
-for (let i = 0; i < TUTORS.length; i++) {
-  tutorHTML = tutorTemplate(TUTORS[i]);
-  tutorContainer.innerHTML += tutorHTML;
+  let tutorHTML;
+
+  for (let i = 0; i < tutors.length; i++) {
+    tutorHTML = tutorTemplate(tutors[i]);
+    tutorContainer.innerHTML += tutorHTML;
+  }
 }
 
 // add FAQs
+const homeFAQsURL = "https://ibexpert.alwaysdata.net/home/faqs";
+fetch(homeFAQsURL)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (data) {
+    // console.log(data);
 
-const FAQS = [
-  {
-    question: "Heya",
-    answer: "How u doin",
-  },
-  {
-    question: "Why IBExpert?",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "Yeeto",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-  {
-    question: "adfjklsdfl;kajsf",
-    answer:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente id officia porro fugit necessitatibus commodi, impedit suscipit. Earum recusandae numquam officia aspernatur quod debitis! Praesentium voluptates alias eos nulla facilis?",
-  },
-];
+    addFAQs(data.faqs);
+  });
 
-const NUM_OF_QN_COLUMNS = 4;
+function addFAQs(faqs) {
+  const NUM_OF_QN_COLUMNS = 4;
 
-const qnSource = document.getElementById("question__block_template").innerHTML;
-const qnTemplate = Handlebars.compile(qnSource);
+  const qnSource = document.getElementById(
+    "question__block_template"
+  ).innerHTML;
+  const qnTemplate = Handlebars.compile(qnSource);
 
-const qnContainers = document.getElementsByClassName("question__containers"); // console.log(qnContainers);
+  const qnContainers = document.getElementsByClassName("question__containers"); // console.log(qnContainers);
 
-let qnHTML;
+  let qnHTML = "";
 
-for (let i = 0; i < FAQS.length; i++) {
-  qnHTML = qnTemplate(FAQS[i]);
+  for (let i = 0; i < faqs.length; i++) {
+    qnHTML = qnTemplate(faqs[i]);
 
-  qnContainers[i % NUM_OF_QN_COLUMNS].innerHTML += qnHTML;
+    qnContainers[i % NUM_OF_QN_COLUMNS].innerHTML += qnHTML;
+  }
+
+  addFAQsInteraction();
 }
 
 // add FAQ interaction
+function addFAQsInteraction() {
+  const qnBlocks = document.getElementsByClassName("question__block"); //console.log(qnBlocks);
 
-const qnBlocks = document.getElementsByClassName("question__block"); //console.log(qnBlocks);
+  for (let i = 0; i < qnBlocks.length; i++) {
+    //console.log(qnBlocks[i].getElementsByTagName("span")[0]);
 
-for (let i = 0; i < qnBlocks.length; i++) {
-  //console.log(qnBlocks[i].getElementsByTagName("span")[0]);
+    qnBlocks[i]
+      .getElementsByTagName("span")[0]
+      .addEventListener("click", function (error) {
+        if (this.dataset.open == "false") {
+          //console.log('false');
+          this.dataset.open = "true";
+          this.innerHTML = "-";
 
-  qnBlocks[i]
-    .getElementsByTagName("span")[0]
-    .addEventListener("click", function (error) {
-      if (this.dataset.open == "false") {
-        //console.log('false');
-        this.dataset.open = "true";
-        this.innerHTML = "-";
+          qnBlocks[i].getElementsByTagName("p")[0].style.height = "auto";
+        } else {
+          //console.log('true');
+          this.dataset.open = "false";
+          this.innerHTML = "+";
 
-        qnBlocks[i].getElementsByTagName("p")[0].style.height = "auto";
-      } else {
-        //console.log('true');
-        this.dataset.open = "false";
-        this.innerHTML = "+";
-
-        qnBlocks[i].getElementsByTagName("p")[0].style.height = "0";
-      }
-    });
+          qnBlocks[i].getElementsByTagName("p")[0].style.height = "0";
+        }
+      });
+  }
 }
