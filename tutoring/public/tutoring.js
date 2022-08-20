@@ -29,8 +29,10 @@ let manageScrollingHeader = setInterval(function () {
 
 // ----- CONTENT ----- //
 
+const BASE_URL = "https://ibexpert.alwaysdata.net";
+
 // fetch data about subjects offered from backend
-const homeSubjectsURL = "https://ibexpert.alwaysdata.net/home/subjects";
+const homeSubjectsURL = BASE_URL + "/home/subjects";
 fetch(homeSubjectsURL)
   .then(function (res) {
     return res.json();
@@ -79,7 +81,7 @@ function addSubjects(subjects, groups) {
 
 // https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="profile-picture
 
-const homeTutorsURL = "https://ibexpert.alwaysdata.net/home/tutors";
+const homeTutorsURL = BASE_URL + "/home/tutors";
 fetch(homeTutorsURL)
   .then(function (res) {
     return res.json();
@@ -105,7 +107,7 @@ function addTutors(tutors) {
 }
 
 // add FAQs
-const homeFAQsURL = "https://ibexpert.alwaysdata.net/home/faqs";
+const homeFAQsURL = BASE_URL + "/home/faqs";
 fetch(homeFAQsURL)
   .then(function (res) {
     return res.json();
