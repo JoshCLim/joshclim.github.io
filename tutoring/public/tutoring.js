@@ -30,7 +30,7 @@ let manageScrollingHeader = setInterval(function () {
 // ----- CONTENT ----- //
 
 // fetch data about subjects offered from backend
-const homeSubjectsURL = "http://ibexpert.alwaysdata.net/home/subjects";
+const homeSubjectsURL = "https://ibexpert.alwaysdata.net/home/subjects";
 fetch(homeSubjectsURL)
   .then(function (res) {
     return res.json();
