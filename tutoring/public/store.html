@@ -1,235 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+         crossorigin="anonymous"
+      />
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="store.css" />
-    <title>IB Expert Store</title>
-  </head>
-  <body>
-    <div id="header__row" class="container pt-5 px-0 fixed-top">
-      <div class="d-flex flex-row justify-content-between align-items-center">
-        <div>
-          <h1>Welcome to the IB Expert Store.</h1>
-          <p class="lead fs-4">
-            Browse our collection of notes, exemplars and more
-          </p>
-        </div>
-        <div>
-          <a
-            href="#"
-            data-bs-toggle="tooltip"
-            title="shopping cart"
-            class="text-reset"
-          >
-            <div
-              id="shopping__cart__button"
-              class="ms-3 p-3 utility__button"
-              data-bs-toggle="modal"
-              data-bs-target="#shoppingCartModal"
-            >
-              <!--shopping cart icon-->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                fill="currentColor"
-                class="bi bi-cart3"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                />
-              </svg>
-              <div id="cart__counter" class="">0</div>
+      <link rel="stylesheet" href="store.css" />
+      <title>IB Expert Store</title>
+   </head>
+   <body>
+      <div id="header__row" class="container pt-5 px-0 fixed-top">
+         <div
+            class="d-flex flex-row justify-content-between align-items-center"
+         >
+            <div>
+               <h1>Welcome to the IB Expert Store.</h1>
+               <p class="lead fs-4">
+                  Browse our collection of notes, exemplars and more
+               </p>
             </div>
-          </a>
-        </div>
+            <div>
+               <a
+                  href="#"
+                  data-bs-toggle="tooltip"
+                  title="shopping cart"
+                  class="text-reset"
+               >
+                  <div
+                     id="shopping__cart__button"
+                     class="ms-3 p-3 utility__button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#shoppingCartModal"
+                  >
+                     <!--shopping cart icon-->
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        fill="currentColor"
+                        class="bi bi-cart3"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                        />
+                     </svg>
+                     <div id="cart__counter" class="">0</div>
+                  </div>
+               </a>
+            </div>
+         </div>
+         <div
+            id="toolbar"
+            class="p-4 border m-0 w-100 d-flex flew-row justify-content-between"
+         >
+            <form class="d-flex flex-row align-items-center" role="search">
+               <input
+                  class="py-3 px-4 form-control me-2"
+                  type="search"
+                  placeholder="Search for products"
+                  aria-label="Search"
+               />
+               <!--<button class="py-3 px-4 btn btn-outline-dark" type="submit">Search</button>-->
+            </form>
+            <div class="d-flex flex-row justify-content-end">
+               <a
+                  href="#"
+                  data-bs-toggle="tooltip"
+                  title="sort by price"
+                  class="text-reset"
+                  data-bs-placement="bottom"
+                  ><div
+                     id="sort__price__button"
+                     class="ms-4 p-3 utility__button"
+                  >
+                     <!--sort price icon-->
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-sort-numeric-down"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"
+                        />
+                        <path
+                           fill-rule="evenodd"
+                           d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
+                        />
+                        <path
+                           d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
+                        />
+                     </svg></div
+               ></a>
+               <a
+                  href="#"
+                  data-bs-toggle="tooltip"
+                  title="sort by name"
+                  class="text-reset"
+                  data-bs-placement="bottom"
+                  ><div
+                     id="sort__alpha__button"
+                     class="ms-4 p-3 utility__button"
+                  >
+                     <!--sort alphabetical icon-->
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-sort-alpha-down"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           fill-rule="evenodd"
+                           d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"
+                        />
+                        <path
+                           d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
+                        />
+                     </svg></div
+               ></a>
+               <a
+                  href="#"
+                  data-bs-toggle="tooltip"
+                  title="filter items"
+                  class="text-reset"
+                  data-bs-placement="bottom"
+                  ><div id="filter__button" class="ms-4 p-3 utility__button">
+                     <!--filter icon-->
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-funnel"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
+                        />
+                     </svg></div
+               ></a>
+            </div>
+         </div>
       </div>
-      <div
-        id="toolbar"
-        class="p-4 border m-0 w-100 d-flex flew-row justify-content-between"
-      >
-        <form class="d-flex flex-row align-items-center" role="search">
-          <input
-            class="py-3 px-4 form-control me-2"
-            type="search"
-            placeholder="Search for products"
-            aria-label="Search"
-          />
-          <!--<button class="py-3 px-4 btn btn-outline-dark" type="submit">Search</button>-->
-        </form>
-        <div class="d-flex flex-row justify-content-end">
-          <a
-            href="#"
-            data-bs-toggle="tooltip"
-            title="sort by price"
-            class="text-reset"
-            data-bs-placement="bottom"
-            ><div id="sort__price__button" class="ms-4 p-3 utility__button">
-              <!--sort price icon-->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="currentColor"
-                class="bi bi-sort-numeric-down"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
-                />
-                <path
-                  d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
-                />
-              </svg></div
-          ></a>
-          <a
-            href="#"
-            data-bs-toggle="tooltip"
-            title="sort by name"
-            class="text-reset"
-            data-bs-placement="bottom"
-            ><div id="sort__alpha__button" class="ms-4 p-3 utility__button">
-              <!--sort alphabetical icon-->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="currentColor"
-                class="bi bi-sort-alpha-down"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"
-                />
-                <path
-                  d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
-                />
-              </svg></div
-          ></a>
-          <a
-            href="#"
-            data-bs-toggle="tooltip"
-            title="filter items"
-            class="text-reset"
-            data-bs-placement="bottom"
-            ><div id="filter__button" class="ms-4 p-3 utility__button">
-              <!--filter icon-->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="currentColor"
-                class="bi bi-funnel"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
-                />
-              </svg></div
-          ></a>
-        </div>
+      <!--DUPLICATE OF ABOVE, PUSHING CONTENT DOWNWARDS BY CORRECT HEIGHT lol-->
+      <div class="container pt-5 px-0" id="fake__title_bar">
+         <h1>Welcome to the IB Expert Store.</h1>
+         <p class="lead fs-4">
+            Browse our collection of notes, exemplars and more
+         </p>
+         <div
+            class="p-4 border-top border-start border-end m-0 w-100 d-flex flew-row justify-content-between"
+         >
+            <form class="d-flex flex-row align-items-center" role="search">
+               <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Enter item name"
+                  aria-label="Search"
+               />
+               <button class="btn btn-outline-dark" type="submit">
+                  Search
+               </button>
+            </form>
+            <div class="d-flex flex-row justify-content-end">
+               <div id="sort__price__button" class="ms-3 p-3">
+                  <!--sort price icon-->
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="32"
+                     height="32"
+                     fill="currentColor"
+                     class="bi bi-sort-numeric-down"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"
+                     />
+                     <path
+                        fill-rule="evenodd"
+                        d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
+                     />
+                     <path
+                        d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
+                     />
+                  </svg>
+               </div>
+               <div id="sort__alpha__button" class="ms-3 p-3">
+                  <!--sort alphabetical icon-->
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="32"
+                     height="32"
+                     fill="currentColor"
+                     class="bi bi-sort-alpha-down"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        fill-rule="evenodd"
+                        d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"
+                     />
+                     <path
+                        d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
+                     />
+                  </svg>
+               </div>
+               <div id="filter__button" class="ms-3 p-3">
+                  <!--filter icon-->
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="32"
+                     height="32"
+                     fill="currentColor"
+                     class="bi bi-funnel"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
+                     />
+                  </svg>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-    <!--DUPLICATE OF ABOVE, PUSHING CONTENT DOWNWARDS BY CORRECT HEIGHT lol-->
-    <div class="container pt-5 px-0" id="fake__title_bar">
-      <h1>Welcome to the IB Expert Store.</h1>
-      <p class="lead fs-4">
-        Browse our collection of notes, exemplars and more
-      </p>
-      <div
-        class="p-4 border-top border-start border-end m-0 w-100 d-flex flew-row justify-content-between"
-      >
-        <form class="d-flex flex-row align-items-center" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Enter item name"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-dark" type="submit">Search</button>
-        </form>
-        <div class="d-flex flex-row justify-content-end">
-          <div id="sort__price__button" class="ms-3 p-3">
-            <!--sort price icon-->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              fill="currentColor"
-              class="bi bi-sort-numeric-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
-              />
-              <path
-                d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
-              />
-            </svg>
-          </div>
-          <div id="sort__alpha__button" class="ms-3 p-3">
-            <!--sort alphabetical icon-->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              fill="currentColor"
-              class="bi bi-sort-alpha-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"
-              />
-              <path
-                d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"
-              />
-            </svg>
-          </div>
-          <div id="filter__button" class="ms-3 p-3">
-            <!--filter icon-->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              fill="currentColor"
-              class="bi bi-funnel"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!---->
-    <div class="store__container container border pb-5 pt-0 ps-0 pe-0">
-      <div class="row mt-5 ps-5 pe-5">
-        <div class="item__columns col-lg-4 col-md-6">
-          <!-- INSERT ITEMS HERE -->
-          <!--<div class="store__item text-end px-5 py-4">
+      <!---->
+      <div class="store__container container border pb-5 pt-0 ps-0 pe-0">
+         <div class="row mt-5 ps-5 pe-5">
+            <div class="item__columns col-lg-4 col-md-6">
+               <!-- INSERT ITEMS HERE -->
+               <!--<div class="store__item text-end px-5 py-4">
                     <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Minions_characters.png" alt="item_image">
                     <p class="m-0 lead">$69.00</p>
                     <h4>Economics HL Notes</h4>
@@ -239,41 +249,41 @@
                         <div class="item__tags">HL</div>
                     </div>
                 </div>-->
-        </div>
-        <div class="item__columns col-lg-4 col-md-6">
-          <!-- INSERT ITEMS HERE -->
-        </div>
-        <div class="item__columns col-lg-4 col-md-6">
-          <!-- INSERT ITEMS HERE -->
-        </div>
+            </div>
+            <div class="item__columns col-lg-4 col-md-6">
+               <!-- INSERT ITEMS HERE -->
+            </div>
+            <div class="item__columns col-lg-4 col-md-6">
+               <!-- INSERT ITEMS HERE -->
+            </div>
+         </div>
       </div>
-    </div>
 
-    <div class="container text-center p-5">
-      Want to sell your notes / assessments?
-      <a href="tutoring.html#footer">Contact us here.</a>
-    </div>
+      <div class="container text-center p-5">
+         Want to sell your notes / assessments?
+         <a href="tutoring.html#footer">Contact us here.</a>
+      </div>
 
-    <!-- ALERTS -->
-    <div id="alerts__container" class="m-3"></div>
+      <!-- ALERTS -->
+      <div id="alerts__container" class="m-3"></div>
 
-    <!-- SHOPPING CART MODAL -->
-    <div class="modal fade" tabindex="-1" id="shoppingCartModal">
-      <div
-        class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
-      >
-        <div class="modal-content">
-          <div class="modal-header px-4">
-            <h2 class="modal-title">Shopping Cart</h2>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!--<div class="d-flex flex-row px-3 py-2 align-items-center m-0">
+      <!-- SHOPPING CART MODAL -->
+      <div class="modal fade" tabindex="-1" id="shoppingCartModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h2 class="modal-title">Shopping Cart</h2>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body">
+                  <!--<div class="d-flex flex-row px-3 py-2 align-items-center m-0">
                         <img src="#" alt="item_image" class="">
                         <div class="mx-5 my-0">
                             <h4 class="mx-0 mt-0 mb-2">item_name</h4>
@@ -284,149 +294,155 @@
                             x
                         </div>
                     </div>-->
-          </div>
-          <div class="modal-footer d-flex flex-row justify-content-between">
-            <p class="lead">Total: $<span id="cartTotalPrice">0.00</span></p>
-            <div>
-              Best wishes for your studies!
-              <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+               </div>
+               <div
+                  class="modal-footer d-flex flex-row justify-content-between"
+               >
+                  <p class="lead">
+                     Total: $<span id="cartTotalPrice">0.00</span>
+                  </p>
+                  <div>
+                     Best wishes for your studies!
+                     <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
                         </svg>-->
-              <img
-                src="assets/minion_kungfu_icon.png"
-                alt=":)"
-                height="50px"
-                class="p-0 m-0"
-              />
+                     <img
+                        src="assets/minion_kungfu_icon.png"
+                        alt=":)"
+                        height="50px"
+                        class="p-0 m-0"
+                     />
+                  </div>
+                  <div>
+                     <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                     >
+                        Continue Shopping
+                     </button>
+                     <button type="button" class="btn btn-primary ms-2">
+                        Checkout
+                     </button>
+                  </div>
+               </div>
             </div>
-            <div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Continue Shopping
-              </button>
-              <button type="button" class="btn btn-primary ms-2">
-                Checkout
-              </button>
-            </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
 
-    <!--SCRIPTS-->
-    <!--bootstrap-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-      crossorigin="anonymous"
-    ></script>
+      <!--SCRIPTS-->
+      <!--bootstrap-->
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+         crossorigin="anonymous"
+      ></script>
 
-    <!--Handlebars Templates-->
-    <script type="text/x-handlebars-template" id="item__template">
-      <div
-        class="store__item text-end ps-3 pe-4 py-3 mb-4"
-        data-type="{{type}}"
-        data-index="{{index}}"
-      >
-        <div class="item__options d-flex flex-row justify-content-between">
-          <div
-            class="add_to_cart__button utility__button d-flex flex-row align-items-end justify-content-start"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              class="bi bi-cart-plus"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"
-              ></path>
-              <path
-                d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-              ></path>
-            </svg>
-            <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
+      <!--Handlebars Templates-->
+      <script type="text/x-handlebars-template" id="item__template">
+         <div
+            class="store__item text-end ps-3 pe-4 py-3 mb-4"
+            data-type="{{type}}"
+            data-index="{{index}}"
+         >
+            <div class="item__options d-flex flex-row justify-content-between">
+               <div
+                  class="add_to_cart__button utility__button d-flex flex-row align-items-end justify-content-start"
+               >
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="25"
+                     height="25"
+                     fill="currentColor"
+                     class="bi bi-cart-plus"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"
+                     ></path>
+                     <path
+                        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                     ></path>
+                  </svg>
+                  <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
                             <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
                             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                         </svg>-->
-          </div>
-          <div
-            class="learn_more__button utility__button d-flex flex-row align-items-end justify-content-start"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              class="bi bi-arrows-angle-expand"
-              viewBox="0 0 16 16"
+               </div>
+               <div
+                  class="learn_more__button utility__button d-flex flex-row align-items-end justify-content-start"
+               >
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="25"
+                     height="25"
+                     fill="currentColor"
+                     class="bi bi-arrows-angle-expand"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        fill-rule="evenodd"
+                        d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"
+                     ></path>
+                  </svg>
+               </div>
+            </div>
+            <img
+               src="{{image}}"
+               alt="item_image"
+               class="img-fluid w-100 ms-1 mt-1"
+            />
+            <h4 class="ms-1 me-0 mb-0 mt-2">{{name}}</h4>
+            <p class="mx-0 mb-0 mt-2 lead">${{price}}</p>
+            <div
+               class="mt-2 tags__container d-flex flex-row justify-content-end"
             >
-              <path
-                fill-rule="evenodd"
-                d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"
-              ></path>
-            </svg>
-          </div>
-        </div>
-        <img
-          src="{{image}}"
-          alt="item_image"
-          class="img-fluid w-100 ms-1 mt-1"
-        />
-        <h4 class="ms-1 me-0 mb-0 mt-2">{{name}}</h4>
-        <p class="mx-0 mb-0 mt-2 lead">${{price}}</p>
-        <div class="mt-2 tags__container d-flex flex-row justify-content-end">
-          {{#each tags}}
-            <div class="item__tags tag__{{this}}">{{this}}</div>
-          {{/each}}
-        </div>
-      </div>
-    </script>
+               {{#each tags}}
+                  <div class="item__tags tag__{{this}}">{{this}}</div>
+               {{/each}}
+            </div>
+         </div>
+      </script>
 
-    <script type="text/x-handlebars-template" id="cart_item__template">
-      <div
-        class="d-flex flex-row p-3 align-items-center m-0 cart__item"
-        data-type="{{type}}"
-        data-index="{{index}}"
-      >
-        <img src="{{image}}" alt="item_image" class="img-thumbnail" />
-        <div class="mx-5 my-0">
-          <h4 class="mx-0 mt-0 mb-2">{{name}}</h4>
-          <p class="lead m-0">${{price}}</p>
-        </div>
-        <p class="ms-auto me-5 m-0 lead">x 1</p>
-        <div class="ms-5 btn-dark btn cart__item_delete">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-x"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-            ></path>
-          </svg>
-        </div>
-      </div>
-    </script>
+      <script type="text/x-handlebars-template" id="cart_item__template">
+         <div
+            class="d-flex flex-row p-3 align-items-center m-0 cart__item"
+            data-type="{{type}}"
+            data-index="{{index}}"
+         >
+            <img src="{{image}}" alt="item_image" class="img-thumbnail" />
+            <div class="mx-5 my-0">
+               <h4 class="mx-0 mt-0 mb-2">{{name}}</h4>
+               <p class="lead m-0">${{price}}</p>
+            </div>
+            <p class="ms-auto me-5 m-0 lead">x 1</p>
+            <div class="ms-5 btn-dark btn cart__item_delete">
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-x"
+                  viewBox="0 0 16 16"
+               >
+                  <path
+                     d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                  ></path>
+               </svg>
+            </div>
+         </div>
+      </script>
 
-    <script src="handlebars.js"></script>
+      <script src="handlebars.js"></script>
 
-    <!--animations and content js-->
-    <script src="store.js"></script>
+      <!--animations and content js-->
+      <script src="store.js"></script>
 
-    <!--Animate on Scroll (AOS) https://michalsnik.github.io/aos/-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-  </body>
+      <!--Animate on Scroll (AOS) https://michalsnik.github.io/aos/-->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+         AOS.init();
+      </script>
+   </body>
 </html>
