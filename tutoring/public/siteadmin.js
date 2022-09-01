@@ -31,6 +31,24 @@ const itemRowTemplate = Handlebars.compile(itemRowSource);
 const tagRowSource = document.getElementById("tag-row").innerHTML;
 const tagRowTemplate = Handlebars.compile(tagRowSource);
 
+// add buttons
+const tutorAddButton = document.getElementById("tutor-add-button");
+const subjectAddButton = document.getElementById("subject-add-button");
+const faqAddButton = document.getElementById("faq-add-button");
+const itemAddButton = document.getElementById("item-add-button");
+const tagAddButton = document.getElementById("tag-add-button");
+
+// add form inputs
+const tutorNameInput = document.getElementById("tutorInputName");
+const tutorMarkInput = document.getElementById("tutorInputMark");
+const tutorBioInput = document.getElementById("tutorInputBio");
+const tutorSubmitInput = document.getElementById("tutorInputSubmit");
+
+const subjectNameInput = document.getElementById("subjectInputName");
+const subjectLevelInput = document.getElementById("subjectInputLevel");
+const subjectGroupInput = document.getElementById("subjectInputGroup");
+const subjectSubmitInput = document.getElementById("subjectInputSubmit");
+
 /* ---- LOGIN ---- */
 // login button clicked
 loginSubmitInput.addEventListener("click", function (event) {
@@ -83,7 +101,7 @@ function loadHomeSubjects(subjects) {
 
   for (const groupNum in subjects.subjects) {
     const formatted = subjects.subjects[groupNum].map((subject) => {
-      subject.group = groupNum + 1;
+      subject.group = parseInt(groupNum) + 1;
 
       if (subject.level === 1) {
         subject.level = "HL/SL";
@@ -137,7 +155,31 @@ function loadStoreTags(tags) {
   });
 }
 
+/* ---- ADD STUFF ---- */
+tutorSubmitInput.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const name = tutorNameInput.value;
+  const mark = tutorMarkInput.value;
+  const bio = tutorBioInput.value;
+
+  addHomeTutor(token, name, mark, bio);
+});
+subjectSubmitInput.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const name = subjectNameInput.value;
+  const group = subjectGroupInput.value;
+  const level = subjectLevelInput.value;
+
+  addHomeSubject(token, name, level, group);
+});
+// faqSubmitInput.addEventListener("click", function (event) {});
+// itemSubmitInput.addEventListener("click", function (event) {});
+// tagSubmitInput.addEventListener("click", function (event) {});
+
 /* ---- FETCH API ---- */
+// login
 function siteAdminLogin(email, password) {
   fetch(BASE_URL + "/siteadmin/login", {
     method: "POST",
@@ -192,6 +234,7 @@ function siteAdminLogout(token) {
     .catch((error) => console.log(error));
 }
 
+// get
 function getHomeTutors() {
   fetch(BASE_URL + "/home/tutors")
     .then((res) => {
@@ -278,6 +321,166 @@ function getStoreTags() {
     .then((data) => {
       console.log(data);
       loadStoreTags(data);
+    })
+    .catch((error) => console.log(error));
+}
+
+// add
+function addHomeTutor(token, name, mark, bio) {
+  fetch(BASE_URL + "/siteadmin/home/addtutor", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      name: name,
+      mark: mark,
+      bio: bio,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ADD TUTOR SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function addHomeSubject(token, name, level, group) {
+  fetch(BASE_URL + "/siteadmin/home/addsubject", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      name: name,
+      level: level,
+      group: group,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ADD SUBJECT SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function addHomeFaq(token, question, answer) {
+  fetch(BASE_URL + "/siteadmin/home/addfaq", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      question: question,
+      answer: answer,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ADD FAQ SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function addStoreItem(token, name, price, imageUrl, description, type) {
+  fetch(BASE_URL + "/siteadmin/store/additem", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      name: name,
+      price: price,
+      imageUrl: imageUrl,
+      description: description,
+      type: type,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ADD ITEM SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function addStoreTag(token, name) {
+  fetch(BASE_URL + "/siteadmin/home/addtag", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      name: name,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ADD TAG SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
     })
     .catch((error) => console.log(error));
 }
