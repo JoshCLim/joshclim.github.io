@@ -104,7 +104,7 @@ function loadHomeFaqs(faqs) {
 }
 
 function loadStoreItems(items) {
-  itemsTable = "";
+  itemsTable.innerHTML = "";
 
   const formatted = items.items.map((item) => {
     item.type = item.type.toLowerCase();
