@@ -29,7 +29,7 @@ let manageScrollingHeader = setInterval(function () {
 
 // ----- CONTENT ----- //
 
-const BASE_URL = "https://ibexpert.alwaysdata.net";
+export const BASE_URL = "https://ibexpert.alwaysdata.net";
 
 // fetch data about subjects offered from backend
 const homeSubjectsURL = BASE_URL + "/home/subjects";
