@@ -69,10 +69,10 @@ function loadAdminDashboard(token) {
 function loadHomeTutors(tutors) {
   tutorsTable.innerHTML = "";
 
-  for (const tutor of tutors.tutors) {
+  tutors.tutors.forEach((tutor) => {
     let tutorRowHTML = tutorRowTemplate(tutor);
     tutorsTable.innerHTML += tutorRowHTML;
-  }
+  });
 }
 
 function loadHomeSubjects(subjects) {
