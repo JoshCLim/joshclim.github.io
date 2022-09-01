@@ -1,6 +1,10 @@
 const BASE_URL = "https://ibexpert.alwaysdata.net";
 let token = "0";
 
+const globalContainer = document.getElementById("global-container");
+globalContainer.style.display = "none";
+const headerContainer = document.getElementById("header-container");
+
 // login form elements
 const loginEmailInput = document.getElementById("loginInputEmail");
 const loginPasswordInput = document.getElementById("loginInputPassword");
@@ -50,6 +54,9 @@ loginCloseBtn.addEventListener("click", function (event) {
 /* ---- LOAD STUFF ---- */
 // upon successful login
 function loadAdminDashboard(token) {
+  globalContainer.style.display = "block";
+  headerContainer.classList.add("d-none");
+
   getHomeTutors();
   getHomeFaqs();
   getHomeSubjects();
