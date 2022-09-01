@@ -76,7 +76,7 @@ function loadHomeSubjects(subjects) {
 
   for (const groupNum in subjects.subjects) {
     const formatted = subjects.subjects[groupNum].map((subject) => {
-      subject.group = groupNum;
+      subject.group = groupNum + 1;
 
       if (subject.level === 1) {
         subject.level = "HL/SL";
