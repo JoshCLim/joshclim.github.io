@@ -60,8 +60,8 @@ function loadAdminDashboard(token) {
 }
 
 function loadHomeTutors(tutors) {
-  console.log("LOADING TUTORS");
-  console.log(tutors);
+  tutorsTable.innerHTML = "";
+
   for (const tutor of tutors.tutors) {
     let tutorRowHTML = tutorRowTemplate(tutor);
     tutorsTable.innerHTML += tutorRowHTML;
@@ -69,6 +69,8 @@ function loadHomeTutors(tutors) {
 }
 
 function loadHomeSubjects(subjects) {
+  subjectsTable.innerHTML = "";
+
   const groups = subjects.groups;
   subjectsGroupCountSpan.innerText = groups;
 
@@ -93,6 +95,8 @@ function loadHomeSubjects(subjects) {
 }
 
 function loadHomeFaqs(faqs) {
+  faqsTable.innerHTML = "";
+
   for (const val of faqs.faqs) {
     let faqRowHTML = faqRowTemplate(val);
     faqsTable.innerHTML += faqRowHTML;
@@ -100,6 +104,8 @@ function loadHomeFaqs(faqs) {
 }
 
 function loadStoreItems(items) {
+  itemsTable = "";
+
   const formatted = items.items.map((item) => {
     item.type = item.type.toLowerCase();
 
@@ -116,6 +122,8 @@ function loadStoreItems(items) {
 }
 
 function loadStoreTags(tags) {
+  tagsTable.innerHTML = "";
+
   tags.tags.forEach((tag) => {
     let tagRowHTML = tagRowTemplate(tag);
     tagsTable.innerHTML += tagRowHTML;
