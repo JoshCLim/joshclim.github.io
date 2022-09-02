@@ -148,22 +148,25 @@ function loadHomeFaqs({ faqs }) {
   addFaqRemoveButtonEventListeners();
 }
 
-function loadStoreItems(items) {
+function loadStoreItems({ items, tags }) {
   itemsTable.innerHTML = "";
 
-  const formatted = items.items.map((item) => {
+  const formatted = items.map((item) => {
     item.type = item.type.toLowerCase();
 
     item.tags = item.tags.map((tagId) => {
-      return items.tags.filter((tag) => tag.id === tagId)[0].name;
+      return tags.filter((tag) => tag.id === tagId)[0].name;
     });
 
     return item;
   });
+
   formatted.forEach((item) => {
     let itemRowHTML = itemRowTemplate(item);
     itemsTable.innerHTML += itemRowHTML;
   });
+
+  addItemRemoveButtonEventListeners();
 }
 
 function loadStoreTags(tags) {
@@ -227,8 +230,7 @@ function addTutorRemoveButtonEventListeners() {
   const tutorRemoveButtons = document.getElementsByClassName(
     "tutor-remove-button"
   );
-  const itemRemoveButtons =
-    document.getElementsByClassName("item-remove-button");
+
   const tagRemoveButtons = document.getElementsByClassName("tag-remove-button");
 
   for (const button of tutorRemoveButtons) {
@@ -268,6 +270,21 @@ function addFaqRemoveButtonEventListeners() {
       const qnId = parseInt(this.parentElement.dataset.faqId);
 
       removeHomeFaq(token, qnId);
+    });
+  }
+}
+
+function addItemRemoveButtonEventListeners() {
+  const itemRemoveButtons =
+    document.getElementsByClassName("item-remove-button");
+
+  for (const button of itemRemoveButtons) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const itemId = parseInt(this.parentElement.dataset.itemId);
+
+      removeStoreItem(token, itemId);
     });
   }
 }
