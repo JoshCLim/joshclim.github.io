@@ -137,13 +137,15 @@ function loadHomeSubjects(subjects) {
   addSubjectRemoveButtonEventListeners();
 }
 
-function loadHomeFaqs(faqs) {
+function loadHomeFaqs({ faqs }) {
   faqsTable.innerHTML = "";
 
-  for (const val of faqs.faqs) {
+  for (const val of faqs) {
     let faqRowHTML = faqRowTemplate(val);
     faqsTable.innerHTML += faqRowHTML;
   }
+
+  addFaqRemoveButtonEventListeners();
 }
 
 function loadStoreItems(items) {
@@ -225,7 +227,6 @@ function addTutorRemoveButtonEventListeners() {
   const tutorRemoveButtons = document.getElementsByClassName(
     "tutor-remove-button"
   );
-  const faqRemoveButtons = document.getElementsByClassName("faq-remove-button");
   const itemRemoveButtons =
     document.getElementsByClassName("item-remove-button");
   const tagRemoveButtons = document.getElementsByClassName("tag-remove-button");
@@ -253,6 +254,20 @@ function addSubjectRemoveButtonEventListeners() {
       const subjectId = parseInt(this.parentElement.dataset.subjectId);
 
       removeHomeSubject(token, subjectId);
+    });
+  }
+}
+
+function addFaqRemoveButtonEventListeners() {
+  const faqRemoveButtons = document.getElementsByClassName("faq-remove-button");
+
+  for (const button of faqRemoveButtons) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const qnId = parseInt(this.parentElement.dataset.faqId);
+
+      removeHomeFaq(token, qnId);
     });
   }
 }
