@@ -98,25 +98,23 @@ function loadAdminDashboard(token) {
   console.log(token);
 }
 
-function loadHomeTutors(tutors) {
+function loadHomeTutors({ tutors }) {
   tutorsTable.innerHTML = "";
 
-  tutors.tutors.forEach((tutor) => {
+  tutors.forEach((tutor) => {
     let tutorRowHTML = tutorRowTemplate(tutor);
     tutorsTable.innerHTML += tutorRowHTML;
   });
 
   addTutorRemoveButtonEventListeners();
 }
-
-function loadHomeSubjects(subjects) {
+function loadHomeSubjects({ groups, subjects }) {
   subjectsTable.innerHTML = "";
 
-  const groups = subjects.groups;
   subjectsGroupCountSpan.innerText = groups;
 
-  for (const groupNum in subjects.subjects) {
-    const formatted = subjects.subjects[groupNum].map((subject) => {
+  subjects.forEach((group, groupNum) => {
+    const formatted = group.map((subject) => {
       subject.group = parseInt(groupNum) + 1;
 
       if (subject.level === 1) {
@@ -132,11 +130,10 @@ function loadHomeSubjects(subjects) {
       let subjectRowHTML = subjectRowTemplate(subject);
       subjectsTable.innerHTML += subjectRowHTML;
     });
-  }
+  });
 
   addSubjectRemoveButtonEventListeners();
 }
-
 function loadHomeFaqs({ faqs }) {
   faqsTable.innerHTML = "";
 
@@ -147,7 +144,6 @@ function loadHomeFaqs({ faqs }) {
 
   addFaqRemoveButtonEventListeners();
 }
-
 function loadStoreItems({ items, tags }) {
   itemsTable.innerHTML = "";
 
@@ -168,14 +164,15 @@ function loadStoreItems({ items, tags }) {
 
   addItemRemoveButtonEventListeners();
 }
-
-function loadStoreTags(tags) {
+function loadStoreTags({ tags }) {
   tagsTable.innerHTML = "";
 
-  tags.tags.forEach((tag) => {
+  tags.forEach((tag) => {
     let tagRowHTML = tagRowTemplate(tag);
     tagsTable.innerHTML += tagRowHTML;
   });
+
+  addTagRemoveButtonEventListeners();
 }
 
 /* ---- ADD STUFF ---- */
@@ -231,8 +228,6 @@ function addTutorRemoveButtonEventListeners() {
     "tutor-remove-button"
   );
 
-  const tagRemoveButtons = document.getElementsByClassName("tag-remove-button");
-
   for (const button of tutorRemoveButtons) {
     button.addEventListener("click", function (event) {
       event.preventDefault();
@@ -285,6 +280,20 @@ function addItemRemoveButtonEventListeners() {
       const itemId = parseInt(this.parentElement.dataset.itemId);
 
       removeStoreItem(token, itemId);
+    });
+  }
+}
+
+function addTagRemoveButtonEventListeners() {
+  const tagRemoveButtons = document.getElementsByClassName("tag-remove-button");
+
+  for (const button of tagRemoveButtons) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const tagId = parseInt(this.parentElement.dataset.tagId);
+
+      removeStoreTag(token, tagId);
     });
   }
 }
