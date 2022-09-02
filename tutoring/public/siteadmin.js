@@ -105,6 +105,8 @@ function loadHomeTutors(tutors) {
     let tutorRowHTML = tutorRowTemplate(tutor);
     tutorsTable.innerHTML += tutorRowHTML;
   });
+
+  addTutorRemoveButtonEventListeners();
 }
 
 function loadHomeSubjects(subjects) {
@@ -214,6 +216,32 @@ tagSubmitInput.addEventListener("click", function (event) {
 
   addStoreTag(token, name);
 });
+
+/* ---- REMOVE STUFF ---- */
+function addTutorRemoveButtonEventListeners() {
+  // remove buttons
+  const tutorRemoveButtons = document.getElementsByClassName(
+    "tutor-remove-button"
+  );
+  console.log("yeet", tutorRemoveButtons);
+  const subjectRemoveButtons = document.getElementsByClassName(
+    "subject-remove-button"
+  );
+  const faqRemoveButtons = document.getElementsByClassName("faq-remove-button");
+  const itemRemoveButtons =
+    document.getElementsByClassName("item-remove-button");
+  const tagRemoveButtons = document.getElementsByClassName("tag-remove-button");
+
+  for (const button of tutorRemoveButtons) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const tutorId = parseInt(this.parentElement.dataset.tutorId);
+
+      removeHomeTutor(token, tutorId);
+    });
+  }
+}
 
 /* ---- FETCH API ---- */
 // login
@@ -509,6 +537,157 @@ function addStoreTag(token, name) {
       } else if (res.status == 500) {
         // ! change to appropriate status code (400 probably)
         console.log("BAD INPUT");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+// remove
+function removeHomeTutor(token, tutorId) {
+  fetch(BASE_URL + "/siteadmin/home/removetutor", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      tutorId: tutorId,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("REMOVE TUTOR SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT: invalid tutor id");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function removeHomeSubject(token, subjectId) {
+  fetch(BASE_URL + "/siteadmin/home/removesubject", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      subjectId: subjectId,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("REMOVE SUBJECT SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT: invalid subject id");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function removeHomeFaq(token, qnId) {
+  fetch(BASE_URL + "/siteadmin/home/removefaq", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      qnId: qnId,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("REMOVE FAQ SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT: invalid faq id");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function removeStoreItem(token, itemId) {
+  fetch(BASE_URL + "/siteadmin/store/removeitem", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      itemId: itemId,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("REMOVE ITEM SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT: invalid item id");
+        // return { error: "error" };
+      } else {
+        console.log("INVALID TOKEN");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      // reload dashboard
+      loadAdminDashboard(token);
+    })
+    .catch((error) => console.log(error));
+}
+
+function removeStoreTag(token, tagId) {
+  fetch(BASE_URL + "/siteadmin/store/removetag", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({
+      tagId: tagId,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("REMOVE TAG SUCCESSFUL");
+      } else if (res.status == 500) {
+        // ! change to appropriate status code (400 probably)
+        console.log("BAD INPUT: invalid tag id");
         // return { error: "error" };
       } else {
         console.log("INVALID TOKEN");
