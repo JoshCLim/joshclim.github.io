@@ -133,6 +133,8 @@ function loadHomeSubjects(subjects) {
       subjectsTable.innerHTML += subjectRowHTML;
     });
   }
+
+  addSubjectRemoveButtonEventListeners();
 }
 
 function loadHomeFaqs(faqs) {
@@ -223,10 +225,6 @@ function addTutorRemoveButtonEventListeners() {
   const tutorRemoveButtons = document.getElementsByClassName(
     "tutor-remove-button"
   );
-  console.log("yeet", tutorRemoveButtons);
-  const subjectRemoveButtons = document.getElementsByClassName(
-    "subject-remove-button"
-  );
   const faqRemoveButtons = document.getElementsByClassName("faq-remove-button");
   const itemRemoveButtons =
     document.getElementsByClassName("item-remove-button");
@@ -239,6 +237,22 @@ function addTutorRemoveButtonEventListeners() {
       const tutorId = parseInt(this.parentElement.dataset.tutorId);
 
       removeHomeTutor(token, tutorId);
+    });
+  }
+}
+
+function addSubjectRemoveButtonEventListeners() {
+  const subjectRemoveButtons = document.getElementsByClassName(
+    "subject-remove-button"
+  );
+
+  for (const button of subjectRemoveButtons) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const subjectId = parseInt(this.parentElement.dataset.subjectId);
+
+      removeHomeSubject(token, subjectId);
     });
   }
 }
