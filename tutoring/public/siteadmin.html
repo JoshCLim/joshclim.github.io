@@ -504,6 +504,87 @@
          </div>
       </div>
 
+      <!-- ADD ITEM MODAL -->
+      <div class="modal fade" tabindex="-1" id="itemAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add store item</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="itemInputName" class="form-label">
+                           Name
+                        </label>
+                        <input
+                           type="text"
+                           id="itemInputName"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputPrice" class="form-label">
+                           Price
+                        </label>
+                        <input
+                           type="number"
+                           id="itemInputPrice"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputDescription" class="form-label">
+                           Description
+                        </label>
+                        <textarea
+                           id="itemInputDescription"
+                           class="form-control"
+                        ></textarea>
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputImage" class="form-label">
+                           Image URL
+                        </label>
+                        <input
+                           id="itemInputImage"
+                           class="form-control"
+                           type="url"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputType" class="form-label">
+                           Type
+                        </label>
+                        <select id="itemInputType" class="form-select">
+                           <option value="NOTES">Notes</option>
+                           <option value="ASSIGNMENT">Assignment</option>
+                        </select>
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="itemInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <!-- HANDLEBARS TEMPLATES -->
       <script type="text/x-handlebars-template" id="tutor-row">
          <tr>

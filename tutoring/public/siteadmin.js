@@ -53,6 +53,13 @@ const faqQnInput = document.getElementById("faqInputQn");
 const faqAnsInput = document.getElementById("faqInputAns");
 const faqSubmitInput = document.getElementById("faqInputSubmit");
 
+const itemNameInput = document.getElementById("itemInputName");
+const itemPriceInput = document.getElementById("itemInputPrice");
+const itemDescriptionInput = document.getElementById("itemInputDescription");
+const itemImageInput = document.getElementById("itemInputImage");
+const itemTypeInput = document.getElementById("itemInputType");
+const itemSubmitInput = document.getElementById("itemInputSubmit");
+
 /* ---- LOGIN ---- */
 // login button clicked
 loginSubmitInput.addEventListener("click", function (event) {
@@ -186,7 +193,17 @@ faqSubmitInput.addEventListener("click", function (event) {
 
   addHomeFaq(token, question, answer);
 });
-// itemSubmitInput.addEventListener("click", function (event) {});
+itemSubmitInput.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const name = itemNameInput.value;
+  const price = itemPriceInput.value; // ? do i need to parseFloat()
+  const imageUrl = itemImageInput.value;
+  const description = itemDescriptionInput.value;
+  const type = itemTypeInput.value;
+
+  addStoreItem(token, name, price, imageUrl, description, type);
+});
 // tagSubmitInput.addEventListener("click", function (event) {});
 
 /* ---- FETCH API ---- */
