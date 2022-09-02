@@ -452,6 +452,58 @@
          </div>
       </div>
 
+      <!-- ADD FAQ MODAL -->
+      <div class="modal fade" tabindex="-1" id="faqAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add faq</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="faqInputQn" class="form-label">
+                           Question
+                        </label>
+                        <input
+                           type="text"
+                           id="faqInputQn"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="faqInputAns" class="form-label">
+                           Answer
+                        </label>
+                        <textarea
+                           id="faqInputAns"
+                           class="form-control"
+                        ></textarea>
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="faqInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <!-- HANDLEBARS TEMPLATES -->
       <script type="text/x-handlebars-template" id="tutor-row">
          <tr>

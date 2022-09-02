@@ -49,6 +49,10 @@ const subjectLevelInput = document.getElementById("subjectInputLevel");
 const subjectGroupInput = document.getElementById("subjectInputGroup");
 const subjectSubmitInput = document.getElementById("subjectInputSubmit");
 
+const faqQnInput = document.getElementById("faqInputQn");
+const faqAnsInput = document.getElementById("faqInputAns");
+const faqSubmitInput = document.getElementById("faqInputSubmit");
+
 /* ---- LOGIN ---- */
 // login button clicked
 loginSubmitInput.addEventListener("click", function (event) {
@@ -174,7 +178,14 @@ subjectSubmitInput.addEventListener("click", function (event) {
 
   addHomeSubject(token, name, level, group);
 });
-// faqSubmitInput.addEventListener("click", function (event) {});
+faqSubmitInput.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const question = faqQnInput.value;
+  const answer = faqAnsInput.value;
+
+  addHomeFaq(token, question, answer);
+});
 // itemSubmitInput.addEventListener("click", function (event) {});
 // tagSubmitInput.addEventListener("click", function (event) {});
 
