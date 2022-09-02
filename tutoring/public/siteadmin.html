@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SiteAdmin</title>
+
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+         crossorigin="anonymous"
+      />
+   </head>
+   <body>
+      <!-- LANDING PAGE -->
+      <div
+         id="header-container"
+         class="container-fluid text-center vh-100 vw-100 d-flex flex-column justify-content-center align-items-center"
+      >
+         <div class="row">
+            <h1 class="mb-4">IB Expert Site Admin</h1>
+         </div>
+         <div class="d-flex flex-row justify-content-center">
+            <button
+               type="button"
+               class="btn btn-primary btn-lg mx-3"
+               data-bs-toggle="modal"
+               data-bs-target="#loginModal"
+            >
+               Login
+            </button>
+            <button
+               type="button"
+               class="btn btn-danger btn-lg mx-3"
+               data-bs-toggle="modal"
+               data-bs-target="#"
+            >
+               Report an Issue
+            </button>
+         </div>
+      </div>
+
+      <!-- EDITOR PAGE -->
+      <div class="container-fluid p-4" id="global-container">
+         <h1 class="m-0 p-3 text-end">site admin editor</h1>
+         <ul class="nav nav-tabs" id="tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+               <button
+                  class="nav-link active"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+               >
+                  Home
+               </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+               <button
+                  class="nav-link"
+                  id="store-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#store-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="store"
+                  aria-selected="false"
+               >
+                  Store
+               </button>
+            </li>
+         </ul>
+         <div class="tab-content" id="tab-content">
+            <div
+               class="tab-pane fade show active p-3"
+               id="home-pane"
+               role="tabpanel"
+               aria-labelledby="home-tab"
+            >
+               <div class="d-flex align-items-center">
+                  <h3 class="my-1 me-3">tutors</h3>
+                  <button
+                     type="button"
+                     class="btn btn-sm btn-success px-2 py-0"
+                     style="height: 26.6666px"
+                     id="tutor-add-button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#tutorAddModal"
+                  >
+                     +
+                  </button>
+               </div>
+               <div id="tutors-container">
+                  <table
+                     id="tutors-table"
+                     class="table align-middle"
+                     style="width: inherit !important"
+                  >
+                     <thead>
+                        <tr>
+                           <th scope="th" class="px-4">#</th>
+                           <th scope="th" class="px-4">name</th>
+                           <th scope="th" class="px-4">mark</th>
+                           <th scope="th" class="px-4">bio</th>
+                           <th scope="th" class="px-4">picURL</th>
+                           <th scope="th">actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <td colspan="3">---- no values loaded ----</td>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="d-flex align-items-center">
+                  <h3 class="my-1 me-3">subjects</h3>
+                  <button
+                     type="button"
+                     class="btn btn-sm btn-success px-2 py-0"
+                     style="height: 26.6666px"
+                     id="subject-add-button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#subjectAddModal"
+                  >
+                     +
+                  </button>
+               </div>
+               <div id="subjects-container">
+                  <p>no. of groups: <span id="subjects-group-count">0</span></p>
+                  <table
+                     id="subjects-table"
+                     class="table align-middle"
+                     style="width: inherit !important"
+                  >
+                     <thead>
+                        <tr>
+                           <th scope="th" class="px-4">#</th>
+                           <th scope="th" class="px-4">name</th>
+                           <th scope="th" class="px-4">group no.</th>
+                           <th scope="th" class="px-4">level</th>
+                           <th scope="th">actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <td colspan="3">---- no values loaded ----</td>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="d-flex align-items-center">
+                  <h3 class="my-1 me-3">faqs</h3>
+                  <button
+                     type="button"
+                     class="btn btn-sm btn-success px-2 py-0"
+                     style="height: 26.6666px"
+                     id="faq-add-button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#faqAddModal"
+                  >
+                     +
+                  </button>
+               </div>
+               <div id="faqs-container">
+                  <table
+                     id="faqs-table"
+                     class="table align-middle"
+                     style="width: inherit !important"
+                  >
+                     <thead>
+                        <tr>
+                           <th scope="th" class="px-4">#</th>
+                           <th scope="th" class="px-4">question</th>
+                           <th scope="th" class="px-4">answer</th>
+                           <th scope="th">actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <td colspan="3">---- no values loaded ----</td>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div
+               class="tab-pane fade show p-3"
+               id="store-pane"
+               role="tabpanel"
+               aria-labelledby="store-tab"
+            >
+               <div class="d-flex align-items-center">
+                  <h3 class="my-1 me-3">items</h3>
+                  <button
+                     type="button"
+                     class="btn btn-sm btn-success px-2 py-0"
+                     style="height: 26.6666px"
+                     id="item-add-button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#itemAddModal"
+                  >
+                     +
+                  </button>
+               </div>
+               <div id="items-container">
+                  <table
+                     id="items-table"
+                     class="table align-middle"
+                     style="width: inherit !important"
+                  >
+                     <thead>
+                        <tr>
+                           <th scope="th" class="px-4">#</th>
+                           <th scope="th" class="px-4">name</th>
+                           <th scope="th" class="px-4">price</th>
+                           <th scope="th" class="px-4">tags</th>
+                           <th scope="th" class="px-4">imageUrl</th>
+                           <th scope="th" class="px-4">description</th>
+                           <th scope="th" class="px-4">type</th>
+                           <th scope="th">actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <td colspan="3">---- no values loaded ----</td>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="d-flex align-items-center">
+                  <h3 class="my-1 me-3">tags</h3>
+                  <button
+                     type="button"
+                     class="btn btn-sm btn-success px-2 py-0"
+                     style="height: 26.6666px"
+                     id="tag-add-button"
+                     data-bs-toggle="modal"
+                     data-bs-target="#tagAddModal"
+                  >
+                     +
+                  </button>
+               </div>
+               <div id="tags-container" class="w-50">
+                  <table
+                     id="tags-table"
+                     class="table align-middle"
+                     style="width: inherit !important"
+                  >
+                     <thead>
+                        <tr>
+                           <th scope="th" class="px-4">#</th>
+                           <th scope="th" class="px-4">name</th>
+                           <th scope="th">actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <td colspan="3">---- no values loaded ----</td>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- LOGIN MODAL -->
+      <div
+         class="modal fade"
+         tabindex="-1"
+         id="loginModal"
+         data-bs-backdrop="static"
+      >
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">site admin login</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="loginInputEmail" class="form-label">
+                           Email
+                        </label>
+                        <input
+                           type="email"
+                           id="loginInputEmail"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="loginInputPassword" class="form-label">
+                           Password
+                        </label>
+                        <input
+                           type="password"
+                           id="loginInputPassword"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="loginInputSubmit"
+                        >
+                           Login
+                        </button>
+                        <a href="tutoring.html">
+                           <button
+                              type="button"
+                              class="btn btn-secondary ms-2 float-right"
+                           >
+                              Back To Site
+                           </button>
+                        </a>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ADD TUTOR MODAL -->
+      <div class="modal fade" tabindex="-1" id="tutorAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add tutor</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="tutorInputName" class="form-label">
+                           Name
+                        </label>
+                        <input
+                           type="text"
+                           id="tutorInputName"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="tutorInputMark" class="form-label">
+                           Mark
+                        </label>
+                        <input
+                           type="number"
+                           id="tutorInputMark"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="tutorInputBio" class="form-label">
+                           Bio
+                        </label>
+                        <input
+                           type="text"
+                           id="tutorInputBio"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="tutorInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ADD SUBJECT MODAL -->
+      <div class="modal fade" tabindex="-1" id="subjectAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add subject</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="subjectInputName" class="form-label">
+                           Name
+                        </label>
+                        <input
+                           type="text"
+                           id="subjectInputName"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="subjectInputLevel" class="form-label">
+                           Level
+                        </label>
+                        <select id="subjectInputLevel" class="form-select">
+                           <option value="0">SL</option>
+                           <option value="1">HL/SL</option>
+                        </select>
+                     </div>
+                     <div class="mb-3">
+                        <label for="subjectInputGroup" class="form-label">
+                           Group
+                        </label>
+                        <input
+                           type="number"
+                           id="subjectInputGroup"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="subjectInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ADD FAQ MODAL -->
+      <div class="modal fade" tabindex="-1" id="faqAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add faq</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="faqInputQn" class="form-label">
+                           Question
+                        </label>
+                        <input
+                           type="text"
+                           id="faqInputQn"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="faqInputAns" class="form-label">
+                           Answer
+                        </label>
+                        <textarea
+                           id="faqInputAns"
+                           class="form-control"
+                        ></textarea>
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="faqInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ADD ITEM MODAL -->
+      <div class="modal fade" tabindex="-1" id="itemAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add store item</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="itemInputName" class="form-label">
+                           Name
+                        </label>
+                        <input
+                           type="text"
+                           id="itemInputName"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputPrice" class="form-label">
+                           Price
+                        </label>
+                        <input
+                           type="number"
+                           id="itemInputPrice"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputDescription" class="form-label">
+                           Description
+                        </label>
+                        <textarea
+                           id="itemInputDescription"
+                           class="form-control"
+                        ></textarea>
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputImage" class="form-label">
+                           Image URL
+                        </label>
+                        <input
+                           id="itemInputImage"
+                           class="form-control"
+                           type="url"
+                        />
+                     </div>
+                     <div class="mb-3">
+                        <label for="itemInputType" class="form-label">
+                           Type
+                        </label>
+                        <select id="itemInputType" class="form-select">
+                           <option value="NOTES">Notes</option>
+                           <option value="ASSIGNMENT">Assignment</option>
+                        </select>
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="itemInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ADD TAG MODAL -->
+      <div class="modal fade" tabindex="-1" id="tagAddModal">
+         <div
+            class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+         >
+            <div class="modal-content">
+               <div class="modal-header px-4">
+                  <h3 class="modal-title">add tag</h3>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body p-5 pt-4">
+                  <form action="#">
+                     <div class="mb-3">
+                        <label for="tagInputName" class="form-label">
+                           Name
+                        </label>
+                        <input
+                           type="text"
+                           id="tagInputName"
+                           class="form-control"
+                        />
+                     </div>
+                     <div class="mt-4 py-1 pb-0">
+                        <button
+                           type="submit"
+                           class="btn btn-primary"
+                           data-bs-dismiss="modal"
+                           id="tagInputSubmit"
+                        >
+                           Submit
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- HANDLEBARS TEMPLATES -->
+      <script type="text/x-handlebars-template" id="tutor-row">
+         <tr>
+            <th class="px-4">{{id}}</th>
+            <td class="px-4">{{name}}</td>
+            <td class="px-4">{{mark}}</td>
+            <td class="px-4">{{bio}}</td>
+            <td class="overflow-hidden mw-25 px-4">{{picURL}}</td>
+            <td data-tutor-id="{{id}}" style="width: 125px">
+               <button type="button" class="btn btn-light me-1"><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-pencil-square"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                     ></path>
+                     <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                     ></path>
+                  </svg></button>
+               <button
+                  type="button"
+                  class="btn btn-danger tutor-remove-button"
+               ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-trash3"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                     ></path>
+                  </svg></button>
+            </td>
+         </tr>
+      </script>
+
+      <script type="text/x-handlebars-template" id="subject-row">
+         <tr>
+            <th class="px-4">{{id}}</th>
+            <td class="px-4">{{name}}</td>
+            <td class="px-4">{{group}}</td>
+            <td class="px-4">{{level}}</td>
+            <td data-subject-id="{{id}}" style="width: 125px">
+               <button type="button" class="btn btn-light me-1"><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-pencil-square"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                     ></path>
+                     <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                     ></path>
+                  </svg></button>
+               <button
+                  type="button"
+                  class="btn btn-danger subject-remove-button"
+               ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-trash3"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                     ></path>
+                  </svg></button>
+            </td>
+         </tr>
+      </script>
+
+      <script type="text/x-handlebars-template" id="faq-row">
+         <tr>
+            <th class="px-4">{{id}}</th>
+            <td class="px-4" style="width: 25%;">{{question}}</td>
+            <td class="px-4" style="width: 50%;">{{answer}}</td>
+            <td data-faq-id="{{id}}" style="width: 125px">
+               <button type="button" class="btn btn-light me-1"><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-pencil-square"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                     ></path>
+                     <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                     ></path>
+                  </svg></button>
+               <button
+                  type="button"
+                  class="btn btn-danger faq-remove-button"
+               ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-trash3"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                     ></path>
+                  </svg></button>
+            </td>
+         </tr>
+      </script>
+
+      <script type="text/x-handlebars-template" id="item-row">
+         <tr>
+            <th class="px-4">{{id}}</th>
+            <td class="px-4">{{name}}</td>
+            <td class="px-4">{{price}}</td>
+            <td class="px-4">
+               {{#each tags}}
+                  <div>{{this}}</div>
+               {{/each}}
+            </td>
+            <td class="px-4">{{imageUrl}}</td>
+            <td class="px-4">{{description}}</td>
+            <td class="px-4">{{type}}</td>
+            <td data-item-id="{{id}}" style="width: 125px">
+               <button type="button" class="btn btn-light me-1"><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-pencil-square"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                     ></path>
+                     <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                     ></path>
+                  </svg></button>
+               <button
+                  type="button"
+                  class="btn btn-danger item-remove-button"
+               ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-trash3"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                     ></path>
+                  </svg></button>
+            </td>
+         </tr>
+      </script>
+
+      <script type="text/x-handlebars-template" id="tag-row">
+         <tr>
+            <th class="px-4">{{id}}</th>
+            <td class="px-4">{{name}}</td>
+            <td data-tag-id="{{id}}" style="width: 125px">
+               <button type="button" class="btn btn-light me-1"><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-pencil-square"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                     ></path>
+                     <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                     ></path>
+                  </svg></button>
+               <button
+                  type="button"
+                  class="btn btn-danger tag-remove-button"
+               ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     fill="currentColor"
+                     class="bi bi-trash3"
+                     viewBox="0 0 16 16"
+                  >
+                     <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                     ></path>
+                  </svg></button>
+            </td>
+         </tr>
+      </script>
+
+      <!-- STUFF -->
+
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+         crossorigin="anonymous"
+      ></script>
+
+      <script src="handlebars.js"></script>
+
+      <script type="text/javascript" src="siteadmin.js"></script>
+   </body>
+</html>
