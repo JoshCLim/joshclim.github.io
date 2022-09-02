@@ -60,6 +60,9 @@ const itemImageInput = document.getElementById("itemInputImage");
 const itemTypeInput = document.getElementById("itemInputType");
 const itemSubmitInput = document.getElementById("itemInputSubmit");
 
+const tagNameInput = document.getElementById("tagInputName");
+const tagSubmitInput = document.getElementById("tagInputSubmit");
+
 /* ---- LOGIN ---- */
 // login button clicked
 loginSubmitInput.addEventListener("click", function (event) {
@@ -204,7 +207,13 @@ itemSubmitInput.addEventListener("click", function (event) {
 
   addStoreItem(token, name, price, imageUrl, description, type);
 });
-// tagSubmitInput.addEventListener("click", function (event) {});
+tagSubmitInput.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const name = tagNameInput.value;
+
+  addStoreTag(token, name);
+});
 
 /* ---- FETCH API ---- */
 // login
@@ -484,7 +493,7 @@ function addStoreItem(token, name, price, imageUrl, description, type) {
 }
 
 function addStoreTag(token, name) {
-  fetch(BASE_URL + "/siteadmin/home/addtag", {
+  fetch(BASE_URL + "/siteadmin/store/addtag", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
